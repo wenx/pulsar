@@ -1,0 +1,13 @@
+# Cache
+meta-cache.json
+__pycache__/
+
+# Thumbnails (generated)
+thumbs/
+
+# Environment
+.env
+.DS_Store
+
+# Python
+*.pyc

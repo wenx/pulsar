@@ -1,0 +1,997 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pulsar</title>
+    <link>https://pulsar.wenxin.io</link>
+    <description>Curated links from SOLARIS</description>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 10 Mar 2026 07:39:31 +0000</lastBuildDate>
+    <atom:link href="https://pulsar.wenxin.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>#355.Gavin Baker - Nvidia 与 Google、缩放定律，以及 AI 的经济学 - 跨国串门儿计划 | 小宇宙 - 听播客，上小宇宙</title>
+      <link>https://www.xiaoyuzhoufm.com/episode/693a6b392a383da167851711</link>
+      <guid isPermaLink="true">https://www.xiaoyuzhoufm.com/episode/693a6b392a383da167851711</guid>
+      <description>听《跨国串门儿计划》上小宇宙。 这是一档使用 AI 技术来将英文播客翻译为中文播客的节目～ 在翻译的同时，也能保留原有声线，用中文听懂外语播客！</description>
+      <category>Article</category>
+      <category>Technology</category>
+      <category>AI</category>
+      <category>podcast</category>
+      <category>Gavin</category>
+      <category>Baker</category>
+    </item>
+    <item>
+      <title>WebTUI</title>
+      <link>https://webtui.ironclad.sh/</link>
+      <guid isPermaLink="true">https://webtui.ironclad.sh/</guid>
+      <description>Modular CSS Library that brings the beauty of Terminal UIs to the browser</description>
+      <category>Article</category>
+      <category>Unknown</category>
+    </item>
+    <item>
+      <title>The Engineer who invented the Mars Rover Suspension...in his garage</title>
+      <link>https://www.youtube.com/watch?v=QKSPk_0N4Jc&amp;list=WL&amp;index=1&amp;t=1740s</link>
+      <guid isPermaLink="true">https://www.youtube.com/watch?v=QKSPk_0N4Jc&amp;list=WL&amp;index=1&amp;t=1740s</guid>
+      <description>The Engineer who invented the Mars Rover Suspension...in his garage — GearSkeptic</description>
+      <category>Video</category>
+      <category>Unknown</category>
+      <category>YouTube</category>
+    </item>
+    <item>
+      <title>比尔.乔伊：为什么未来不需要我们</title>
+      <link>https://www.douban.com/group/topic/1400499/</link>
+      <guid isPermaLink="true">https://www.douban.com/group/topic/1400499/</guid>
+      <description>Bill Joy 的经典文章：技术的加速发展可能让人类变得多余，基因工程、纳米技术和机器人技术带来的存在性风险。</description>
+      <category>Article</category>
+      <category>Technology</category>
+      <category>AI</category>
+      <category>existential-risk</category>
+      <category>Bill Joy</category>
+      <category>nanotech</category>
+    </item>
+    <item>
+      <title>How Apple Is Organized for Innovation</title>
+      <link>https://archive.is/3ZXjW</link>
+      <guid isPermaLink="true">https://archive.is/3ZXjW</guid>
+      <description>哈佛商业评论深度解析苹果的组织架构——按职能而非产品线划分，让专家领导专家，这是苹果持续创新的秘密。</description>
+      <category>Article</category>
+      <category>Business</category>
+      <category>Apple</category>
+      <category>org-design</category>
+      <category>innovation</category>
+      <category>HBR</category>
+    </item>
+    <item>
+      <title>My daily routine</title>
+      <link>https://notes.andymatuschak.org/zSve33D7x1qe5WUjojDcM9y</link>
+      <guid isPermaLink="true">https://notes.andymatuschak.org/zSve33D7x1qe5WUjojDcM9y</guid>
+      <description>Andy Matuschak 分享他的日常工作节奏：深度思考、间隔重复、笔记写作，一个知识工作者的理想化日常。</description>
+      <category>Article</category>
+      <category>Productivity</category>
+      <category>routine</category>
+      <category>deep-work</category>
+      <category>Andy Matuschak</category>
+      <category>PKM</category>
+    </item>
+    <item>
+      <title>西方社会思想两千年</title>
+      <link>https://paradoz.notion.site/3cc4e4e3acd24fe18e2726f53d1f2ced</link>
+      <guid isPermaLink="true">https://paradoz.notion.site/3cc4e4e3acd24fe18e2726f53d1f2ced</guid>
+      <description>A tool that connects everyday work into one space. It gives you and your teams AI tools—search, writing, note-taking—inside an all-in-one, flexible workspace.</description>
+      <category>Article</category>
+      <category>Philosophy</category>
+      <category>Western-thought</category>
+      <category>philosophy</category>
+      <category>intellectual-history</category>
+    </item>
+    <item>
+      <title>【切片】Andrej Karpathy分享高效学习的秘诀_哔哩哔哩_bilibili</title>
+      <link>https://b23.tv/6Mcvrzu?share_medium=ipad&amp;bbid=YB47AFBD75EF635B4C21B2EC12741EF45C7C&amp;ts=1767716953</link>
+      <guid isPermaLink="true">https://b23.tv/6Mcvrzu?share_medium=ipad&amp;bbid=YB47AFBD75EF635B4C21B2EC12741EF45C7C&amp;ts=1767716953</guid>
+      <description>Andrej Karpathy 分享高效学习方法：如何攻克困难学科，从费曼技巧到主动回忆，AI 大牛的学习心法。</description>
+      <category>Video</category>
+      <category>Learning</category>
+      <category>Karpathy</category>
+      <category>learning</category>
+      <category>Feynman-technique</category>
+      <category>AI</category>
+    </item>
+    <item>
+      <title>浪潮将至 (豆瓣)</title>
+      <link>https://book.douban.com/subject/37077347/</link>
+      <guid isPermaLink="true">https://book.douban.com/subject/37077347/</guid>
+      <description>人工智能、生物技术、量子计算……我们正在接近人类历史的一个关键节点，这一节点决定着人类命运的未来走向。我们已被人工智能包围，生活中的一切都将改变。人工智能将组织我们的生活，经营我们的生意，管理核心的政...</description>
+      <category>Book</category>
+      <category>Technology</category>
+      <category>AI</category>
+      <category>biotech</category>
+      <category>quantum</category>
+      <category>book</category>
+    </item>
+    <item>
+      <title>The Second Half – Shunyu Yao – 姚顺雨</title>
+      <link>https://ysymyth.github.io/The-Second-Half/</link>
+      <guid isPermaLink="true">https://ysymyth.github.io/The-Second-Half/</guid>
+      <description>tldr: We’re at AI’s halftime.
+
+</description>
+      <category>Article</category>
+      <category>Technology</category>
+      <category>AI</category>
+      <category>halftime</category>
+      <category>Shunyu Yao</category>
+      <category>research</category>
+    </item>
+    <item>
+      <title>Notational intelligence | thesephist.com</title>
+      <link>https://thesephist.com/posts/notation/</link>
+      <guid isPermaLink="true">https://thesephist.com/posts/notation/</guid>
+      <description>Linus Lee 探讨「符号智能」——好的表示法如何放大思维能力，从数学符号到编程语言，notation 即思考工具。</description>
+      <category>Article</category>
+      <category>Thinking</category>
+      <category>notation</category>
+      <category>thinking-tools</category>
+      <category>Linus Lee</category>
+      <category>cognition</category>
+    </item>
+    <item>
+      <title>【乔·罗根访谈】NVIDIA创始人黄仁勋深度对话_哔哩哔哩_bilibili</title>
+      <link>https://b23.tv/pr8QqPr</link>
+      <guid isPermaLink="true">https://b23.tv/pr8QqPr</guid>
+      <description>Joe Rogan 与 NVIDIA CEO 黄仁勋的深度对话：AI 的未来、芯片战争、创业历程，以及他对技术改变世界的愿景。</description>
+      <category>Video</category>
+      <category>Technology</category>
+      <category>Jensen Huang</category>
+      <category>NVIDIA</category>
+      <category>chips</category>
+      <category>AI</category>
+    </item>
+    <item>
+      <title>Harsh Truths About The Game Of Life - Naval Ravikant (4K) - YouTube</title>
+      <link>https://www.youtube.com/watch?v=KyfUysrNaco</link>
+      <guid isPermaLink="true">https://www.youtube.com/watch?v=KyfUysrNaco</guid>
+      <description>Naval Ravikant 的人生哲学：关于财富、幸福、杠杆和判断力的残酷真相，建立长期财富的底层逻辑。</description>
+      <category>Video</category>
+      <category>Philosophy</category>
+      <category>Naval</category>
+      <category>wealth</category>
+      <category>happiness</category>
+      <category>leverage</category>
+    </item>
+    <item>
+      <title>Pavel Durov: Telegram, Freedom, Censorship, Money, Power &amp; Human Nature | Lex Fridman Podcast</title>
+      <link>https://www.youtube.com/watch?v=qjPH9njnaVU</link>
+      <guid isPermaLink="true">https://www.youtube.com/watch?v=qjPH9njnaVU</guid>
+      <description>Telegram 创始人 Pavel Durov 与 Lex Fridman 深谈：加密通信、言论自由、抵抗政府压力，以及他的流亡人生。</description>
+      <category>Video</category>
+      <category>Geopolitics</category>
+      <category>Durov</category>
+      <category>Telegram</category>
+      <category>censorship</category>
+      <category>free-speech</category>
+    </item>
+    <item>
+      <title>金刻羽：中国的经济、关税、贸易、特朗普 【Lex Fridman播客477期】</title>
+      <link>https://www.bilibili.com/video/BV1BQbizsEwy/?spm_id_from=333.337.search-card.all.click</link>
+      <guid isPermaLink="true">https://www.bilibili.com/video/BV1BQbizsEwy/?spm_id_from=333.337.search-card.all.click</guid>
+      <description>金刻羽做客 Lex Fridman 播客：中国经济增长模式、中美贸易摩擦、关税博弈，一位经济学家的内外部视角。</description>
+      <category>Video</category>
+      <category>Economics</category>
+      <category>China-economy</category>
+      <category>tariffs</category>
+      <category>trade-war</category>
+      <category>Lex Fridman</category>
+    </item>
+    <item>
+      <title>Li Lu - Colossus - joincolossus.com</title>
+      <link>https://joincolossus.com/episode/senra-362-li-lu/</link>
+      <guid isPermaLink="true">https://joincolossus.com/episode/senra-362-li-lu/</guid>
+      <description>David Senra is the host of Founders, where he studies history&#x27;s greatest entrepreneurs. This is what he learned from reading Moving the mountain: My l</description>
+      <category>Podcast</category>
+      <category>Investing</category>
+      <category>Li Lu</category>
+      <category>value-investing</category>
+      <category>Munger</category>
+      <category>podcast</category>
+    </item>
+    <item>
+      <title>https://www.youtube.com/watch?v=qK5oWQmnICU</title>
+      <link>https://www.youtube.com/watch?v=qK5oWQmnICU</link>
+      <guid isPermaLink="true">https://www.youtube.com/watch?v=qK5oWQmnICU</guid>
+      <description>付鹏宏观对谈：全球风险资产承压，债务周期末端的投资策略与风险预警。</description>
+      <category>Video</category>
+      <category>Investing</category>
+      <category>macro</category>
+      <category>debt-cycle</category>
+      <category>risk-assets</category>
+      <category>Fu Peng</category>
+    </item>
+    <item>
+      <title>My daily routine</title>
+      <link>https://notes.andymatuschak.org/zSve33D7x1qe5WUjojDcM9y</link>
+      <guid isPermaLink="true">https://notes.andymatuschak.org/zSve33D7x1qe5WUjojDcM9y</guid>
+      <description>Andy Matuschak 的每日工作流：如何在深度研究、写作和软件开发之间分配时间和注意力。</description>
+      <category>Article</category>
+      <category>Productivity</category>
+      <category>routine</category>
+      <category>deep-work</category>
+      <category>Andy Matuschak</category>
+      <category>PKM</category>
+    </item>
+    <item>
+      <title>《小人国 VS 巨人国的货币》汇率是由什么决定的？为什么会变？变了又代表什么？如何操纵汇率？为什么要操纵汇率？</title>
+      <link>https://www.youtube.com/watch?v=ZMxTrSmRM08</link>
+      <guid isPermaLink="true">https://www.youtube.com/watch?v=ZMxTrSmRM08</guid>
+      <description>用小人国和巨人国的寓言解释汇率：为什么货币会升值贬值、各国如何操纵汇率、对普通人意味着什么。</description>
+      <category>Video</category>
+      <category>Economics</category>
+      <category>forex</category>
+      <category>currency</category>
+      <category>monetary-policy</category>
+      <category>explainer</category>
+    </item>
+    <item>
+      <title>What Should You Do with Your Life? Directions and Advice - Alexey Guzey</title>
+      <link>https://guzey.com/personal/what-should-you-do-with-your-life/</link>
+      <guid isPermaLink="true">https://guzey.com/personal/what-should-you-do-with-your-life/</guid>
+      <description>I ask a lot of people about their life plans. At least half of them tell me that they have no idea where to move and are just coasting along, not sure what to do next. Therefore, this post.
+What to work on?
+
+Y Combinator’s Requests for Startups
+
+Also see Jay Zaveri’s World’s Hardest Problems (via Gary Basin)
+
+
+José Luis Ricón’s (Artir) Technology some people are excited about
+Church Lab’s list of projects and of their implications (via Adam Marblestone)
+
+Also see …</description>
+      <category>Article</category>
+      <category>Philosophy</category>
+      <category>life-advice</category>
+      <category>career</category>
+      <category>Guzey</category>
+      <category>direction</category>
+    </item>
+    <item>
+      <title>Alan Turing, Cybernetics and the Secrets of Life</title>
+      <link>https://youtu.be/rPLvj-GcfSU</link>
+      <guid isPermaLink="true">https://youtu.be/rPLvj-GcfSU</guid>
+      <description>Alan Turing、控制论与生命的秘密——从图灵机到形态发生，探索计算与生物学交汇处的思想史。</description>
+      <category>Video</category>
+      <category>Science</category>
+      <category>Turing</category>
+      <category>cybernetics</category>
+      <category>biology</category>
+      <category>computation</category>
+    </item>
+    <item>
+      <title>【越哥】人生不可错过的6个小时，9.4分史诗级电影《灿烂人生》</title>
+      <link>https://www.youtube.com/watch?v=0oQJaJ8204M</link>
+      <guid isPermaLink="true">https://www.youtube.com/watch?v=0oQJaJ8204M</guid>
+      <description>意大利史诗电影《灿烂人生》：跨越 40 年的家族故事，9.4 分豆瓣评分，6 小时沉浸式观影体验。</description>
+      <category>Film</category>
+      <category>Culture</category>
+      <category>Italian-cinema</category>
+      <category>epic</category>
+      <category>family-saga</category>
+      <category>film</category>
+    </item>
+    <item>
+      <title>The Scythians: Nomad Warriors of the Steppe | Barry Cunliffe | Talks at Google</title>
+      <link>https://youtu.be/XFsd_LyYZdo</link>
+      <guid isPermaLink="true">https://youtu.be/XFsd_LyYZdo</guid>
+      <description>考古学家 Barry Cunliffe 讲述斯基泰人：欧亚草原上的游牧战士帝国，被遗忘的古代文明。</description>
+      <category>Video</category>
+      <category>History</category>
+      <category>Scythians</category>
+      <category>nomads</category>
+      <category>archaeology</category>
+      <category>steppe</category>
+    </item>
+    <item>
+      <title>《纽约杂志》：从普通人到加密人，如何审慎地掉进「兔子洞」</title>
+      <link>https://www.chaincatcher.com/article/2067298</link>
+      <guid isPermaLink="true">https://www.chaincatcher.com/article/2067298</guid>
+      <description>这是一个真正理解加密世界的指南，无论你是想在晚宴上侃侃而谈，还是想知道比特币支持者和融入时尚圈的NFTer的区别。</description>
+      <category>Article</category>
+      <category>Crypto</category>
+      <category>crypto-intro</category>
+      <category>Bitcoin</category>
+      <category>NFT</category>
+      <category>rabbit-hole</category>
+    </item>
+    <item>
+      <title>人生艰难，如何才能过得好一点呢</title>
+      <link>https://zhuanlan.zhihu.com/p/482757365</link>
+      <guid isPermaLink="true">https://zhuanlan.zhihu.com/p/482757365</guid>
+      <description>人生的困境与突围：面对焦虑、迷茫和无力感时，如何找到属于自己的微小出口。</description>
+      <category>Article</category>
+      <category>Philosophy</category>
+      <category>life</category>
+      <category>anxiety</category>
+      <category>self-help</category>
+      <category>meaning</category>
+    </item>
+    <item>
+      <title>The History of Europe: Every Year</title>
+      <link>https://youtu.be/UY9P0QSxlnI</link>
+      <guid isPermaLink="true">https://youtu.be/UY9P0QSxlnI</guid>
+      <description>一部动态地图视频，展现欧洲从公元前到现代的疆域变迁，两千年历史浓缩在一个视频中。</description>
+      <category>Video</category>
+      <category>History</category>
+      <category>Europe</category>
+      <category>map</category>
+      <category>timeline</category>
+      <category>borders</category>
+    </item>
+    <item>
+      <title>How Far is Too Far? | The Age of A.I.</title>
+      <link>https://youtu.be/UwsrzCVZAb8</link>
+      <guid isPermaLink="true">https://youtu.be/UwsrzCVZAb8</guid>
+      <description>YouTube Originals 纪录片：AI 时代人类的边界在哪里？从医疗到创意，探索人机共存的未来。</description>
+      <category>Documentary</category>
+      <category>Technology</category>
+      <category>AI-documentary</category>
+      <category>ethics</category>
+      <category>future</category>
+      <category>YouTube Originals</category>
+    </item>
+    <item>
+      <title>GlobalFoundries Stops All 7nm Development: Opts To Focus on Specialized Processes</title>
+      <link>https://www.anandtech.com/show/13277/globalfoundries-stops-all-7nm-development</link>
+      <guid isPermaLink="true">https://www.anandtech.com/show/13277/globalfoundries-stops-all-7nm-development</guid>
+      <description>Seeking answers? Join the AnandTech community: where nearly half-a-million members share solutions and discuss the latest tech.</description>
+      <category>Article</category>
+      <category>Technology</category>
+      <category>GlobalFoundries</category>
+      <category>7nm</category>
+      <category>semiconductor</category>
+      <category>chipmaking</category>
+    </item>
+    <item>
+      <title>Steve Blank Entrepreneurship as a Science – The Business Model/Customer Development Stack</title>
+      <link>https://steveblank.com/2010/10/25/entrepreneurship-as-a-science-%e2%80%93-the-business-modelcustomer-development-stack/</link>
+      <guid isPermaLink="true">https://steveblank.com/2010/10/25/entrepreneurship-as-a-science-%e2%80%93-the-business-modelcustomer-development-stack/</guid>
+      <description>Over the last 50 years engineers have moved from building computers out of individual transistors to building with prepackaged logic gates. Then they adopted standard microprocessors (e.g. x86, ARM…</description>
+      <category>Article</category>
+      <category>Business</category>
+      <category>Steve Blank</category>
+      <category>lean-startup</category>
+      <category>customer-dev</category>
+      <category>entrepreneurship</category>
+    </item>
+    <item>
+      <title>Baillie Gifford：有目标的投资</title>
+      <link>https://mp.weixin.qq.com/s/8IhWeD4O_kNr6dBWDZfUJw</link>
+      <guid isPermaLink="true">https://mp.weixin.qq.com/s/8IhWeD4O_kNr6dBWDZfUJw</guid>
+      <description>注：Scottish Mortgage的基金经理Tom Slater对过去一年的投资做了复盘。开展投资需要有</description>
+      <category>Article</category>
+      <category>Investing</category>
+      <category>Baillie Gifford</category>
+      <category>long-term</category>
+      <category>growth-investing</category>
+      <category>Scottish Mortgage</category>
+    </item>
+    <item>
+      <title>当资产负债表不想奋斗了</title>
+      <link>https://mp.weixin.qq.com/s/WtibTiCX2F9BMJKBPNjv-A</link>
+      <guid isPermaLink="true">https://mp.weixin.qq.com/s/WtibTiCX2F9BMJKBPNjv-A</guid>
+      <description>心气儿不丢，国运就不丢</description>
+      <category>Article</category>
+      <category>Economics</category>
+      <category>balance-sheet</category>
+      <category>China-economy</category>
+      <category>deleveraging</category>
+      <category>macro</category>
+    </item>
+    <item>
+      <title>On the Origins of Money: Darwin and the Evolution of Cryptocurrency</title>
+      <link>https://www.coindesk.com/markets/2014/05/25/on-the-origins-of-money-darwin-and-the-evolution-of-cryptocurrency/</link>
+      <guid isPermaLink="true">https://www.coindesk.com/markets/2014/05/25/on-the-origins-of-money-darwin-and-the-evolution-of-cryptocurrency/</guid>
+      <description>从达尔文到比特币：货币的起源不是物物交换，而是一场自然选择——最具「可销售性」的商品胜出成为货币。</description>
+      <category>Article</category>
+      <category>Crypto</category>
+      <category>money-origins</category>
+      <category>Darwin</category>
+      <category>Bitcoin</category>
+      <category>Austrian-economics</category>
+    </item>
+    <item>
+      <title>Tuur Demeester on the Looming Debt Crisis and Central Banks for Bitcoin</title>
+      <link>https://www.whatbitcoindid.com/podcast/tuur-demeester-on-the-looming-debt-crisis-and-central-banks-for-bitcoin</link>
+      <guid isPermaLink="true">https://www.whatbitcoindid.com/podcast/tuur-demeester-on-the-looming-debt-crisis-and-central-banks-for-bitcoin</guid>
+      <description>Tuur Demeester 分析全球债务危机：央行困境、法币通胀、以及比特币作为避险资产的角色。</description>
+      <category>Podcast</category>
+      <category>Crypto</category>
+      <category>debt-crisis</category>
+      <category>central-banks</category>
+      <category>Bitcoin</category>
+      <category>inflation</category>
+    </item>
+    <item>
+      <title>Clueyness: A Weird Kind of Sad</title>
+      <link>https://waitbutwhy.com/2016/05/clueyness-a-weird-kind-of-sad.html</link>
+      <guid isPermaLink="true">https://waitbutwhy.com/2016/05/clueyness-a-weird-kind-of-sad.html</guid>
+      <description>No one likes to feel cluey.</description>
+      <category>Article</category>
+      <category>Philosophy</category>
+      <category>clueyness</category>
+      <category>existential</category>
+      <category>Wait But Why</category>
+      <category>emotion</category>
+    </item>
+    <item>
+      <title>Evolution</title>
+      <link>https://youtube.com/playlist?list=PLKortajF2dPBWMIS6KF4RLtQiG6KQrTdB</link>
+      <guid isPermaLink="true">https://youtube.com/playlist?list=PLKortajF2dPBWMIS6KF4RLtQiG6KQrTdB</guid>
+      <description>一个关于进化论的 YouTube 系列播放列表：从自然选择到基因漂变，理解生命如何塑造自己。</description>
+      <category>Video</category>
+      <category>Science</category>
+      <category>evolution</category>
+      <category>natural-selection</category>
+      <category>biology</category>
+      <category>playlist</category>
+    </item>
+    <item>
+      <title>思想钢印全部文章分类</title>
+      <link>https://mp.weixin.qq.com/s/uwhIzvf1wCCexoT2vPHJxg</link>
+      <guid isPermaLink="true">https://mp.weixin.qq.com/s/uwhIzvf1wCCexoT2vPHJxg</guid>
+      <description>文章目录</description>
+      <category>Article</category>
+      <category>Resource</category>
+      <category>思想钢印</category>
+      <category>WeChat</category>
+      <category>index</category>
+      <category>curated-list</category>
+    </item>
+    <item>
+      <title>迈克尔·布隆伯格2019年哈佛商学院毕业典礼致辞：思诚为修身之本</title>
+      <link>https://mp.weixin.qq.com/s/zmSA9GcBp9omcS1BY80vvA</link>
+      <guid isPermaLink="true">https://mp.weixin.qq.com/s/zmSA9GcBp9omcS1BY80vvA</guid>
+      <description>5月29日，迈克尔·布隆伯格受邀出席了哈佛商学院毕业典礼并致辞。</description>
+      <category>Article</category>
+      <category>Philosophy</category>
+      <category>Bloomberg</category>
+      <category>Harvard</category>
+      <category>commencement</category>
+      <category>integrity</category>
+    </item>
+    <item>
+      <title>How This All Happened</title>
+      <link>https://collabfund.com/blog/how-this-all-happened/</link>
+      <guid isPermaLink="true">https://collabfund.com/blog/how-this-all-happened/</guid>
+      <description>This is a short story about what happened to the U.S.</description>
+      <category>Article</category>
+      <category>Economics</category>
+      <category>US-economy</category>
+      <category>inequality</category>
+      <category>post-war</category>
+      <category>Morgan Housel</category>
+    </item>
+    <item>
+      <title>人类是如何走到今天🆕</title>
+      <link>https://pmthinking.notion.site/d3490b3b663c4f52a2cb22c4a7f31393</link>
+      <guid isPermaLink="true">https://pmthinking.notion.site/d3490b3b663c4f52a2cb22c4a7f31393</guid>
+      <description>A tool that connects everyday work into one space. It gives you and your teams AI tools—search, writing, note-taking—inside an all-in-one, flexible workspace.</description>
+      <category>Article</category>
+      <category>History</category>
+      <category>China-history</category>
+      <category>civilization</category>
+      <category>Notion</category>
+      <category>reading-notes</category>
+    </item>
+    <item>
+      <title>六个半的设计哲学 from Alex</title>
+      <link>https://mp.weixin.qq.com/s/avYa-bzd-uEjIz6rQ4GG2A</link>
+      <guid isPermaLink="true">https://mp.weixin.qq.com/s/avYa-bzd-uEjIz6rQ4GG2A</guid>
+      <description>一份 Musical.ly 联合创始人 Alex 的 PPT 的阅读笔记。</description>
+      <category>Article</category>
+      <category>Business</category>
+      <category>Musical.ly</category>
+      <category>product-design</category>
+      <category>Alex Zhu</category>
+      <category>startup</category>
+    </item>
+    <item>
+      <title>李善友：张一鸣为什么总有远超他人的认知？</title>
+      <link>https://mp.weixin.qq.com/s/ddI9eCiOSLHuPoNyQed-vQ</link>
+      <guid isPermaLink="true">https://mp.weixin.qq.com/s/ddI9eCiOSLHuPoNyQed-vQ</guid>
+      <description>李善友解读张一鸣的认知优势：延迟满足、第一性原理思维、以及为什么字节跳动能持续突破。</description>
+      <category>Article</category>
+      <category>Thinking</category>
+      <category>Zhang Yiming</category>
+      <category>cognition</category>
+      <category>ByteDance</category>
+      <category>first-principles</category>
+    </item>
+    <item>
+      <title>李国飞哲学与投资笔记</title>
+      <link>https://mp.weixin.qq.com/s/d9lSf5v3kOVzuoeTrbnwwA</link>
+      <guid isPermaLink="true">https://mp.weixin.qq.com/s/d9lSf5v3kOVzuoeTrbnwwA</guid>
+      <description>李国飞的投资与哲学笔记：将东方哲学与现代投资理论融合，探索投资中的道与术。</description>
+      <category>Article</category>
+      <category>Investing</category>
+      <category>investing-philosophy</category>
+      <category>Eastern-philosophy</category>
+      <category>Li Guofei</category>
+    </item>
+    <item>
+      <title>禁锢与永恒：从世界尽头到元宇宙</title>
+      <link>https://www.huxiu.com/article/405962.html</link>
+      <guid isPermaLink="true">https://www.huxiu.com/article/405962.html</guid>
+      <description>引言本文首先人类的认知逻辑和知识体系开始，分别从数学上的哥德尔不完备、物理上的量子不确定性和哲学上的二律背反，讨论了人类认知体系的天然缺陷，从而我们无法从已有的系统内部理解真实世界的本质。事实上，在现有的认知和逻辑体系下，人类没有完全了解人类自己为什么会拥有智能，因此无法打造出拥有完全和人类智能一样的机器。虽......</description>
+      <category>Article</category>
+      <category>Philosophy</category>
+      <category>metaverse</category>
+      <category>Gödel</category>
+      <category>quantum</category>
+      <category>consciousness</category>
+    </item>
+    <item>
+      <title>Into the Fire | Nobel Peace Prize Shorts</title>
+      <link>https://www.youtube.com/watch?v=F_5Lp6teKd8</link>
+      <guid isPermaLink="true">https://www.youtube.com/watch?v=F_5Lp6teKd8</guid>
+      <description>诺贝尔和平奖短片《Into the Fire》：战火中的勇气与人性，震撼的影像记录。</description>
+      <category>Film</category>
+      <category>Geopolitics</category>
+      <category>Nobel-Peace-Prize</category>
+      <category>war</category>
+      <category>short-film</category>
+      <category>documentary</category>
+    </item>
+    <item>
+      <title>他已经出生250年了，至今我们仍在追赶他的脚步</title>
+      <link>https://mp.weixin.qq.com/s?__biz=MzA4NzAxMjQyMg%3D%3D&amp;mid=2650054925&amp;idx=2&amp;sn=2fd17b72c18528acd8b60943d0c0c134&amp;chksm=883fe424bf486d32f9abc24934039339c66ec4e6db9a80cdad6884aba2deb2b1c6934c67f428</link>
+      <guid isPermaLink="true">https://mp.weixin.qq.com/s?__biz=MzA4NzAxMjQyMg%3D%3D&amp;mid=2650054925&amp;idx=2&amp;sn=2fd17b72c18528acd8b60943d0c0c134&amp;chksm=883fe424bf486d32f9abc24934039339c66ec4e6db9a80cdad6884aba2deb2b1c6934c67f428</guid>
+      <description>与洪堡同行，丈量世界，定义自然</description>
+      <category>Article</category>
+      <category>Science</category>
+      <category>Humboldt</category>
+      <category>nature</category>
+      <category>exploration</category>
+      <category>science-history</category>
+    </item>
+    <item>
+      <title>THE BATTLE FOR PICASSO | Vanity Fair | March 2016</title>
+      <link>https://archive.vanityfair.com/article/2016/3/the-battle-for-picasso</link>
+      <guid isPermaLink="true">https://archive.vanityfair.com/article/2016/3/the-battle-for-picasso</guid>
+      <description>The emergence of the Picasso dynasty has been tortuous, complicated by family dynamics among the artist&#x27;s wives, mistresses, children, and grandchildren, as well as the sheer scope of Picasso&#x27;s estate&amp;mdash;some 45,000 works, plus countless authentications, rights, and licensing deals. MILTON ESTEROW delves into the challenges faced by the five surviving heirs, the simmering conflict between two of them, and the impact of their multi-billion-dollar empire</description>
+      <category>Article</category>
+      <category>Culture</category>
+      <category>Picasso</category>
+      <category>art-market</category>
+      <category>dynasty</category>
+      <category>Vanity Fair</category>
+    </item>
+    <item>
+      <title>How This All Happened</title>
+      <link>https://collabfund.com/blog/how-this-all-happened/</link>
+      <guid isPermaLink="true">https://collabfund.com/blog/how-this-all-happened/</guid>
+      <description>This is a short story about what happened to the U.S.</description>
+      <category>Article</category>
+      <category>Economics</category>
+      <category>US-economy</category>
+      <category>inequality</category>
+      <category>post-war</category>
+      <category>Morgan Housel</category>
+    </item>
+    <item>
+      <title>Huawei, 5G, and the Man Who Conquered Noise</title>
+      <link>https://www.wired.com/story/huawei-5g-polar-codes-data-breakthrough/</link>
+      <guid isPermaLink="true">https://www.wired.com/story/huawei-5g-polar-codes-data-breakthrough/</guid>
+      <description>A Turkish scientist’s obscure theoretical breakthrough helped the Chinese tech giant gain control of the future. US telecoms never had a chance.</description>
+      <category>Article</category>
+      <category>Technology</category>
+      <category>Huawei</category>
+      <category>5G</category>
+      <category>polar-codes</category>
+      <category>telecom</category>
+    </item>
+    <item>
+      <title>Letter to a friend who just made a lot of money - Graham Duncan Blog</title>
+      <link>https://grahamduncan.blog/letter-to-a-friend-who-just-made-a-lot-of-money/</link>
+      <guid isPermaLink="true">https://grahamduncan.blog/letter-to-a-friend-who-just-made-a-lot-of-money/</guid>
+      <description>These thoughts were prompted by a question from a friend who had just made a lot of money. But as I crafted them, I realized that the habits of mind he’d need to cultivate to manage his own good fortune also apply to other circumstances. Quieting your own ego to see clearly your own strengths […]</description>
+      <category>Article</category>
+      <category>Investing</category>
+      <category>wealth</category>
+      <category>psychology</category>
+      <category>Graham Duncan</category>
+      <category>money-advice</category>
+    </item>
+    <item>
+      <title>My first impressions of web3</title>
+      <link>https://moxie.org/2022/01/07/web3-first-impressions.html</link>
+      <guid isPermaLink="true">https://moxie.org/2022/01/07/web3-first-impressions.html</guid>
+      <description>Despite considering myself a cryptographer, I have not found myself particularly drawn to “crypto.” I don’t think I’ve ever actually said the words “get off my lawn,” but I’m much more likely to click on Pepperidge Farm Remembers flavored memes about how “crypto” used to mean “cryptography” than ...</description>
+      <category>Article</category>
+      <category>Crypto</category>
+      <category>Web3</category>
+      <category>Moxie</category>
+      <category>decentralization</category>
+      <category>crypto-critique</category>
+    </item>
+    <item>
+      <title>Amend: The Fight for America | Episode 1 | Netflix</title>
+      <link>https://www.youtube.com/watch?v=-E4TUQ4THIE</link>
+      <guid isPermaLink="true">https://www.youtube.com/watch?v=-E4TUQ4THIE</guid>
+      <description>Netflix 纪录片《Amend》：美国宪法第十四修正案的历史，从奴隶制到民权运动，关于平等的漫长斗争。</description>
+      <category>Documentary</category>
+      <category>History</category>
+      <category>14th-Amendment</category>
+      <category>civil-rights</category>
+      <category>Netflix</category>
+      <category>US-history</category>
+    </item>
+    <item>
+      <title>台灣「護國神山」成長記：台積電的故事 - BBC News 中文</title>
+      <link>https://www.bbc.com/zhongwen/trad/57337274</link>
+      <guid isPermaLink="true">https://www.bbc.com/zhongwen/trad/57337274</guid>
+      <description>台積電（TSMC）1987年創立時做了以前沒人做過的事，開創了芯片專業代工的營運模式，徹底改變了全球半導體產業的面貌，也創造出令台灣人引以為傲的「台積電奇蹟」。</description>
+      <category>Article</category>
+      <category>Technology</category>
+      <category>TSMC</category>
+      <category>semiconductor</category>
+      <category>Taiwan</category>
+      <category>chip-foundry</category>
+    </item>
+    <item>
+      <title>https://youtube.com/watch?v=ZluwdT8-JBo&amp;feature=share</title>
+      <link>https://youtube.com/watch?v=ZluwdT8-JBo&amp;feature=share</link>
+      <guid isPermaLink="true">https://youtube.com/watch?v=ZluwdT8-JBo&amp;feature=share</guid>
+      <description>一段尚未识别的 YouTube 视频链接。</description>
+      <category>Video</category>
+      <category>Unknown</category>
+      <category>unknown</category>
+      <category>YouTube</category>
+    </item>
+    <item>
+      <title>Why China is no longer a core asset class</title>
+      <link>https://www.juliusbaer.com/en/insights/market-outlook/why-china-is-no-longer-a-core-asset-class/</link>
+      <guid isPermaLink="true">https://www.juliusbaer.com/en/insights/market-outlook/why-china-is-no-longer-a-core-asset-class/</guid>
+      <description>Explore what our Group Chief Investment Officer has to say about the role of China as an asset class – and how current events have impacted its status.</description>
+      <category>Article</category>
+      <category>Economics</category>
+      <category>China</category>
+      <category>asset-class</category>
+      <category>Julius Baer</category>
+      <category>investment-outlook</category>
+    </item>
+    <item>
+      <title>深度好文：台湾为何与我们渐行渐远？</title>
+      <link>https://mp.weixin.qq.com/s/jTS0ayTNJnkJDj6SmI71Qg</link>
+      <guid isPermaLink="true">https://mp.weixin.qq.com/s/jTS0ayTNJnkJDj6SmI71Qg</guid>
+      <description>西班牙人来了。荷兰人来了。明朝郑成功来了。清政府来了。日本人来了。最后，国民党来了。</description>
+      <category>Article</category>
+      <category>Geopolitics</category>
+      <category>Taiwan</category>
+      <category>cross-strait</category>
+      <category>history</category>
+      <category>identity</category>
+    </item>
+    <item>
+      <title>《红色轮盘》 精彩回顾</title>
+      <link>https://www.reddit.com/r/real_China_irl/comments/pngcln/%E7%BA%A2%E8%89%B2%E8%BD%AE%E7%9B%98_%E7%B2%BE%E5%BD%A9%E5%9B%9E%E9%A1%BE/</link>
+      <guid isPermaLink="true">https://www.reddit.com/r/real_China_irl/comments/pngcln/%E7%BA%A2%E8%89%B2%E8%BD%AE%E7%9B%98_%E7%B2%BE%E5%BD%A9%E5%9B%9E%E9%A1%BE/</guid>
+      <description>《红色轮盘》精华回顾：一位中国政商圈内部人士的自述，揭示权力、财富与腐败的交织。</description>
+      <category>Article</category>
+      <category>Geopolitics</category>
+      <category>Red Roulette</category>
+      <category>China-politics</category>
+      <category>corruption</category>
+      <category>memoir</category>
+    </item>
+    <item>
+      <title>谈Web3重塑数据价值</title>
+      <link>https://mp.weixin.qq.com/s/9tc19tElEFdDj5fYcWjLig</link>
+      <guid isPermaLink="true">https://mp.weixin.qq.com/s/9tc19tElEFdDj5fYcWjLig</guid>
+      <description>在Web3.0里，你的价值行为终将获得回馈，价值的载体是你的数据，也属于你自己。</description>
+      <category>Article</category>
+      <category>Crypto</category>
+      <category>Web3</category>
+      <category>data-ownership</category>
+      <category>decentralization</category>
+      <category>WeChat</category>
+    </item>
+    <item>
+      <title>继 DeFi 和 NFT 之后，加密世界的下一个热点 —— DAO</title>
+      <link>https://mp.weixin.qq.com/s?__biz=Mzg5ODU3NjkwNg==&amp;mid=2247484069&amp;idx=1&amp;sn=d1ccdecf08d9d80493c797a559e58c42&amp;chksm=c06125c0f716acd60a33157a98274725f7fdc1e3a4178a0ff31b4a0f5eed50088a11463a9068</link>
+      <guid isPermaLink="true">https://mp.weixin.qq.com/s?__biz=Mzg5ODU3NjkwNg==&amp;mid=2247484069&amp;idx=1&amp;sn=d1ccdecf08d9d80493c797a559e58c42&amp;chksm=c06125c0f716acd60a33157a98274725f7fdc1e3a4178a0ff31b4a0f5eed50088a11463a9068</guid>
+      <description>本文解释了 DAO 的治理模型，以及这种模型的优缺点、发挥其价值的重要因素。</description>
+      <category>Article</category>
+      <category>Crypto</category>
+      <category>DAO</category>
+      <category>DeFi</category>
+      <category>governance</category>
+      <category>crypto</category>
+    </item>
+    <item>
+      <title>xiaolai/spreadsheets-for-investors: 投资人必会知识 —— 电子表格简明进阶教程</title>
+      <link>https://github.com/xiaolai/spreadsheets-for-investors</link>
+      <guid isPermaLink="true">https://github.com/xiaolai/spreadsheets-for-investors</guid>
+      <description>投资人必会知识 —— 电子表格简明进阶教程. Contribute to xiaolai/spreadsheets-for-investors development by creating an account on GitHub.</description>
+      <category>GitHub</category>
+      <category>Investing</category>
+      <category>spreadsheets</category>
+      <category>Li Xiaolai</category>
+      <category>investor-tools</category>
+      <category>tutorial</category>
+    </item>
+    <item>
+      <title>​我们该不该怀念2021？</title>
+      <link>https://mp.weixin.qq.com/s/TCEa2WjolNl6BAbRD4sX8A</link>
+      <guid isPermaLink="true">https://mp.weixin.qq.com/s/TCEa2WjolNl6BAbRD4sX8A</guid>
+      <description>2021年过去了，我不知是否该怀念它。</description>
+      <category>Article</category>
+      <category>Economics</category>
+      <category>2021-review</category>
+      <category>China-economy</category>
+      <category>reflection</category>
+      <category>macro</category>
+    </item>
+    <item>
+      <title>未来的能源，从哪里来？</title>
+      <link>https://mp.weixin.qq.com/s/vQggFwe_SzeIKzgX9IxmVw</link>
+      <guid isPermaLink="true">https://mp.weixin.qq.com/s/vQggFwe_SzeIKzgX9IxmVw</guid>
+      <description>能源是一切进步的基础，而人类对于进步的追求是没有尽头的。</description>
+      <category>Article</category>
+      <category>Science</category>
+      <category>energy</category>
+      <category>future</category>
+      <category>renewable</category>
+      <category>science</category>
+    </item>
+    <item>
+      <title>资本主义与“文化灭绝”</title>
+      <link>https://cn.nytimes.com/opinion/20200117/ai-weiwei-germany-china/</link>
+      <guid isPermaLink="true">https://cn.nytimes.com/opinion/20200117/ai-weiwei-germany-china/</guid>
+      <description>在现今世界，威权政治和掠夺性商业联手滥用“文化差异”，西方企业和中共精英结成共生关系。新疆正在发生的一切应该令西方世界警醒。</description>
+      <category>Article</category>
+      <category>Geopolitics</category>
+      <category>Ai Weiwei</category>
+      <category>Xinjiang</category>
+      <category>authoritarianism</category>
+      <category>NYT</category>
+    </item>
+    <item>
+      <title>The Best Articles from the New York Times</title>
+      <link>https://tetw.org/New_York_Times</link>
+      <guid isPermaLink="true">https://tetw.org/New_York_Times</guid>
+      <description>Great articles and essays by the world&#x27;s best journalists and writers.</description>
+      <category>Article</category>
+      <category>Resource</category>
+      <category>NYT</category>
+      <category>longform</category>
+      <category>curated-list</category>
+      <category>journalism</category>
+    </item>
+    <item>
+      <title>37.stETH脱锚进行时，Aave让数十亿美金随时可能灰飞烟灭，但也带来了机遇。</title>
+      <link>https://mp.weixin.qq.com/s/KivhWmjkT1of8JVeYjvZmQ</link>
+      <guid isPermaLink="true">https://mp.weixin.qq.com/s/KivhWmjkT1of8JVeYjvZmQ</guid>
+      <description>一旦stETH/ETH持续脱锚，那么势必引发恐慌，而对stETH的恐慌抛售如果触达Aave的清算线，那么这价值22亿美金的定时炸弹将会引爆，横扫整个市场。而且这颗定时炸弹最可怕的是，他拆不掉。</description>
+      <category>Article</category>
+      <category>Crypto</category>
+      <category>stETH</category>
+      <category>Aave</category>
+      <category>DeFi</category>
+      <category>liquidation-risk</category>
+    </item>
+    <item>
+      <title>And Now: 31 Notable WIRED Long-Form Stories of 2021</title>
+      <link>https://www.wired.com/gallery/wired-longreads-2021/</link>
+      <guid isPermaLink="true">https://www.wired.com/gallery/wired-longreads-2021/</guid>
+      <description>In another strange year, our feature articles bubbled up through the cracks and managed to capture the zeitgeist.</description>
+      <category>Article</category>
+      <category>Resource</category>
+      <category>WIRED</category>
+      <category>longform</category>
+      <category>2021</category>
+      <category>curated-list</category>
+    </item>
+    <item>
+      <title>Stewart Brand on Starting Things and Staying Curious (Ep. 142)</title>
+      <link>https://conversationswithtyler.com/episodes/stewart-brand/</link>
+      <guid isPermaLink="true">https://conversationswithtyler.com/episodes/stewart-brand/</guid>
+      <description>At 83, Stewart Brand has been first in a multitude of movements—and he’s not slowing down.</description>
+      <category>Article</category>
+      <category>Culture</category>
+      <category>Stewart Brand</category>
+      <category>Whole Earth</category>
+      <category>curiosity</category>
+      <category>counterculture</category>
+    </item>
+    <item>
+      <title>A tale from Communist China</title>
+      <link>https://www.lesswrong.com/posts/osYFcQtxnRKB4F4HA/a-tale-from-communist-china</link>
+      <guid isPermaLink="true">https://www.lesswrong.com/posts/osYFcQtxnRKB4F4HA/a-tale-from-communist-china</guid>
+      <description>一个关于共产主义中国的真实故事，发表在 LessWrong：理性思维社区视角下的历史反思。</description>
+      <category>Article</category>
+      <category>History</category>
+      <category>Communist-China</category>
+      <category>rationality</category>
+      <category>LessWrong</category>
+      <category>history</category>
+    </item>
+    <item>
+      <title>香港，香港</title>
+      <link>https://mp.weixin.qq.com/s/e8HWmu6Ug730jXT-OGi9Yw</link>
+      <guid isPermaLink="true">https://mp.weixin.qq.com/s/e8HWmu6Ug730jXT-OGi9Yw</guid>
+      <description>中美角力和VIE</description>
+      <category>Article</category>
+      <category>Geopolitics</category>
+      <category>Hong Kong</category>
+      <category>VIE</category>
+      <category>US-China</category>
+      <category>geopolitics</category>
+    </item>
+    <item>
+      <title>A beginner’s guide to DAOs</title>
+      <link>https://linda.mirror.xyz/Vh8K4leCGEO06_qSGx-vS5lvgUqhqkCz9ut81WwCP2o</link>
+      <guid isPermaLink="true">https://linda.mirror.xyz/Vh8K4leCGEO06_qSGx-vS5lvgUqhqkCz9ut81WwCP2o</guid>
+      <description>DAO 入门指南：去中心化自治组织是什么、如何运作、为什么它可能重塑组织形态。</description>
+      <category>Article</category>
+      <category>Crypto</category>
+      <category>DAO</category>
+      <category>Web3</category>
+      <category>beginner-guide</category>
+      <category>mirror.xyz</category>
+    </item>
+    <item>
+      <title>如何降低皮质醇</title>
+      <link>https://zh.wikihow.com/%E9%99%8D%E4%BD%8E%E7%9A%AE%E8%B4%A8%E9%86%87</link>
+      <guid isPermaLink="true">https://zh.wikihow.com/%E9%99%8D%E4%BD%8E%E7%9A%AE%E8%B4%A8%E9%86%87</guid>
+      <description>如何降低皮质醇. 皮质醇是一种由压力引起的由肾上腺分泌出的化学物质。尽管一定的皮质醇对于生存有好处，但有些人产生了过量的皮质醇。当发生这样的情况时，你可能会发现自己感到焦虑，有压力并有增加体重的趋势。一旦你注意到任何这样的症状，就有必要采取措施。降低身体里产生的皮质醇数量会对你的整体健康有好处，并让你觉得更放松，更平和。 杜绝或者减少所有含有大量咖啡因的饮料。这些包括苏打水，能量饮料和咖啡。喝咖啡因引起皮质醇水平迅速升高。如果有任何让人欣慰的地方，那就是对于经常喝咖啡因...</description>
+      <category>Article</category>
+      <category>Health</category>
+      <category>cortisol</category>
+      <category>stress</category>
+      <category>health-tips</category>
+      <category>hormones</category>
+    </item>
+    <item>
+      <title>A Guide to Ketosis</title>
+      <link>https://josepharcita.blogspot.com/2011/03/guide-to-ketosis.html?m=1</link>
+      <guid isPermaLink="true">https://josepharcita.blogspot.com/2011/03/guide-to-ketosis.html?m=1</guid>
+      <description> Here is the guide to ketosis. The contents of this article can be located here . If you&#x27;re currently wondering what on earth ketosis even i...</description>
+      <category>Article</category>
+      <category>Health</category>
+      <category>ketosis</category>
+      <category>diet</category>
+      <category>keto</category>
+      <category>nutrition</category>
+    </item>
+    <item>
+      <title>贺华成：95后、00后的新文化、新审美与新需求</title>
+      <link>https://mp.weixin.qq.com/s/lDjiCoQ7YW7RQ_AgJ0z2Yg</link>
+      <guid isPermaLink="true">https://mp.weixin.qq.com/s/lDjiCoQ7YW7RQ_AgJ0z2Yg</guid>
+      <description>本文为2017年9月贺华成在微众银行演讲的PPT，不仅更新了内容，还更新了妹妹。</description>
+      <category>Article</category>
+      <category>Culture</category>
+      <category>Gen-Z</category>
+      <category>youth-culture</category>
+      <category>aesthetics</category>
+      <category>China</category>
+    </item>
+    <item>
+      <title>The Fallacy of Redistribution</title>
+      <link>https://townhall.com/columnists/thomassowell/2012/09/20/the-fallacy-of-redistribution-n829911</link>
+      <guid isPermaLink="true">https://townhall.com/columnists/thomassowell/2012/09/20/the-fallacy-of-redistribution-n829911</guid>
+      <description>The recently discovered tape on which Barack Obama said back in 1998 that he believes in redistribution is not really news. He said the same thing to Joe the Plumber four years ago. But the surfacing of this tape may serve a useful purpose if it gets people to thinking about what the consequences of redistribution are.</description>
+      <category>Article</category>
+      <category>Economics</category>
+      <category>redistribution</category>
+      <category>Thomas Sowell</category>
+      <category>economics</category>
+      <category>policy</category>
+    </item>
+    <item>
+      <title>Jeff Bridges Sleeping Tapes - Squarespace</title>
+      <link>https://www.dreamingwithjeff.com/</link>
+      <guid isPermaLink="true">https://www.dreamingwithjeff.com/</guid>
+      <description>Jeff Bridges&#x27; new album is on his new Squarespace site. Give the tracks a listen on DreamingWithJeff.com and you’ll sleep better tonight.</description>
+      <category>Article</category>
+      <category>Culture</category>
+      <category>Jeff Bridges</category>
+      <category>sleep</category>
+      <category>Squarespace</category>
+      <category>ambient</category>
+    </item>
+    <item>
+      <title>金钱是身份的放大器</title>
+      <link>https://www.notion.so/eb9203c0a579485dbaa3bf2e521649bf</link>
+      <guid isPermaLink="true">https://www.notion.so/eb9203c0a579485dbaa3bf2e521649bf</guid>
+      <description>A tool that connects everyday work into one space. It gives you and your teams AI tools—search, writing, note-taking—inside an all-in-one, flexible workspace.</description>
+      <category>Article</category>
+      <category>Philosophy</category>
+      <category>money</category>
+      <category>identity</category>
+      <category>philosophy</category>
+      <category>Notion</category>
+    </item>
+    <item>
+      <title>Three Models of the Universe</title>
+      <link>https://truthaparadox.wordpress.com/2009/12/15/three-models-of-the-universe/</link>
+      <guid isPermaLink="true">https://truthaparadox.wordpress.com/2009/12/15/three-models-of-the-universe/</guid>
+      <description>I once heard a recorded lecture by Alan Watts where he explained the two dominant Myths of Western culture involving the nature of the Universe. He then described a Chinese model of the Universe to…</description>
+      <category>Article</category>
+      <category>Philosophy</category>
+      <category>cosmology</category>
+      <category>Alan Watts</category>
+      <category>worldview</category>
+      <category>Chinese-philosophy</category>
+    </item>
+    <item>
+      <title>We Are As Gods</title>
+      <link>https://stripepress.substack.com/p/we-are-as-gods</link>
+      <guid isPermaLink="true">https://stripepress.substack.com/p/we-are-as-gods</guid>
+      <description>Our documentary about Stewart Brand is now available for digital download</description>
+      <category>Documentary</category>
+      <category>Culture</category>
+      <category>Stewart Brand</category>
+      <category>Whole Earth</category>
+      <category>documentary</category>
+      <category>Stripe Press</category>
+    </item>
+    <item>
+      <title>张五常：比知识更重要的，是思维方式</title>
+      <link>https://mp.weixin.qq.com/s/W0l0b0g4LfnfsRsxy-OnLQ</link>
+      <guid isPermaLink="true">https://mp.weixin.qq.com/s/W0l0b0g4LfnfsRsxy-OnLQ</guid>
+      <description>掌握多种思维工具，以不同方式探索世界。</description>
+      <category>Article</category>
+      <category>Thinking</category>
+      <category>Zhang Wuchang</category>
+      <category>mental-models</category>
+      <category>thinking</category>
+      <category>methodology</category>
+    </item>
+    <item>
+      <title>The Simple Path To Wealth w/ JL Collins (MI041)</title>
+      <link>https://www.youtube.com/watch?v=MJ28_ilqJ8g</link>
+      <guid isPermaLink="true">https://www.youtube.com/watch?v=MJ28_ilqJ8g</guid>
+      <description>JL Collins 的财务自由之路：指数基金投资、简单理财哲学，通往财富的最短路径。</description>
+      <category>Video</category>
+      <category>Investing</category>
+      <category>index-fund</category>
+      <category>FIRE</category>
+      <category>JL Collins</category>
+      <category>financial-freedom</category>
+    </item>
+    <item>
+      <title>读《程序员的思维修炼》</title>
+      <link>https://limboy.me/posts/pragmatic-thinking-and-learning/</link>
+      <guid isPermaLink="true">https://limboy.me/posts/pragmatic-thinking-and-learning/</guid>
+      <description>虽然冠以「程序员」的名头，但其实也适用于非程序员。这本书主要围绕「如何提升元学习能力」展开，所谓「元学习」就是学习如何学习。掌握了这种能力后在其他领域也可以如鱼得水。还介绍了 L 型和 R 型双 CPU 模式，阅读的技巧，目标的设定等等。读起来不累，同时又会有不少收获。</description>
+      <category>Article</category>
+      <category>Learning</category>
+      <category>meta-learning</category>
+      <category>Dreyfus-model</category>
+      <category>book-review</category>
+      <category>programming</category>
+    </item>
+    <item>
+      <title>书评 | 社会达尔文主义：被时代抛弃的主流思潮</title>
+      <link>https://mp.weixin.qq.com/s/P2x34Ki4fC_m4y75nqGUNw</link>
+      <guid isPermaLink="true">https://mp.weixin.qq.com/s/P2x34Ki4fC_m4y75nqGUNw</guid>
+      <description>社会达尔文主义的不同流派在谁是“适者”、社会如何实现“适者”的支配机制等理论细节上各有不同，但是他们通常认为在人类社会中，“适者”占有更多的财富和权力，“不适者（被淘汰者，弱者）”处于被支配的地位，符合进化论的思想，有其合理性。</description>
+      <category>Article</category>
+      <category>History</category>
+      <category>Social-Darwinism</category>
+      <category>intellectual-history</category>
+      <category>ideology</category>
+      <category>book-review</category>
+    </item>
+    <item>
+      <title>机器的崛起：隐藏的控制论历史（二）</title>
+      <link>https://mp.weixin.qq.com/s/ASFfXwNT1ciU9IUIWHpv7g</link>
+      <guid isPermaLink="true">https://mp.weixin.qq.com/s/ASFfXwNT1ciU9IUIWHpv7g</guid>
+      <description>控制论起源维纳的防空研究不仅体现在布兰德的哲学、他的社区组织方法和《全球概览》工作中。为索萨利托的逃避现实的嬉皮计算机提供动力DEC大型机，也为沉睡在该国原子导弹发射井中的“分钟人”洲际弹道导弹提供动力，只需按一下按钮，就可以消灭苏联。</description>
+      <category>Article</category>
+      <category>Science</category>
+      <category>cybernetics</category>
+      <category>Wiener</category>
+      <category>Cold-War</category>
+      <category>machine-intelligence</category>
+    </item>
+  </channel>
+</rss>

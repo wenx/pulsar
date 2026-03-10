@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pulsar</title>
+<link rel="alternate" type="application/rss+xml" title="Pulsar Feed" href="./feed.xml">
+<style>
+  @font-face {
+    font-family: 'TX-02';
+    src: url('https://poche.app/assets/TX-02-Regular-CPhp4zpy.woff2') format('woff2');
+    font-weight: 400;
+  }
+  @font-face {
+    font-family: 'TX-02';
+    src: url('https://poche.app/assets/TX-02-Medium-DyVlxiBH.woff2') format('woff2');
+    font-weight: 500;
+  }
+
+  :root {
+    --bg: #000;
+    --bg-card: rgba(255,255,255,0.03);
+    --bg-card-hover: rgba(255,255,255,0.06);
+    --text: #e8e4de;
+    --text-secondary: rgba(232,228,222,0.5);
+    --text-muted: rgba(232,228,222,0.3);
+    --accent: #c4a44a;
+    --accent-dim: rgba(196,164,74,0.3);
+    --accent-glow: rgba(196,164,74,0.08);
+    --border: rgba(196,164,74,0.15);
+    --border-hover: rgba(196,164,74,0.3);
+    --green: #22c55e;
+    --font-mono: 'TX-02', 'SF Mono', 'Cascadia Code', 'Fira Code', ui-monospace, monospace;
+    --radius: 6px;
+    --transition: 150ms ease;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--font-mono);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100dvh;
+    display: flex;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    width: 220px;
+    flex-shrink: 0;
+    border-right: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+    display: flex;
+    flex-direction: column;
+    height: 100dvh;
+    position: sticky;
+    top: 0;
+  }
+
+  .sidebar-header {
+    padding: 20px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: var(--text);
+  }
+
+  .logo-pulse {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent-dim);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.4; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); }
+  }
+
+  .logo-text {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .sidebar-section {
+    padding: 16px 12px;
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 0 4px;
+    margin-bottom: 8px;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 8px;
+    border-radius: var(--radius);
+    color: var(--text-secondary);
+    font-size: 12px;
+    cursor: pointer;
+    transition: all var(--transition);
+    text-decoration: none;
+  }
+
+  .nav-item:hover {
+    background: var(--accent-glow);
+    color: var(--text);
+  }
+
+  .nav-item.active {
+    background: rgba(196,164,74,0.12);
+    color: var(--accent);
+  }
+
+  .nav-icon { width: 14px; text-align: center; opacity: 0.6; }
+
+  .nav-add {
+    color: var(--accent);
+    border: 1px dashed var(--border);
+    margin-bottom: 12px;
+  }
+
+  .nav-add:hover {
+    border-color: var(--border-hover);
+    background: var(--accent-glow);
+  }
+
+  .nav-count {
+    margin-left: auto;
+    font-size: 10px;
+    color: var(--text-muted);
+    background: rgba(255,255,255,0.05);
+    padding: 1px 6px;
+    border-radius: 10px;
+  }
+
+  .sidebar-footer {
+    padding: 12px 16px;
+    border-top: 1px solid var(--border);
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* Main */
+  .main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    height: 100dvh;
+    overflow: hidden;
+  }
+
+  /* Toolbar */
+  .toolbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 24px;
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+  }
+
+  .search-box {
+    flex: 1;
+    max-width: 400px;
+    position: relative;
+  }
+
+  .search-box input {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 7px 12px 7px 32px;
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    outline: none;
+    transition: all var(--transition);
+  }
+
+  .search-box input:focus {
+    border-color: var(--accent-dim);
+    background: rgba(255,255,255,0.06);
+  }
+
+  .search-box input::placeholder { color: var(--text-muted); }
+
+  .search-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .toolbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+  }
+
+  .btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    cursor: pointer;
+    transition: all var(--transition);
+  }
+
+  .btn:hover {
+    border-color: var(--border-hover);
+    background: var(--accent-glow);
+    color: var(--text);
+  }
+
+  .btn-primary {
+    border-color: var(--accent-dim);
+    background: rgba(196,164,74,0.1);
+    color: var(--accent);
+  }
+
+  .btn-primary:hover {
+    background: rgba(196,164,74,0.2);
+  }
+
+  /* View toggle */
+  .view-toggle {
+    display: flex;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .view-toggle button {
+    padding: 5px 10px;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 12px;
+    cursor: pointer;
+    transition: all var(--transition);
+  }
+
+  .view-toggle button.active {
+    background: var(--accent-glow);
+    color: var(--accent);
+  }
+
+  .view-toggle button:hover:not(.active) {
+    color: var(--text-secondary);
+  }
+
+  /* Content */
+  .content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px;
+    scroll-behavior: smooth;
+  }
+
+  .content-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  .content-title {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .content-count {
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+
+  /* Link Cards — List (default) */
+  .link-grid {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Link Cards — Grid (JS masonry) */
+  .link-grid.grid-view {
+    position: relative;
+  }
+
+  .link-grid.grid-view .link-card,
+  .link-grid.grid-view .summary-panel {
+    position: absolute;
+    width: var(--masonry-col-w, 300px);
+  }
+
+  .link-grid.grid-view .link-card {
+    padding: 0;
+    flex-direction: column;
+    margin-bottom: 0;
+  }
+
+  .link-grid.grid-view .link-body {
+    padding: 12px;
+  }
+
+  .link-grid.grid-view .link-thumb {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+    border-radius: var(--radius) var(--radius) 0 0;
+  }
+
+  .link-grid.grid-view .link-meta {
+    margin-top: 4px;
+  }
+
+  /* Card base — list view: thumb left, body right */
+  .link-card {
+    display: flex;
+    align-items: stretch;
+    gap: 14px;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg-card);
+    backdrop-filter: blur(8px);
+    transition: all var(--transition);
+    cursor: pointer;
+    margin-bottom: 12px;
+  }
+
+  .link-card:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--border-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+
+  /* Thumbnail — list view: fixed size on left */
+  .link-thumb {
+    width: 168px;
+    height: 112px;
+    border-radius: 4px;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: rgba(255,255,255,0.03);
+  }
+
+  .link-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease, opacity 0.4s ease;
+    opacity: 0;
+  }
+
+  .link-thumb img.loaded { opacity: 1; }
+
+  .link-card:hover .link-thumb img {
+    transform: scale(1.04);
+  }
+
+  /* URL (domain) row with favicon */
+  .link-url {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    padding-bottom: 6px;
+    margin-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .link-url img {
+    width: 14px;
+    height: 14px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .link-url a {
+    color: var(--text-muted);
+    text-decoration: none;
+  }
+
+  .link-url a:hover {
+    color: var(--text-secondary);
+    text-decoration: underline;
+  }
+
+  /* Body */
+  .link-body {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .link-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    text-decoration: none;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 4px;
+    line-height: 1.5;
+  }
+
+  .link-title:hover { color: var(--accent); }
+
+  .link-desc {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+
+  /* Meta row */
+  .link-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    color: var(--text-muted);
+    flex-wrap: wrap;
+    margin-top: auto;
+  }
+
+  .link-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 1px 6px;
+    border-radius: 3px;
+    background: var(--accent-glow);
+    border: 1px solid var(--border);
+    font-size: 10px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all var(--transition);
+  }
+
+  .link-tag:hover {
+    border-color: var(--border-hover);
+    color: var(--accent);
+  }
+
+  .link-menu-wrap {
+    margin-left: auto;
+    position: relative;
+  }
+
+  .link-menu-btn {
+    cursor: pointer;
+    opacity: 0;
+    color: var(--text-muted);
+    font-size: 14px;
+    padding: 0 4px;
+    transition: all var(--transition);
+    letter-spacing: 1px;
+  }
+
+  .link-card:hover .link-menu-btn { opacity: 1; }
+  .link-menu-btn:hover { color: var(--text); }
+
+  .link-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    bottom: 100%;
+    margin-bottom: 4px;
+    background: #111;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 4px 0;
+    min-width: 100px;
+    z-index: 50;
+  }
+
+  .link-menu.open { display: block; }
+
+  .link-menu-item {
+    display: block;
+    padding: 6px 12px;
+    font-size: 11px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all var(--transition);
+    font-family: var(--font-mono);
+  }
+
+  .link-menu-item:hover {
+    background: var(--accent-glow);
+    color: var(--text);
+  }
+
+  .link-menu-item.danger:hover {
+    color: #ef4444;
+    background: rgba(239,68,68,0.08);
+  }
+
+  .tag-keyword {
+    background: transparent;
+    border-color: rgba(255,255,255,0.08);
+    color: var(--text-muted);
+  }
+
+  .tag-keyword:hover {
+    border-color: var(--border-hover);
+    color: var(--text-secondary);
+  }
+
+  /* Status bar */
+  .statusbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 24px;
+    border-top: 1px solid var(--border);
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.03em;
+  }
+
+  .status-left, .status-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .status-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--green);
+    animation: pulse 3s ease-in-out infinite;
+  }
+
+  .link-card.done { opacity: 0.4; }
+  .link-card.done .link-title { text-decoration: line-through; }
+
+  /* Summary Panel */
+  .summary-panel {
+    border: 1px solid var(--border);
+    border-left: 2px solid var(--accent);
+    border-radius: var(--radius);
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    margin-bottom: 16px;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .summary-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .summary-header-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .summary-pulse {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  .summary-label {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .summary-date {
+    font-size: 10px;
+    color: var(--text-muted);
+  }
+
+  .summary-body {
+    padding: 16px;
+  }
+
+  .summary-item {
+    display: flex;
+    gap: 8px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(196,164,74,0.06);
+  }
+
+  .summary-item:last-child { border-bottom: none; }
+
+  .summary-index {
+    font-size: 10px;
+    color: var(--accent);
+    opacity: 0.4;
+    font-variant-numeric: tabular-nums;
+    min-width: 18px;
+    flex-shrink: 0;
+    padding-top: 1px;
+  }
+
+  .summary-item a {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    text-decoration: none;
+    transition: color var(--transition);
+  }
+
+  .summary-item a:hover {
+    color: var(--accent);
+  }
+
+  .summary-toggle {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    cursor: pointer;
+    padding: 2px 6px;
+    transition: color var(--transition);
+  }
+
+  .summary-toggle:hover { color: var(--text); }
+
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--accent-dim); }
+
+  /* Empty state */
+  .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 20px;
+    text-align: center;
+  }
+
+  .empty-state .signal {
+    font-size: 48px;
+    margin-bottom: 16px;
+    opacity: 0.3;
+  }
+
+  .empty-state p {
+    font-size: 12px;
+    color: var(--text-muted);
+    max-width: 300px;
+  }
+
+  /* Add Link Dialog */
+  .dialog-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+  }
+
+  .dialog {
+    background: #111;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    width: 400px;
+    max-width: 90vw;
+  }
+
+  .dialog-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent);
+    margin-bottom: 16px;
+    letter-spacing: 0.05em;
+  }
+
+  .dialog-input {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 10px 12px;
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    outline: none;
+    transition: all var(--transition);
+    margin-bottom: 20px;
+  }
+
+  .dialog-input:focus {
+    border-color: var(--accent-dim);
+    background: rgba(255,255,255,0.06);
+  }
+
+  .dialog-input::placeholder { color: var(--text-muted); }
+
+  .dialog-error {
+    font-size: 11px;
+    color: #ef4444;
+    margin: -12px 0 12px;
+    min-height: 16px;
+  }
+
+  .dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+
+  .btn-saving {
+    pointer-events: none;
+    animation: saving-pulse 0.8s ease-in-out infinite;
+  }
+
+  @keyframes saving-pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .sidebar { display: none; }
+    .content { padding: 16px; }
+    .toolbar { padding: 12px 16px; }
+    .statusbar { padding: 6px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <a class="logo" href="/">
+      <span class="logo-pulse"></span>
+      <span class="logo-text">Pulsar</span>
+    </a>
+  </div>
+
+  <nav class="sidebar-section">
+    <a class="nav-item nav-add" id="btn-add">
+      <span class="nav-icon">./</span> add
+    </a>
+    <div class="section-label" style="margin-top:12px">Categories</div>
+    <a class="nav-item active" data-filter="all">
+      <span class="nav-icon">./</span> all
+      <span class="nav-count" id="count-all">0</span>
+    </a>
+    <div id="category-nav"></div>
+
+    <div class="section-label" style="margin-top:20px">Topics</div>
+    <div id="topic-nav"></div>
+  </nav>
+
+  <div class="sidebar-footer">
+    SOLARIS / Clippings
+  </div>
+</aside>
+
+<!-- Main -->
+<div class="main">
+  <div class="toolbar">
+    <div class="search-box">
+      <span class="search-icon">/</span>
+      <input type="text" id="search" placeholder="search title & URL" />
+    </div>
+    <div class="toolbar-actions">
+      <div class="view-toggle">
+        <button data-view="list" title="List">&#9776;</button>
+        <button class="active" data-view="grid" title="Grid">&#9638;</button>
+      </div>
+      <button class="btn btn-primary" id="btn-scan">
+        <span style="font-size:10px">&#x25B6;</span> Scan
+      </button>
+    </div>
+  </div>
+
+  <div class="content" id="content">
+    <div class="content-header">
+      <span class="content-title" id="current-view">All Links</span>
+      <span class="content-count" id="result-count"></span>
+    </div>
+    <div class="link-grid grid-view" id="link-grid">
+      <!-- Summary panel lives inside the grid so it can be a grid item -->
+      <div class="summary-panel" id="summary-panel">
+        <div class="summary-header">
+          <div class="summary-header-left">
+            <span class="summary-pulse"></span>
+            <span class="summary-label">AI Summary</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <span class="summary-date" id="summary-date"></span>
+            <button class="summary-toggle" id="summary-toggle" title="Collapse">&#9660;</button>
+          </div>
+        </div>
+        <div class="summary-body" id="summary-body"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="statusbar">
+    <div class="status-left">
+      <span class="status-dot"></span>
+      <span id="status-text">Ready</span>
+    </div>
+    <div class="status-right">
+      <span id="last-sync">—</span>
+    </div>
+  </div>
+</div>
+
+<!-- Add Link Dialog -->
+<div class="dialog-overlay" id="add-dialog" style="display:none">
+  <div class="dialog">
+    <div class="dialog-title">./add Link</div>
+    <input type="text" id="add-url" class="dialog-input" placeholder="https://" />
+    <div class="dialog-error" id="add-error"></div>
+    <div class="dialog-actions">
+      <button class="btn" id="btn-abort">./abort</button>
+      <button class="btn btn-primary" id="btn-save">./save</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// --- App State ---
+let links = [];
+let currentFilter = 'all';
+let searchQuery = '';
+
+// --- Load data from links.json ---
+async function loadLinks() {
+  try {
+    const resp = await fetch('./links.json?t=' + Date.now());
+    const data = await resp.json();
+    links = data.map(l => ({
+      title: l.title,
+      url: l.url,
+      domain: l.domain,
+      author: l.author || '',
+      category: l.category || 'Article',
+      format: l.format || 'Article',
+      tags: l.tags || [],
+      desc: l.desc || l.notes || '',
+      thumbnail: l.thumbnail || '',
+      favicon: l.favicon || '',
+      done: l.done || false,
+    }));
+    updateCounts();
+    renderSidebar();
+    renderSummary();
+    applyFilters();
+    document.getElementById('status-text').textContent = `Ready — ${links.length} links from Links.md`;
+  } catch (e) {
+    document.getElementById('status-text').textContent = `Error loading links: ${e.message}`;
+  }
+}
+
+// --- Render ---
+function getDomain(url) {
+  try { return new URL(url).hostname.replace('www.', ''); }
+  catch { return ''; }
+}
+
+function renderLinks(filtered) {
+  const grid = document.getElementById('link-grid');
+
+  // Remove old cards (keep summary panel)
+  grid.querySelectorAll('.link-card, .empty-state').forEach(el => el.remove());
+
+  if (filtered.length === 0) {
+    grid.insertAdjacentHTML('beforeend', `
+      <div class="empty-state">
+        <div class="signal">)))</div>
+        <p>No signals detected. Adjust your frequency or scan for new links.</p>
+      </div>`);
+    return;
+  }
+
+  const cardsHtml = filtered.map(link => {
+    const domain = link.domain || getDomain(link.url);
+    const faviconImg = link.favicon
+      ? `<img src="${link.favicon}" onerror="this.style.display='none'">`
+      : '';
+    const thumbHtml = link.thumbnail
+      ? `<div class="link-thumb"><img src="${link.thumbnail}" onload="this.classList.add('loaded')" onerror="this.parentElement.style.display='none'" loading="lazy"></div>`
+      : '';
+    return `
+    <div class="link-card${link.done ? ' done' : ''}" onclick="window.open('${link.url}', '_blank')">
+      ${thumbHtml}
+      <div class="link-body">
+        <div class="link-url">
+          ${faviconImg}
+          <a href="${link.url}" target="_blank" onclick="event.stopPropagation()">${domain}</a>
+        </div>
+        <a class="link-title" href="${link.url}" target="_blank" onclick="event.stopPropagation()">${link.title}</a>
+        ${link.desc ? `<div class="link-desc">${link.desc}</div>` : ''}
+        <div class="link-meta">
+          <span class="link-tag" onclick="event.stopPropagation();setFilter('cat:${link.format}')">${link.format}</span>
+          <span class="link-tag" onclick="event.stopPropagation();setFilter('topic:${link.category}')">${link.category}</span>
+          ${link.tags.map(t => `<span class="link-tag tag-keyword" onclick="event.stopPropagation();searchByTag('${t}')">${t}</span>`).join('')}
+          ${link.author ? `<span>${link.author}</span>` : ''}
+          <div class="link-menu-wrap" onclick="event.stopPropagation()">
+            <span class="link-menu-btn" onclick="toggleMenu(this)">&#x22EF;</span>
+            <div class="link-menu">
+              <a class="link-menu-item danger" onclick="deleteLink('${link.url}')">./delete</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+  grid.insertAdjacentHTML('beforeend', cardsHtml);
+
+  document.getElementById('result-count').textContent = `${filtered.length} links`;
+}
+
+function applyFilters() {
+  let filtered = [...links];
+
+  if (currentFilter.startsWith('cat:')) {
+    const cat = currentFilter.slice(4);
+    filtered = filtered.filter(l => l.format === cat);
+  } else if (currentFilter.startsWith('topic:')) {
+    const topic = currentFilter.slice(6);
+    filtered = filtered.filter(l => l.category === topic);
+  }
+
+  if (searchQuery) {
+    const q = searchQuery.toLowerCase();
+    filtered = filtered.filter(l =>
+      l.title.toLowerCase().includes(q) ||
+      l.url.toLowerCase().includes(q) ||
+      (l.desc || '').toLowerCase().includes(q) ||
+      (l.author || '').toLowerCase().includes(q) ||
+      (l.tags || []).some(t => t.toLowerCase().includes(q))
+    );
+  }
+
+  // Show summary only on "all" view
+  const panel = document.getElementById('summary-panel');
+  panel.style.display = (currentFilter === 'all' && !searchQuery) ? '' : 'none';
+
+  renderLinks(filtered);
+}
+
+function updateCounts() {
+  document.getElementById('count-all').textContent = links.length;
+}
+
+const FORMAT_ICONS = {
+  Article: '&para;', Video: '&#9654;',
+  GitHub: '&gt;_', Podcast: '&#9834;',
+  Book: '&#9744;', Film: '&#9632;', Documentary: '&#9673;',
+};
+
+const TOPIC_ICONS = {
+  Technology: '&#9883;', Economics: '&#9878;', Philosophy: '&#8734;',
+  Crypto: '&#9830;', Investing: '&#9650;', History: '&#8986;',
+  Science: '&#9883;', Geopolitics: '&#9873;', Culture: '&#9835;',
+  Business: '&#9632;', Thinking: '&#10029;', Resource: '&#9776;',
+  Productivity: '&#9881;', Learning: '&#9733;', Film: '&#9654;',
+  Health: '&#10010;', Unknown: '?',
+};
+
+function renderSidebar() {
+  // Categories (by format/type)
+  const fmts = {};
+  links.forEach(l => { fmts[l.format] = (fmts[l.format] || 0) + 1; });
+  document.getElementById('category-nav').innerHTML = Object.entries(fmts)
+    .sort((a, b) => b[1] - a[1])
+    .map(([f, n]) => `<a class="nav-item" data-filter="cat:${f}"><span class="nav-icon">${FORMAT_ICONS[f] || '&bull;'}</span> ${f} <span class="nav-count">${n}</span></a>`)
+    .join('');
+
+  // Topics (by content)
+  const topics = {};
+  links.forEach(l => { topics[l.category] = (topics[l.category] || 0) + 1; });
+  document.getElementById('topic-nav').innerHTML = Object.entries(topics)
+    .sort((a, b) => b[1] - a[1])
+    .map(([t, n]) => `<a class="nav-item" data-filter="topic:${t}"><span class="nav-icon">${TOPIC_ICONS[t] || '&bull;'}</span> ${t} <span class="nav-count">${n}</span></a>`)
+    .join('');
+}
+
+// --- Summary Panel ---
+function renderSummary() {
+  const panel = document.getElementById('summary-panel');
+  const body = document.getElementById('summary-body');
+
+  // Pick latest 10 links (that have descriptions)
+  const recent = links.filter(l => l.desc && !l.done).slice(0, 10);
+
+  if (recent.length === 0) {
+    panel.style.display = 'none';
+    return;
+  }
+
+  document.getElementById('summary-date').textContent = new Date().toLocaleDateString('en-US', {
+    month: 'short', day: 'numeric', year: 'numeric'
+  });
+
+  body.innerHTML = recent.map((link, i) => `
+    <div class="summary-item">
+      <span class="summary-index">${String(i + 1).padStart(2, '0')}</span>
+      <a href="${link.url}" target="_blank">${link.desc}</a>
+    </div>`).join('');
+}
+
+// Summary toggle
+document.getElementById('summary-toggle').addEventListener('click', () => {
+  const body = document.getElementById('summary-body');
+  const btn = document.getElementById('summary-toggle');
+  const collapsed = body.style.display === 'none';
+  body.style.display = collapsed ? '' : 'none';
+  btn.innerHTML = collapsed ? '&#9660;' : '&#9654;';
+  requestAnimationFrame(layoutMasonry);
+});
+
+function setFilter(filter) {
+  currentFilter = filter;
+  searchQuery = '';
+  document.getElementById('search').value = '';
+  document.querySelectorAll('.nav-item').forEach(n => {
+    n.classList.toggle('active', n.dataset.filter === filter);
+  });
+  const label = filter === 'all' ? 'All Links'
+    : filter.startsWith('cat:') ? filter.slice(4)
+    : filter.startsWith('topic:') ? filter.slice(6)
+    : filter;
+  document.getElementById('current-view').textContent = label;
+  applyFilters();
+}
+
+function toggleMenu(btn) {
+  const menu = btn.nextElementSibling;
+  const wasOpen = menu.classList.contains('open');
+  // Close all menus first
+  document.querySelectorAll('.link-menu.open').forEach(m => m.classList.remove('open'));
+  if (!wasOpen) menu.classList.add('open');
+}
+
+// Close menus on outside click or mouse leave
+document.addEventListener('click', e => {
+  if (!e.target.closest('.link-menu-wrap')) {
+    document.querySelectorAll('.link-menu.open').forEach(m => m.classList.remove('open'));
+  }
+});
+
+document.addEventListener('mouseover', e => {
+  if (!e.target.closest('.link-card')) {
+    document.querySelectorAll('.link-menu.open').forEach(m => m.classList.remove('open'));
+  }
+});
+
+async function deleteLink(url) {
+  if (!confirm('Delete this link?')) return;
+  try {
+    const resp = await fetch('/api/delete', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ url }),
+    });
+    const result = await resp.json();
+    if (resp.ok) {
+      await loadLinks();
+      document.getElementById('status-text').textContent = `Deleted — ${links.length} links`;
+    } else {
+      document.getElementById('status-text').textContent = `Error: ${result.error}`;
+    }
+  } catch (e) {
+    document.getElementById('status-text').textContent = `Error: ${e.message}`;
+  }
+}
+
+function searchByTag(tag) {
+  searchQuery = tag;
+  document.getElementById('search').value = tag;
+  applyFilters();
+}
+
+// --- Events ---
+document.addEventListener('click', e => {
+  const navItem = e.target.closest('.nav-item[data-filter]');
+  if (navItem) {
+    setFilter(navItem.dataset.filter);
+  }
+
+  const viewBtn = e.target.closest('.view-toggle button');
+  if (viewBtn) {
+    document.querySelectorAll('.view-toggle button').forEach(b => b.classList.remove('active'));
+    viewBtn.classList.add('active');
+    const isGrid = viewBtn.dataset.view === 'grid';
+    const grid = document.getElementById('link-grid');
+    grid.classList.toggle('grid-view', isGrid);
+    if (!isGrid) {
+      grid.style.height = '';
+    }
+  }
+});
+
+document.getElementById('search').addEventListener('input', e => {
+  searchQuery = e.target.value;
+  applyFilters();
+});
+
+document.getElementById('btn-scan').addEventListener('click', () => {
+  const status = document.getElementById('status-text');
+  status.textContent = 'Scanning SOLARIS/Clippings...';
+  setTimeout(() => {
+    status.textContent = `Scan complete — ${links.length} links indexed`;
+    document.getElementById('last-sync').textContent = new Date().toLocaleTimeString();
+  }, 1500);
+});
+
+// Keyboard shortcut
+document.addEventListener('keydown', e => {
+  if (e.key === '/' && document.activeElement.tagName !== 'INPUT') {
+    e.preventDefault();
+    document.getElementById('search').focus();
+  }
+  if (e.key === 'Escape') {
+    document.getElementById('search').blur();
+    searchQuery = '';
+    document.getElementById('search').value = '';
+    applyFilters();
+  }
+});
+
+// --- Add Link Dialog ---
+const addDialog = document.getElementById('add-dialog');
+const addUrlInput = document.getElementById('add-url');
+
+document.getElementById('btn-add').addEventListener('click', () => {
+  addDialog.style.display = '';
+  addUrlInput.value = '';
+  document.getElementById('add-error').textContent = '';
+  addUrlInput.focus();
+});
+
+document.getElementById('btn-abort').addEventListener('click', () => {
+  addDialog.style.display = 'none';
+});
+
+addDialog.addEventListener('click', e => {
+  if (e.target === addDialog) addDialog.style.display = 'none';
+});
+
+document.getElementById('btn-save').addEventListener('click', async () => {
+  const url = addUrlInput.value.trim();
+  const errorEl = document.getElementById('add-error');
+  errorEl.textContent = '';
+
+  if (!url) { errorEl.textContent = 'URL is required'; return; }
+  if (!/^https?:\/\/.+\..+/.test(url)) { errorEl.textContent = 'Invalid URL'; return; }
+
+  const saveBtn = document.getElementById('btn-save');
+  saveBtn.classList.add('btn-saving');
+  saveBtn.disabled = true;
+  saveBtn.textContent = './saving';
+  let dots = 0;
+  const dotTimer = setInterval(() => {
+    dots = (dots + 1) % 4;
+    saveBtn.textContent = './saving' + '.'.repeat(dots);
+  }, 400);
+
+  try {
+    const resp = await fetch('/api/add', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ url }),
+    });
+    const result = await resp.json();
+
+    if (!resp.ok) {
+      errorEl.textContent = result.error;
+      return;
+    }
+
+    addDialog.style.display = 'none';
+    document.getElementById('status-text').textContent = `Added: ${result.title || url} — enriching...`;
+    await loadLinks();
+    setTimeout(async () => {
+      await loadLinks();
+      document.getElementById('status-text').textContent = `Ready — ${links.length} links`;
+    }, 12000);
+  } catch (e) {
+    errorEl.textContent = `Network error: ${e.message}`;
+  } finally {
+    clearInterval(dotTimer);
+    saveBtn.classList.remove('btn-saving');
+    saveBtn.textContent = './save';
+    saveBtn.disabled = false;
+  }
+});
+
+addUrlInput.addEventListener('keydown', e => {
+  if (e.key === 'Enter') document.getElementById('btn-save').click();
+  if (e.key === 'Escape') addDialog.style.display = 'none';
+});
+
+// --- Masonry Layout ---
+const GAP = 16;
+const MIN_COL_W = 300;
+
+function layoutMasonry() {
+  const grid = document.getElementById('link-grid');
+  if (!grid.classList.contains('grid-view')) return;
+
+  const items = [...grid.querySelectorAll('.link-card, .summary-panel')].filter(el => el.offsetHeight > 0);
+  if (items.length === 0) return;
+
+  const gridW = grid.clientWidth;
+  const cols = Math.max(1, Math.floor((gridW + GAP) / (MIN_COL_W + GAP)));
+  const colW = (gridW - GAP * (cols - 1)) / cols;
+
+  grid.style.setProperty('--masonry-col-w', colW + 'px');
+
+  // Track height of each column
+  const colHeights = new Array(cols).fill(0);
+
+  items.forEach(item => {
+    // Place in shortest column
+    const minH = Math.min(...colHeights);
+    const col = colHeights.indexOf(minH);
+
+    item.style.left = col * (colW + GAP) + 'px';
+    item.style.top = minH + 'px';
+
+    colHeights[col] = minH + item.offsetHeight + GAP;
+  });
+
+  // Set container height
+  grid.style.height = Math.max(...colHeights) - GAP + 'px';
+}
+
+// Relayout on resize
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(layoutMasonry, 100);
+});
+
+// Relayout after images load
+function observeImages() {
+  document.querySelectorAll('.link-thumb img').forEach(img => {
+    if (!img.complete) {
+      img.addEventListener('load', layoutMasonry, { once: true });
+    }
+  });
+}
+
+// Patch renderLinks to trigger masonry after render
+const _origRenderLinks = renderLinks;
+renderLinks = function(filtered) {
+  _origRenderLinks(filtered);
+  // Wait for DOM to settle, then layout
+  requestAnimationFrame(() => {
+    layoutMasonry();
+    observeImages();
+  });
+};
+
+// Relayout when view toggle changes
+document.addEventListener('click', e => {
+  const viewBtn = e.target.closest('.view-toggle button');
+  if (viewBtn) {
+    requestAnimationFrame(layoutMasonry);
+  }
+});
+
+// --- Init ---
+loadLinks();
+document.getElementById('last-sync').textContent = 'SOLARIS/Links.md';
+</script>
+
+</body>
+</html>
