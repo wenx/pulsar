@@ -271,6 +271,24 @@
     background: rgba(196,164,74,0.2);
   }
 
+  .btn-danger {
+    border-color: rgba(239,68,68,0.3);
+    background: rgba(239,68,68,0.1);
+    color: #ef4444;
+  }
+
+  .btn-danger:hover {
+    background: rgba(239,68,68,0.2);
+  }
+
+  .confirm-msg {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin: 0 0 20px;
+    line-height: 1.5;
+  }
+
   /* View toggle */
   .view-toggle {
     display: flex;
@@ -599,6 +617,73 @@
   .link-card.done { opacity: 0.4; }
   .link-card.done .link-title { text-decoration: line-through; }
 
+  .link-card.deleting {
+    animation: card-delete 0.35s ease forwards;
+    pointer-events: none;
+  }
+
+  @keyframes card-delete {
+    0%   { opacity: 1; transform: translateX(0); }
+    100% { opacity: 0; transform: translateX(-24px); max-height: 0; margin-bottom: 0; padding: 0 12px; border-color: transparent; overflow: hidden; }
+  }
+
+  /* Undo Toast */
+  .undo-toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: #111;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text-secondary);
+    z-index: 200;
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+
+  .undo-toast.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .undo-toast .undo-bar {
+    width: 60px;
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .undo-toast .undo-bar-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 2px;
+    transition: width linear;
+  }
+
+  .undo-toast .btn-undo {
+    padding: 4px 10px;
+    font-family: var(--font-ui);
+    font-size: var(--ui-sm);
+    color: var(--accent);
+    background: rgba(196,164,74,0.1);
+    border: 1px solid var(--accent-dim);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all var(--transition);
+  }
+
+  .undo-toast .btn-undo:hover {
+    background: rgba(196,164,74,0.2);
+  }
+
   /* Summary Panel */
   .summary-panel {
     border: 1px solid var(--border);
@@ -892,6 +977,25 @@
   </div>
 </div>
 
+<!-- Undo Toast -->
+<div class="undo-toast" id="undo-toast">
+  <span id="undo-toast-msg">Link deleted</span>
+  <div class="undo-bar"><div class="undo-bar-fill" id="undo-bar-fill"></div></div>
+  <button class="btn-undo" id="btn-undo">./undo</button>
+</div>
+
+<!-- Confirm Dialog -->
+<div class="dialog-overlay" id="confirm-dialog" style="display:none">
+  <div class="dialog" style="width:340px">
+    <div class="dialog-title" id="confirm-title">./delete</div>
+    <p class="confirm-msg" id="confirm-msg">Delete this link?</p>
+    <div class="dialog-actions">
+      <button class="btn" id="btn-confirm-cancel">./abort</button>
+      <button class="btn btn-danger" id="btn-confirm-ok">./confirm</button>
+    </div>
+  </div>
+</div>
+
 <!-- Add Link Dialog -->
 <div class="dialog-overlay" id="add-dialog" style="display:none">
   <div class="dialog">
@@ -969,7 +1073,7 @@ function renderLinks(filtered) {
       ? `<div class="link-thumb"><img src="${link.thumbnail}" onload="this.classList.add('loaded')" onerror="this.parentElement.style.display='none'" loading="lazy"></div>`
       : '';
     return `
-    <div class="link-card${link.done ? ' done' : ''}" onclick="window.open('${link.url}', '_blank')">
+    <div class="link-card${link.done ? ' done' : ''}" data-url="${link.url}" onclick="window.open('${link.url}', '_blank')">
       ${thumbHtml}
       <div class="link-body">
         <div class="link-url">
@@ -1134,25 +1238,119 @@ document.addEventListener('mouseover', e => {
   }
 });
 
+// --- Confirm Dialog ---
+function showConfirm(msg, title) {
+  return new Promise(resolve => {
+    const overlay = document.getElementById('confirm-dialog');
+    document.getElementById('confirm-title').textContent = title || './confirm';
+    document.getElementById('confirm-msg').textContent = msg;
+    overlay.style.display = '';
+    const btnOk = document.getElementById('btn-confirm-ok');
+    const btnCancel = document.getElementById('btn-confirm-cancel');
+    function cleanup(result) {
+      overlay.style.display = 'none';
+      btnOk.removeEventListener('click', onOk);
+      btnCancel.removeEventListener('click', onCancel);
+      overlay.removeEventListener('click', onOverlay);
+      document.removeEventListener('keydown', onKey);
+      resolve(result);
+    }
+    function onOk() { cleanup(true); }
+    function onCancel() { cleanup(false); }
+    function onOverlay(e) { if (e.target === overlay) cleanup(false); }
+    function onKey(e) { if (e.key === 'Escape') cleanup(false); }
+    btnOk.addEventListener('click', onOk);
+    btnCancel.addEventListener('click', onCancel);
+    overlay.addEventListener('click', onOverlay);
+    document.addEventListener('keydown', onKey);
+  });
+}
+
+let pendingDelete = null;
+
 async function deleteLink(url) {
-  if (!confirm('Delete this link?')) return;
+  const ok = await showConfirm('Delete this link?', './delete');
+  if (!ok) return;
+
+  // Cancel any previous pending delete
+  if (pendingDelete) commitDelete();
+
+  // Animate card out
+  const card = document.querySelector(`.link-card[data-url="${CSS.escape(url)}"]`);
+  if (card) card.classList.add('deleting');
+
+  // Remove from local array (keep backup for undo)
+  const idx = links.findIndex(l => l.url === url);
+  const backup = idx !== -1 ? links.splice(idx, 1)[0] : null;
+  await new Promise(r => setTimeout(r, 350));
+  updateCounts();
+  renderSidebar();
+  applyFilters();
+  document.getElementById('status-text').textContent = `Deleted — ${links.length} links`;
+
+  // Show undo toast with countdown
+  const UNDO_MS = 10000;
+  const toast = document.getElementById('undo-toast');
+  const barFill = document.getElementById('undo-bar-fill');
+  barFill.style.transition = 'none';
+  barFill.style.width = '100%';
+  requestAnimationFrame(() => {
+    barFill.style.transition = `width ${UNDO_MS}ms linear`;
+    barFill.style.width = '0%';
+  });
+  toast.classList.add('visible');
+
+  const timer = setTimeout(() => commitDelete(), UNDO_MS);
+
+  pendingDelete = { url, backup, idx, timer };
+}
+
+function undoDelete() {
+  if (!pendingDelete) return;
+  const { backup, idx, timer } = pendingDelete;
+  clearTimeout(timer);
+  hideUndoToast();
+
+  // Restore link
+  if (backup) {
+    links.splice(Math.min(idx, links.length), 0, backup);
+    updateCounts();
+    renderSidebar();
+    applyFilters();
+    document.getElementById('status-text').textContent = `Restored — ${links.length} links`;
+  }
+  pendingDelete = null;
+}
+
+async function commitDelete() {
+  if (!pendingDelete) return;
+  const { url, timer } = pendingDelete;
+  clearTimeout(timer);
+  hideUndoToast();
+  pendingDelete = null;
+
   try {
     const resp = await fetch('/api/delete', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ url }),
     });
-    const result = await resp.json();
-    if (resp.ok) {
-      await loadLinks();
-      document.getElementById('status-text').textContent = `Deleted — ${links.length} links`;
-    } else {
+    if (!resp.ok) {
+      const result = await resp.json();
       document.getElementById('status-text').textContent = `Error: ${result.error}`;
+      await loadLinks(); // restore on failure
     }
   } catch (e) {
     document.getElementById('status-text').textContent = `Error: ${e.message}`;
+    await loadLinks();
   }
 }
+
+function hideUndoToast() {
+  document.getElementById('undo-toast').classList.remove('visible');
+}
+
+document.getElementById('btn-undo').addEventListener('click', undoDelete);
 
 function searchByTag(tag) {
   searchQuery = tag;
