@@ -352,7 +352,7 @@
     flex-direction: column;
   }
 
-  /* Link Cards — Grid (JS masonry) */
+  /* Link Cards — Grid (JS masonry, auto-fill columns) */
   .link-grid.grid-view {
     position: relative;
   }
@@ -360,7 +360,6 @@
   .link-grid.grid-view .link-card,
   .link-grid.grid-view .summary-panel {
     position: absolute;
-    width: var(--masonry-col-w, 300px);
   }
 
   .link-grid.grid-view .link-card {
@@ -1381,9 +1380,6 @@ document.addEventListener('click', e => {
     const isGrid = viewBtn.dataset.view === 'grid';
     const grid = document.getElementById('link-grid');
     grid.classList.toggle('grid-view', isGrid);
-    if (!isGrid) {
-      grid.style.height = '';
-    }
   }
 });
 
@@ -1525,64 +1521,41 @@ addUrlInput.addEventListener('keydown', e => {
 });
 
 // --- Masonry Layout ---
-const GAP = 16;
-const MIN_COL_W = 300;
+const MASONRY_GAP = 16;
+const MASONRY_MIN_COL = 280;
 
 function layoutMasonry() {
   const grid = document.getElementById('link-grid');
   if (!grid.classList.contains('grid-view')) return;
-
   const items = [...grid.querySelectorAll('.link-card, .summary-panel')].filter(el => el.offsetHeight > 0);
-  if (items.length === 0) return;
+  if (!items.length) return;
 
   const gridW = grid.clientWidth;
-  const cols = Math.max(1, Math.floor((gridW + GAP) / (MIN_COL_W + GAP)));
-  const colW = (gridW - GAP * (cols - 1)) / cols;
-
-  grid.style.setProperty('--masonry-col-w', colW + 'px');
-
-  // Track height of each column
-  const colHeights = new Array(cols).fill(0);
+  const cols = Math.max(1, Math.floor((gridW + MASONRY_GAP) / (MASONRY_MIN_COL + MASONRY_GAP)));
+  const colW = (gridW - MASONRY_GAP * (cols - 1)) / cols;
+  const colH = new Array(cols).fill(0);
 
   items.forEach(item => {
-    // Place in shortest column
-    const minH = Math.min(...colHeights);
-    const col = colHeights.indexOf(minH);
-
-    item.style.left = col * (colW + GAP) + 'px';
-    item.style.top = minH + 'px';
-
-    colHeights[col] = minH + item.offsetHeight + GAP;
+    item.style.width = colW + 'px';
+    const col = colH.indexOf(Math.min(...colH));
+    item.style.left = col * (colW + MASONRY_GAP) + 'px';
+    item.style.top = colH[col] + 'px';
+    colH[col] += item.offsetHeight + MASONRY_GAP;
   });
 
-  // Set container height
-  grid.style.height = Math.max(...colHeights) - GAP + 'px';
+  grid.style.height = Math.max(...colH) - MASONRY_GAP + 'px';
 }
 
-// Relayout on resize
-let resizeTimer;
-window.addEventListener('resize', () => {
-  clearTimeout(resizeTimer);
-  resizeTimer = setTimeout(layoutMasonry, 100);
-});
+window.addEventListener('resize', () => { clearTimeout(window._mrt); window._mrt = setTimeout(layoutMasonry, 100); });
 
-// Relayout after images load
-function observeImages() {
-  document.querySelectorAll('.link-thumb img').forEach(img => {
-    if (!img.complete) {
-      img.addEventListener('load', layoutMasonry, { once: true });
-    }
-  });
-}
-
-// Patch renderLinks to trigger masonry after render
 const _origRenderLinks = renderLinks;
 renderLinks = function(filtered) {
   _origRenderLinks(filtered);
-  // Wait for DOM to settle, then layout
   requestAnimationFrame(() => {
     layoutMasonry();
-    observeImages();
+    document.querySelectorAll('.link-thumb img').forEach(img => {
+      if (!img.complete) img.addEventListener('load', layoutMasonry, { once: true });
+    });
   });
 };
 
