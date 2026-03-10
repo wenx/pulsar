@@ -203,7 +203,8 @@ class PulsarHandler(SimpleHTTPRequestHandler):
         self.wfile.write(body)
 
     def log_message(self, format, *args):
-        if "/api/" in (args[0] if args else "") or "200" not in str(args):
+        msg = str(args[0]) if args else ""
+        if "/api/" in msg or "200" not in " ".join(str(a) for a in args):
             super().log_message(format, *args)
 
 
