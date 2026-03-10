@@ -5,7 +5,7 @@ Replaces `python3 -m http.server 3460`.
 """
 
 import json
-import re
+import os
 import subprocess
 import sys
 import threading
@@ -14,39 +14,55 @@ from http.server import HTTPServer, SimpleHTTPRequestHandler
 from pathlib import Path
 from urllib.parse import urlparse
 
-PORT = 3460
+from config import (
+    PORT, USER_AGENT, PIPELINE_TIMEOUT,
+)
+
 ROOT = Path(__file__).parent
+
+# Load .env if present
+_env_file = ROOT / ".env"
+if _env_file.exists():
+    for line in _env_file.read_text().splitlines():
+        line = line.strip()
+        if line and not line.startswith("#") and "=" in line:
+            k, v = line.split("=", 1)
+            os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
 LINKS_FILE = ROOT / "links.json"
 
-# Pipeline scripts to run after adding a link
 PIPELINE = [
-    "enrich-links.py",    # Fetch og metadata, thumbnail, favicon
-    "ai-enrich.py",       # Auto-classify category + extract tags (rule-based)
-    "ai-summarize.py",    # Generate AI descriptions via Claude API
-    "generate-ai.py",     # Apply AI categories, tags, descriptions + SVG thumbs
-    "download-thumbs.py", # Download thumbnails locally
-    "generate-feed.py",   # Regenerate RSS feed
+    "enrich-links.py",
+    "ai-enrich.py",
+    "ai-summarize.py",
+    "generate-ai.py",
+    "download-thumbs.py",
+    "generate-feed.py",
 ]
 
-HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"
-}
+HEADERS = {"User-Agent": USER_AGENT}
+
+# Pipeline status tracking
+pipeline_status = {"running": False, "step": "", "done": True}
 
 
 def run_pipeline():
     """Run enrichment pipeline in background."""
+    global pipeline_status
+    pipeline_status = {"running": True, "step": "starting", "done": False}
     print("  ▶ Running pipeline...")
     for script in PIPELINE:
         path = ROOT / script
         if not path.exists():
             continue
+        step_name = script.replace(".py", "")
+        pipeline_status["step"] = step_name
         try:
             result = subprocess.run(
                 [sys.executable, str(path)],
                 cwd=str(ROOT),
                 capture_output=True,
                 text=True,
-                timeout=120,
+                timeout=PIPELINE_TIMEOUT,
             )
             lines = result.stdout.strip().splitlines()
             if lines:
@@ -55,36 +71,9 @@ def run_pipeline():
                 print(f"    ✗ {script}: {result.stderr[:100]}")
         except subprocess.TimeoutExpired:
             print(f"    ✗ {script}: timeout")
+    pipeline_status = {"running": False, "step": "", "done": True}
     print("  ✓ Pipeline complete")
 
-
-def fetch_title(url: str) -> str:
-    """Quick fetch of page <title>. Returns '' on failure."""
-    # YouTube oEmbed (more reliable than scraping)
-    parsed = urlparse(url)
-    host = (parsed.hostname or "").lower().replace("www.", "")
-    if host in ("youtube.com", "m.youtube.com", "youtu.be"):
-        try:
-            from urllib.parse import parse_qs, quote
-            oembed_url = f"https://www.youtube.com/oembed?url={quote(url, safe='')}&format=json"
-            req = urllib.request.Request(oembed_url, headers=HEADERS)
-            resp = urllib.request.urlopen(req, timeout=5)
-            data = json.loads(resp.read().decode("utf-8"))
-            return data.get("title", "")
-        except Exception:
-            pass
-
-    # Generic: scrape <title>
-    try:
-        req = urllib.request.Request(url, headers=HEADERS)
-        resp = urllib.request.urlopen(req, timeout=5)
-        html = resp.read(20_000).decode("utf-8", errors="ignore")
-        m = re.search(r"<title[^>]*>(.*?)</title>", html, re.IGNORECASE | re.DOTALL)
-        if m:
-            return m.group(1).strip()
-    except Exception:
-        pass
-    return ""
 
 
 def classify_format(domain: str) -> str:
@@ -102,6 +91,12 @@ def classify_format(domain: str) -> str:
 
 
 class PulsarHandler(SimpleHTTPRequestHandler):
+    def do_GET(self):
+        if self.path == "/api/status":
+            self.send_json(200, pipeline_status)
+        else:
+            super().do_GET()
+
     def do_POST(self):
         if self.path == "/api/add":
             self.handle_add_link()
@@ -138,8 +133,8 @@ class PulsarHandler(SimpleHTTPRequestHandler):
                 self.send_json(409, {"error": "Link already exists"})
                 return
 
-            # --- Auto-fetch title ---
-            title = fetch_title(url) or domain or url
+            # --- Use domain as temporary title, pipeline will enrich later ---
+            title = domain or url
 
             # --- Build link entry ---
             new_link = {
@@ -161,6 +156,7 @@ class PulsarHandler(SimpleHTTPRequestHandler):
             self.send_json(200, {"ok": True, "title": title, "count": len(links)})
             print(f"  + Added: {title[:40]} ({url})")
 
+            pipeline_status.update({"running": True, "step": "queued", "done": False})
             threading.Thread(target=run_pipeline, daemon=True).start()
 
         except Exception as e:

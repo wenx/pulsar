@@ -13,13 +13,15 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlparse, urljoin
 
-INPUT = Path(__file__).parent / "links.json"
-OUTPUT = Path(__file__).parent / "links.json"
-CACHE = Path(__file__).parent / "meta-cache.json"
+from config import (
+    FETCH_TIMEOUT, FETCH_DELAY, JINA_BASE_URL, JINA_TIMEOUT, USER_AGENT,
+    HTML_READ_LIMIT, BODY_TEXT_LIMIT, BODY_TEXT_MIN,
+)
 
-# Rate limit: seconds between requests
-DELAY = 0.5
-TIMEOUT = 10
+ROOT = Path(__file__).parent
+INPUT = ROOT / "links.json"
+OUTPUT = ROOT / "links.json"
+CACHE = ROOT / "meta-cache.json"
 
 
 class MetaParser(HTMLParser):
@@ -61,29 +63,86 @@ class MetaParser(HTMLParser):
                 self.meta["title"] = self._title_text.strip()
 
 
+def extract_body_text(url: str) -> str:
+    """Extract body text via Jina Reader."""
+    if not url:
+        return ""
+    try:
+        req = urllib.request.Request(
+            f"{JINA_BASE_URL}{url}",
+            headers={"Accept": "text/plain", "User-Agent": USER_AGENT},
+        )
+        resp = urllib.request.urlopen(req, timeout=JINA_TIMEOUT)
+        text = resp.read().decode("utf-8", errors="ignore")
+        return text[:BODY_TEXT_LIMIT] if text else ""
+    except Exception:
+        return ""
+
+
 def fetch_meta(url: str) -> dict:
-    """Fetch URL and extract metadata from HTML head."""
+    """Fetch URL and extract metadata. Falls back to Jina Reader."""
+    meta = {}
+    html = ""
+
+    # Try direct scrape
     try:
         req = urllib.request.Request(url, headers={
-            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            "User-Agent": USER_AGENT,
             "Accept": "text/html,application/xhtml+xml",
             "Accept-Language": "en-US,en;q=0.9,zh-CN;q=0.8",
         })
-        resp = urllib.request.urlopen(req, timeout=TIMEOUT)
-        # Read only first 50KB — meta tags are in <head>
-        html = resp.read(50_000).decode("utf-8", errors="ignore")
+        resp = urllib.request.urlopen(req, timeout=FETCH_TIMEOUT)
+        html = resp.read(HTML_READ_LIMIT).decode("utf-8", errors="ignore")
         parser = MetaParser()
         parser.feed(html)
         meta = parser.meta
+    except Exception:
+        pass
 
-        # Resolve relative favicon/image URLs
-        for key in ("og:image", "twitter:image", "favicon"):
-            if key in meta and meta[key] and not meta[key].startswith("http"):
-                meta[key] = urljoin(url, meta[key])
+    # Extract body text: from HTML if available, Jina Reader as fallback
+    if html:
+        from html.parser import HTMLParser as _HP
+        class _TextExtractor(_HP):
+            def __init__(self):
+                super().__init__()
+                self.parts = []
+                self._skip = False
+            def handle_starttag(self, tag, attrs):
+                if tag in ('script', 'style', 'nav', 'header', 'footer'):
+                    self._skip = True
+            def handle_endtag(self, tag):
+                if tag in ('script', 'style', 'nav', 'header', 'footer'):
+                    self._skip = False
+            def handle_data(self, data):
+                if not self._skip:
+                    t = data.strip()
+                    if t:
+                        self.parts.append(t)
+        ext = _TextExtractor()
+        ext.feed(html)
+        body = "\n".join(ext.parts)
+        if len(body) < BODY_TEXT_MIN or "javascript" in body[:500].lower():
+            body = extract_body_text(url)
+    else:
+        body = extract_body_text(url)
+    if body:
+        meta["_body_text"] = body[:BODY_TEXT_LIMIT]
 
-        return meta
-    except Exception as e:
-        return {"_error": str(e)}
+    # If direct scrape got no title, parse it from Jina body text
+    if not meta.get("title") and not meta.get("og:title") and "_body_text" in meta:
+        for line in meta["_body_text"].splitlines():
+            if line.startswith("Title: "):
+                meta["title"] = line[7:].strip()
+                break
+
+    # Resolve relative favicon/image URLs
+    for key in ("og:image", "twitter:image", "favicon"):
+        if key in meta and meta[key] and not meta[key].startswith("http"):
+            meta[key] = urljoin(url, meta[key])
+
+    if not meta:
+        return {"_error": "No metadata found"}
+    return meta
 
 
 def extract_video_id(url: str) -> tuple[str, str]:
@@ -214,7 +273,7 @@ def main():
             print(f"[{i+1}/{len(links)}] Fetching: {link['title'][:50]}...")
             meta = fetch_meta(url)
             cache[url] = meta
-            time.sleep(DELAY)
+            time.sleep(FETCH_DELAY)
 
         if "_error" in meta:
             errors += 1
@@ -243,9 +302,14 @@ def main():
             link["desc"] = desc
         if favicon:
             link["favicon"] = favicon
-        # Use og:title if our title looks like a bare URL or bare domain
-        if meta.get("og:title") and (link["title"].startswith("http") or link["title"] == link.get("domain", "")):
-            link["title"] = meta["og:title"]
+        if meta.get("_body_text") and not link.get("body_text"):
+            link["body_text"] = meta["_body_text"]
+        # Use og:title or parsed title if our title looks like a bare URL or bare domain
+        best_title = meta.get("og:title") or meta.get("title")
+        if best_title and (link["title"].startswith("http") or link["title"] == link.get("domain", "")):
+            link["title"] = best_title
+        if meta.get("_author") and not link.get("author"):
+            link["author"] = meta["_author"]
 
         enriched += 1
 

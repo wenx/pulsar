@@ -617,6 +617,15 @@
   .link-card.done { opacity: 0.4; }
   .link-card.done .link-title { text-decoration: line-through; }
 
+  .link-card.entering {
+    animation: card-enter 0.35s ease forwards;
+  }
+
+  @keyframes card-enter {
+    0%   { opacity: 0; transform: translateX(-24px); }
+    100% { opacity: 1; transform: translateX(0); }
+  }
+
   .link-card.deleting {
     animation: card-delete 0.35s ease forwards;
     pointer-events: none;
@@ -1392,11 +1401,16 @@ document.getElementById('btn-scan').addEventListener('click', () => {
   }, 1500);
 });
 
-// Keyboard shortcut
+// Keyboard shortcuts
 document.addEventListener('keydown', e => {
-  if (e.key === '/' && document.activeElement.tagName !== 'INPUT') {
+  const inInput = document.activeElement.tagName === 'INPUT';
+  if (e.key === '/' && !inInput) {
     e.preventDefault();
     document.getElementById('search').focus();
+  }
+  if (e.key === 'n' && !inInput) {
+    e.preventDefault();
+    document.getElementById('btn-add').click();
   }
   if (e.key === 'Escape') {
     document.getElementById('search').blur();
@@ -1409,6 +1423,16 @@ document.addEventListener('keydown', e => {
 // --- Add Link Dialog ---
 const addDialog = document.getElementById('add-dialog');
 const addUrlInput = document.getElementById('add-url');
+
+function cleanUrl(url) {
+  try {
+    const u = new URL(url);
+    const strip = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term',
+      'ref','ref_src','ref_url','__readwiseLocation','rw_tt_thread','fbclid','gclid','mc_cid','mc_eid'];
+    strip.forEach(p => u.searchParams.delete(p));
+    return u.toString().replace(/\/$/, '');
+  } catch { return url.trim(); }
+}
 
 document.getElementById('btn-add').addEventListener('click', () => {
   addDialog.style.display = '';
@@ -1426,11 +1450,16 @@ addDialog.addEventListener('click', e => {
 });
 
 document.getElementById('btn-save').addEventListener('click', async () => {
-  const url = addUrlInput.value.trim();
+  let url = addUrlInput.value.trim();
   const errorEl = document.getElementById('add-error');
   errorEl.textContent = '';
 
   if (!url) { errorEl.textContent = 'URL is required'; return; }
+
+  // Auto-prepend https:// and clean tracking params
+  if (!/^https?:\/\//i.test(url)) url = 'https://' + url;
+  url = cleanUrl(url);
+
   if (!/^https?:\/\/.+\..+/.test(url)) { errorEl.textContent = 'Invalid URL'; return; }
 
   const saveBtn = document.getElementById('btn-save');
@@ -1457,12 +1486,29 @@ document.getElementById('btn-save').addEventListener('click', async () => {
     }
 
     addDialog.style.display = 'none';
-    document.getElementById('status-text').textContent = `Added: ${result.title || url} — enriching...`;
+    const prevCount = links.length;
     await loadLinks();
-    setTimeout(async () => {
-      await loadLinks();
-      document.getElementById('status-text').textContent = `Ready — ${links.length} links`;
-    }, 12000);
+
+    // Animate new card
+    const firstCard = document.querySelector('.link-card');
+    if (firstCard && links.length > prevCount) firstCard.classList.add('entering');
+
+    // Poll pipeline status
+    const status = document.getElementById('status-text');
+    status.textContent = `Added: ${result.title || url} — enriching...`;
+    const pollId = setInterval(async () => {
+      try {
+        const sr = await fetch('/api/status');
+        const st = await sr.json();
+        if (st.running) {
+          status.textContent = `Enriching: ${st.step}...`;
+        } else if (st.done) {
+          clearInterval(pollId);
+          await loadLinks();
+          status.textContent = `Ready — ${links.length} links`;
+        }
+      } catch { clearInterval(pollId); }
+    }, 2000);
   } catch (e) {
     errorEl.textContent = `Network error: ${e.message}`;
   } finally {

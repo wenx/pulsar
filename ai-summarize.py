@@ -9,12 +9,14 @@ import os
 import time
 from pathlib import Path
 
+from config import (
+    AI_MODEL, AI_MAX_TOKENS, AI_BODY_LIMIT, AI_DESC_LIMIT,
+    AI_DELAY, AI_SKIP_DESC_THRESHOLD, AI_SUMMARY_PROMPT,
+)
+
 ROOT = Path(__file__).parent
 LINKS_FILE = ROOT / "links.json"
 DESCS_FILE = ROOT / "ai-descriptions.json"
-
-MODEL = "claude-haiku-4-5-20251001"
-DELAY = 0.3  # seconds between API calls
 
 
 def get_client():
@@ -30,23 +32,21 @@ def get_client():
         return None
 
 
-def summarize_link(client, title: str, url: str, desc: str, domain: str) -> str:
+def summarize_link(client, title: str, url: str, desc: str, domain: str, body_text: str = "") -> str:
     """Generate a one-line summary for a link using Claude."""
     context = f"Title: {title}\nURL: {url}\nDomain: {domain}"
     if desc:
-        context += f"\nDescription: {desc[:300]}"
+        context += f"\nDescription: {desc[:AI_DESC_LIMIT]}"
+    if body_text:
+        context += f"\n\nArticle content:\n{body_text[:AI_BODY_LIMIT]}"
 
     try:
         msg = client.messages.create(
-            model=MODEL,
-            max_tokens=150,
+            model=AI_MODEL,
+            max_tokens=AI_MAX_TOKENS,
             messages=[{
                 "role": "user",
-                "content": f"""Write a concise 1-2 sentence summary for this link. Be informative and specific. Write in the same language as the title (Chinese if title is Chinese, English otherwise).
-
-{context}
-
-Reply with ONLY the summary, nothing else."""
+                "content": AI_SUMMARY_PROMPT.format(context=context),
             }],
         )
         return msg.content[0].text.strip()
@@ -73,11 +73,9 @@ def main():
         url = link.get("url", "")
         if not url:
             continue
-        # Skip if already has AI description
         if url in descs:
             continue
-        # Skip if link already has a desc that looks like an AI summary (>50 chars)
-        if link.get("desc") and len(link["desc"]) > 50:
+        if link.get("desc") and len(link["desc"]) > AI_SKIP_DESC_THRESHOLD:
             continue
         to_summarize.append(link)
 
@@ -94,17 +92,18 @@ def main():
         title = link.get("title", "")
         desc = link.get("desc", "")
         domain = link.get("domain", "")
+        body_text = link.get("body_text", "")
 
         print(f"  [{i+1}/{len(to_summarize)}] {title[:50]}...")
 
-        summary = summarize_link(client, title, url, desc, domain)
+        summary = summarize_link(client, title, url, desc, domain, body_text)
         if summary:
             descs[url] = summary
             generated += 1
         else:
             errors += 1
 
-        time.sleep(DELAY)
+        time.sleep(AI_DELAY)
 
     # Save
     DESCS_FILE.write_text(json.dumps(descs, ensure_ascii=False, indent=2), "utf-8")
