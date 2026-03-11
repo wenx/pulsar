@@ -1,6 +1,6 @@
 ---
 title: "《纽约杂志》：从普通人到加密人，如何审慎地掉进「兔子洞」"
-source: https://www.chaincatcher.com/article/2067298
+source: "https://www.chaincatcher.com/article/2067298"
 saved: 2026-03-11
 ---
 

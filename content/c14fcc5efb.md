@@ -1,6 +1,6 @@
 ---
 title: "GlobalFoundries Stops All 7nm Development: Opts To Focus on Specialized Processes"
-source: https://www.anandtech.com/show/13277/globalfoundries-stops-all-7nm-development
+source: "https://www.anandtech.com/show/13277/globalfoundries-stops-all-7nm-development"
 saved: 2026-03-11
 ---
 

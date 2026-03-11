@@ -1,6 +1,6 @@
 ---
 title: "The Scythians: Nomad Warriors of the Steppe | Barry Cunliffe | Talks at Google"
-source: https://youtu.be/XFsd_LyYZdo
+source: "https://youtu.be/XFsd_LyYZdo"
 saved: 2026-03-11
 ---
 

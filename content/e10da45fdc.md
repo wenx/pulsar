@@ -1,6 +1,6 @@
 ---
 title: "【付鹏】风险已来，普通人要早做准备！80-95可能是最惨的一代人！非常值得一听！"
-source: https://www.youtube.com/watch?v=qK5oWQmnICU
+source: "https://www.youtube.com/watch?v=qK5oWQmnICU"
 saved: 2026-03-11
 ---
 

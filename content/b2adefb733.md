@@ -1,6 +1,6 @@
 ---
 title: "xiaolai/spreadsheets-for-investors: 投资人必会知识 —— 电子表格简明进阶教程"
-source: https://github.com/xiaolai/spreadsheets-for-investors
+source: "https://github.com/xiaolai/spreadsheets-for-investors"
 saved: 2026-03-11
 ---
 

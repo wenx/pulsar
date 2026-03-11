@@ -8,7 +8,6 @@ import hashlib
 import json
 import time
 import urllib.request
-import urllib.error
 from datetime import date
 from pathlib import Path
 from urllib.parse import urlparse, parse_qs, quote
@@ -113,7 +112,7 @@ def save_content_md(url: str, title: str, content: str) -> str:
     safe_title = title.replace('"', '\\"')
     frontmatter = f"""---
 title: "{safe_title}"
-source: {url}
+source: "{url}"
 saved: {date.today().isoformat()}
 ---
 
@@ -149,13 +148,15 @@ def main():
             skipped += 1
             continue
 
-        # Check cache
-        if url in cache:
-            data = cache[url]
+        # Check cache (skip error entries so they get retried)
+        cached = cache.get(url)
+        if cached and "_error" not in cached:
+            data = cached
         else:
             print(f"[{i+1}/{len(links)}] Fetching: {link['title'][:50]}...")
             data = fetch_via_jina(url)
-            cache[url] = data
+            if "_error" not in data:
+                cache[url] = data
             time.sleep(FETCH_DELAY)
 
         if "_error" in data:
