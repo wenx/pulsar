@@ -134,16 +134,8 @@ def main():
 
         time.sleep(AI_DELAY)
 
-    # Strip body_text after analysis (only needed for AI prompt)
-    stripped = 0
-    for l in links:
-        if l.get("ai_summary") and l.pop("body_text", None):
-            stripped += 1
-
     # Save
     LINKS_FILE.write_text(json.dumps(links, ensure_ascii=False, indent=2), "utf-8")
-    if stripped:
-        print(f"Stripped body_text from {stripped} links")
     print(f"\nDone: {success} analyzed, {errors} errors")
 
 

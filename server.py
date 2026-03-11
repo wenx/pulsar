@@ -12,7 +12,7 @@ from http.server import HTTPServer, SimpleHTTPRequestHandler
 from pathlib import Path
 from urllib.parse import urlparse
 
-from config import PORT, PIPELINE_TIMEOUT
+from config import PORT, PIPELINE_TIMEOUT, classify_format
 
 ROOT = Path(__file__).parent
 LINKS_FILE = ROOT / "links.json"
@@ -55,20 +55,6 @@ def run_pipeline():
             print(f"    ✗ {script}: timeout")
     pipeline_status = {"running": False, "step": "", "done": True}
     print("  ✓ Pipeline complete")
-
-
-def classify_format(domain: str) -> str:
-    """Auto-detect link format from domain."""
-    d = domain.lower()
-    video_domains = {"youtube.com", "youtu.be", "bilibili.com", "b23.tv", "vimeo.com"}
-    podcast_kw = {"podcast", "joincolossus", "whatbitcoindid"}
-    if any(d.endswith(v) or d == v for v in video_domains):
-        return "Video"
-    if any(kw in d for kw in podcast_kw):
-        return "Podcast"
-    if "github.com" in d or "gitlab.com" in d:
-        return "GitHub"
-    return "Article"
 
 
 class PulsarHandler(SimpleHTTPRequestHandler):

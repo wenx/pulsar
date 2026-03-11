@@ -9,6 +9,8 @@ import json
 from pathlib import Path
 from urllib.parse import urlparse
 
+from config import classify_format
+
 VAULT = Path.home() / "Library/Mobile Documents/iCloud~md~obsidian/Documents/SOLARIS"
 LINKS_MD = VAULT / "Links.md"
 OUTPUT = Path(__file__).parent / "links.json"
@@ -119,7 +121,7 @@ def parse_links_md(text: str) -> list[dict]:
             "author": author,
             "section": current_section,
             "category": classify_link(domain, url, title),
-            "format": classify_format(domain, url),
+            "format": classify_format(domain),
             "notes": "",
             "done": is_done,
         }
@@ -128,26 +130,6 @@ def parse_links_md(text: str) -> list[dict]:
         links.append(link_obj)
 
     return links
-
-
-def classify_format(domain: str, url: str) -> str:
-    """Classify link format/type by domain."""
-    d = domain.lower()
-
-    video_domains = {
-        "youtube.com", "youtu.be", "bilibili.com", "b23.tv",
-        "vimeo.com", "netflix.com",
-    }
-    if any(d.endswith(v) or d == v for v in video_domains):
-        return "Video"
-
-    if any(kw in d for kw in ["podcast", "joincolossus", "whatbitcoindid"]):
-        return "Podcast"
-
-    if "github.com" in d or "gitlab.com" in d:
-        return "GitHub"
-
-    return "Article"
 
 
 def classify_link(domain: str, url: str, title: str) -> str:

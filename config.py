@@ -71,3 +71,19 @@ USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
 def url_hash(url: str) -> str:
     """Short hash of URL for filename."""
     return hashlib.md5(url.encode()).hexdigest()[:10]
+
+
+def classify_format(domain: str) -> str:
+    """Auto-detect link format from domain."""
+    d = domain.lower()
+    video_domains = {
+        "youtube.com", "youtu.be", "bilibili.com", "b23.tv",
+        "vimeo.com", "netflix.com",
+    }
+    if any(d.endswith(v) or d == v for v in video_domains):
+        return "Video"
+    if any(kw in d for kw in ["podcast", "joincolossus", "whatbitcoindid"]):
+        return "Podcast"
+    if "github.com" in d or "gitlab.com" in d:
+        return "GitHub"
+    return "Article"

@@ -1018,6 +1018,16 @@
 </div>
 
 <script>
+// --- Escaping helpers ---
+function escHtml(s) {
+  if (!s) return '';
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function escAttr(s) {
+  if (!s) return '';
+  return s.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/'/g,'&#39;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
 // --- App State ---
 let links = [];
 let currentFilter = 'all';
@@ -1076,30 +1086,30 @@ function renderLinks(filtered) {
   const cardsHtml = filtered.map(link => {
     const domain = link.domain || getDomain(link.url);
     const faviconImg = link.favicon
-      ? `<img src="${link.favicon}" onerror="this.style.display='none'">`
+      ? `<img src="${escAttr(link.favicon)}" onerror="this.style.display='none'">`
       : '';
     const thumbHtml = link.thumbnail
-      ? `<div class="link-thumb"><img src="${link.thumbnail}" onload="this.classList.add('loaded')" onerror="this.parentElement.style.display='none'" loading="lazy"></div>`
+      ? `<div class="link-thumb"><img src="${escAttr(link.thumbnail)}" onload="this.classList.add('loaded')" onerror="this.parentElement.style.display='none'" loading="lazy"></div>`
       : '';
     return `
-    <div class="link-card${link.done ? ' done' : ''}" data-url="${link.url}" onclick="window.open('${link.url}', '_blank')">
+    <div class="link-card${link.done ? ' done' : ''}" data-url="${escAttr(link.url)}" onclick="window.open(this.dataset.url, '_blank')">
       ${thumbHtml}
       <div class="link-body">
         <div class="link-url">
           ${faviconImg}
-          <a href="${link.url}" target="_blank" onclick="event.stopPropagation()">${domain}</a>
+          <a href="${escAttr(link.url)}" target="_blank" onclick="event.stopPropagation()">${escHtml(domain)}</a>
         </div>
-        <a class="link-title" href="${link.url}" target="_blank" onclick="event.stopPropagation()">${link.title}</a>
-        ${(link.ai_summary || link.desc) ? `<div class="link-desc">${link.ai_summary || link.desc}</div>` : ''}
+        <a class="link-title" href="${escAttr(link.url)}" target="_blank" onclick="event.stopPropagation()">${escHtml(link.title)}</a>
+        ${(link.ai_summary || link.desc) ? `<div class="link-desc">${escHtml(link.ai_summary || link.desc)}</div>` : ''}
         <div class="link-meta">
-          <span class="link-tag" onclick="event.stopPropagation();setFilter('cat:${link.format}')">${link.format}</span>
-          <span class="link-tag" onclick="event.stopPropagation();setFilter('topic:${link.category}')">${link.category}</span>
-          ${link.tags.map(t => `<span class="link-tag tag-keyword" onclick="event.stopPropagation();searchByTag('${t}')">${t}</span>`).join('')}
-          ${link.author ? `<span>${link.author}</span>` : ''}
+          <span class="link-tag" data-filter="cat:${escAttr(link.format)}" onclick="event.stopPropagation();setFilter(this.dataset.filter)">${escHtml(link.format)}</span>
+          <span class="link-tag" data-filter="topic:${escAttr(link.category)}" onclick="event.stopPropagation();setFilter(this.dataset.filter)">${escHtml(link.category)}</span>
+          ${link.tags.map(t => `<span class="link-tag tag-keyword" data-tag="${escAttr(t)}" onclick="event.stopPropagation();searchByTag(this.dataset.tag)">${escHtml(t)}</span>`).join('')}
+          ${link.author ? `<span>${escHtml(link.author)}</span>` : ''}
           <div class="link-menu-wrap" onclick="event.stopPropagation()">
             <span class="link-menu-btn" onclick="toggleMenu(this)">&#x22EF;</span>
             <div class="link-menu">
-              <a class="link-menu-item danger" onclick="deleteLink('${link.url}')">./delete</a>
+              <a class="link-menu-item danger" data-url="${escAttr(link.url)}" onclick="deleteLink(this.dataset.url)">./delete</a>
             </div>
           </div>
         </div>
