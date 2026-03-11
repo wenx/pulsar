@@ -9,13 +9,12 @@ import os
 import subprocess
 import sys
 import threading
-import urllib.request
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from pathlib import Path
 from urllib.parse import urlparse
 
 from config import (
-    PORT, USER_AGENT, PIPELINE_TIMEOUT,
+    PORT, PIPELINE_TIMEOUT,
 )
 
 ROOT = Path(__file__).parent
@@ -31,15 +30,10 @@ if _env_file.exists():
 LINKS_FILE = ROOT / "links.json"
 
 PIPELINE = [
-    "enrich-links.py",
-    "ai-enrich.py",
-    "ai-summarize.py",
-    "generate-ai.py",
-    "download-thumbs.py",
-    "generate-feed.py",
+    "fetch.py",
+    "analyze.py",
+    "assets.py",
 ]
-
-HEADERS = {"User-Agent": USER_AGENT}
 
 # Pipeline status tracking
 pipeline_status = {"running": False, "step": "", "done": True}
@@ -73,7 +67,6 @@ def run_pipeline():
             print(f"    ✗ {script}: timeout")
     pipeline_status = {"running": False, "step": "", "done": True}
     print("  ✓ Pipeline complete")
-
 
 
 def classify_format(domain: str) -> str:

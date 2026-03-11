@@ -17,19 +17,40 @@ HTML_READ_LIMIT = 200_000       # max bytes to read from HTML
 BODY_TEXT_LIMIT = 3000           # max chars for body text
 BODY_TEXT_MIN = 200              # min chars to consider body text valid
 
-# AI summarization
+# AI analysis
 AI_MODEL = "claude-haiku-4-5-20251001"
-AI_MAX_TOKENS = 150
+AI_MAX_TOKENS = 300
 AI_BODY_LIMIT = 2500             # max chars of body text in prompt
 AI_DESC_LIMIT = 300              # max chars of description in prompt
 AI_DELAY = 0.3                   # rate limit between API calls (seconds)
-AI_SKIP_DESC_THRESHOLD = 50      # skip if existing desc longer than this
 
-AI_SUMMARY_PROMPT = """根据以下信息，写一句简短精辟的摘要。抓住核心观点，不要废话。语言与标题一致。
+AI_CATEGORIES = [
+    "Crypto", "Technology", "Investing", "Economics", "Geopolitics",
+    "Philosophy", "Science", "History", "Culture", "Business",
+    "Health", "Thinking", "Learning", "Productivity", "Resource",
+]
+
+AI_ANALYZE_PROMPT = """根据以下链接信息，返回 JSON：
+- "category": 从 [{categories}] 中选一个最匹配的
+- "tags": 1-5 个英文标签，简短有区分度
+- "summary": 一句中文摘要，像编辑写导语一样精炼，抓住最核心的一个观点
+
+示例输出：
+{{"category": "Technology", "tags": ["AI", "LLM", "OpenAI"], "summary": "GPT-4o 将多模态能力整合进单一模型，推理速度提升两倍且成本减半。"}}
 
 {context}
 
-只输出摘要，不要其他内容。"""
+如果信息不足以判断内容，category 填 "Resource"，summary 根据标题和域名做合理推测。
+只输出 JSON，不要其他内容。"""
+
+# Thumbnail download
+THUMB_DOWNLOAD_DELAY = 0.3       # rate limit between downloads (seconds)
+THUMB_DOWNLOAD_TIMEOUT = 15      # download timeout (seconds)
+
+# RSS feed
+SITE_URL = "https://pulsar.wenxin.io"
+FEED_TITLE = "Pulsar"
+FEED_DESC = "Curated links from SOLARIS"
 
 # User agent
 USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"

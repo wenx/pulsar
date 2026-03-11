@@ -8,7 +8,7 @@
 
 - 前端：原生 HTML + CSS + JavaScript（无框架）
 - 后端：Python 自定义 HTTP Server
-- AI：Claude Haiku API（自动摘要）
+- AI：Claude Haiku API（分类 + 标签 + 摘要，一次 API 调用完成）
 - 数据：JSON 文件存储
 
 ## 快速开始
@@ -17,68 +17,84 @@
 # 1. 安装依赖
 pip install anthropic
 
-# 2. 配置 API Key（AI 摘要功能需要）
-export ANTHROPIC_API_KEY="sk-ant-xxx"
+# 2. 配置 API Key
+echo 'ANTHROPIC_API_KEY=sk-ant-xxx' > .env
 
-# 3. 首次运行数据处理 pipeline
-python3 parse-links.py        # 解析 Links.md → links.json
-python3 enrich-links.py       # 抓取 og 元数据（缩略图、描述、favicon）
-python3 ai-enrich.py          # 规则分类：自动分配 category + tags
-python3 ai-summarize.py       # AI 摘要生成（Claude Haiku）
-python3 generate-ai.py        # 应用 AI 数据 + 生成 SVG 备用缩略图
-python3 download-thumbs.py    # 下载缩略图到本地
-python3 generate-feed.py      # 生成 RSS 订阅源
+# 3. 首次运行 pipeline
+python3 parse-links.py    # 解析 Links.md → links.json（仅首次）
+python3 fetch.py           # 抓取网页元数据（title, desc, og:image, body text）
+python3 analyze.py         # AI 分析：分类 + 标签 + 摘要（Claude Haiku）
+python3 assets.py          # 下载缩略图 + 生成 SVG 兜底 + 生成 RSS
 
 # 4. 启动服务
-python3 server.py              # http://localhost:3460
+python3 server.py          # http://localhost:3460
 ```
 
-## 数据流
+## Pipeline
+
+三步流水线，每步输入输出都是 `links.json`：
 
 ```
-Links.md (Obsidian)
-  ↓ parse-links.py
 links.json
-  ↓ enrich-links.py
-links.json + meta-cache.json (og:image, description, favicon)
-  ↓ ai-enrich.py
-ai-categories.json + ai-tags.json (规则分类)
-  ↓ ai-summarize.py
-ai-descriptions.json (Claude Haiku 摘要)
-  ↓ generate-ai.py
-links.json (合并所有 AI 数据 + SVG 缩略图)
-  ↓ download-thumbs.py
-thumbs/ (本地缩略图)
-  ↓ generate-feed.py
-feed.xml (RSS 2.0)
-  ↓
-index.html (客户端渲染)
+  ↓ fetch.py — 抓取网页，提取 title/desc/og:image/favicon/body_text
+links.json + meta-cache.json
+  ↓ analyze.py — Claude Haiku 一次调用：分类 + 标签 + 中文摘要
+links.json
+  ↓ assets.py — 下载缩略图到 thumbs/ + SVG 兜底 + 生成 feed.xml
+links.json + thumbs/ + feed.xml
 ```
+
+Pipeline 是**增量**的——只处理新增或缺少数据的链接。添加新链接后，server 自动在后台运行 pipeline。
+
+### 手动全量重跑
+
+修改了 AI 提示词或分类列表后，用 `--force` 重跑：
+
+```bash
+python3 analyze.py --force   # 清掉所有 ai_summary/category/tags，全量重新分析
+```
+
+`fetch.py` 和 `assets.py` 不需要 `--force`，它们用 cache 和本地文件自动判断增量。
+
+## 配置
+
+所有配置集中在 `config.py`：
+
+| 配置项 | 默认值 | 说明 |
+|--------|--------|------|
+| `PORT` | 3460 | 服务端口 |
+| `AI_MODEL` | claude-haiku-4-5-20251001 | AI 模型 |
+| `AI_CATEGORIES` | 15 个分类 | 可用分类列表 |
+| `AI_ANALYZE_PROMPT` | — | 分析提示词（分类+标签+摘要） |
+| `JINA_BASE_URL` | r.jina.ai | Jina Reader 地址 |
+| `FETCH_TIMEOUT` | 10s | 直接抓取超时 |
+| `JINA_TIMEOUT` | 15s | Jina Reader 超时 |
+
+API Key 放在 `.env` 文件中（已在 .gitignore）。
 
 ## 功能
 
 ### 界面
-- **侧边栏**：按格式分类（Article、Video、Podcast 等）+ 按内容主题分类（Technology、Economics 等）
+- **侧边栏**：按格式分类（Article、Video、Podcast 等）+ 按内容主题分类
 - **搜索**：快捷键 `/` 激活，`Esc` 清除
 - **双视图**：Grid（JS 瀑布流）/ List 切换
 - **卡片**：缩略图 + 标题 + 描述 + 标签，悬停动效
 - **Summary 面板**：最近 10 条 AI 摘要，可折叠
 
 ### 链接管理
-- **添加链接**：侧边栏 `./add` → 输入 URL → 自动抓取标题 → 运行完整 pipeline
-- **删除链接**：卡片右上角 `⋯` 菜单 → `./delete`
+- **添加链接**：快捷键 `n` 或侧边栏 `./add` → 输入 URL → 即时保存 → 后台 pipeline 自动运行
+- **删除链接**：卡片右上角 `⋯` 菜单 → `./delete` → 10 秒内可撤销
+- **URL 清理**：自动去除 utm_*、fbclid 等追踪参数
 - **RSS 订阅**：自动生成 `feed.xml`
 
-### AI 能力
-- **自动分类**：基于关键词规则匹配 15 个内容主题
-- **自动标签**：域名 + 关键词提取，每条最多 5 个标签
-- **AI 摘要**：Claude Haiku 生成 1-2 句描述（中英文自适应）
+### AI 能力（Claude Haiku，单次调用）
+- **自动分类**：15 个内容主题（Technology、Economics、Crypto 等）
+- **自动标签**：1-5 个标签
+- **AI 摘要**：中文一句话摘要
 
-### 数据处理
-- **元数据抓取**：og:image、og:description、favicon，带缓存
-- **YouTube 优化**：oEmbed API 获取标题，直连高清缩略图
-- **缩略图策略**：YouTube 直连 > og:image > WordPress mshots > SVG 生成
-- **稳定命名**：URL hash（`md5(url)[:10]`）作为文件名，增删链接不影响已有数据
+### 网页抓取（两级策略）
+1. **直接 HTML 抓取**：提取 og:image、title、description、favicon、正文
+2. **Jina Reader 兜底**：正文不足 200 字或含 "javascript" 时自动切换
 
 ## API 端点
 
@@ -86,34 +102,23 @@ index.html (客户端渲染)
 |------|------|------|
 | POST | `/api/add` | 添加链接，body: `{"url": "..."}` |
 | POST | `/api/delete` | 删除链接，body: `{"url": "..."}` |
-
-添加链接后会自动在后台运行完整 pipeline（抓取元数据 → 分类 → AI 摘要 → 下载缩略图 → 更新 RSS）。
+| GET | `/api/status` | Pipeline 运行状态 |
 
 ## 文件结构
 
 ```
 pulsar/
-├── index.html           # 主页面 SPA
-├── server.py            # 开发服务器 + API
-├── links.json           # 链接数据
-├── feed.xml             # RSS 订阅源
-├── thumbs/              # 本地缩略图
-├── parse-links.py       # Links.md 解析
-├── enrich-links.py      # 元数据抓取
-├── ai-enrich.py         # 规则分类
-├── ai-summarize.py      # AI 摘要生成
-├── generate-ai.py       # AI 数据应用 + SVG 生成
-├── download-thumbs.py   # 缩略图下载
-├── generate-feed.py     # RSS 生成
-├── meta-cache.json      # 元数据缓存
-├── ai-categories.json   # 内容主题分类
-├── ai-tags.json         # 关键词标签
-├── ai-formats.json      # 格式覆盖
-└── ai-descriptions.json # AI 摘要
+├── index.html         # 主页面 SPA
+├── server.py          # 开发服务器 + API
+├── config.py          # 集中配置
+├── fetch.py           # Step 1: 网页抓取 + 元数据提取
+├── analyze.py         # Step 2: AI 分析（分类 + 标签 + 摘要）
+├── assets.py          # Step 3: 缩略图下载 + SVG 生成 + RSS
+├── parse-links.py     # Links.md → links.json（首次导入）
+├── links.json         # 链接数据
+├── meta-cache.json    # 元数据缓存
+├── feed.xml           # RSS 订阅源
+├── thumbs/            # 本地缩略图
+├── fonts/             # 自定义字体（TX-02, Tamzen）
+└── .env               # API Key（不入库）
 ```
-
-## 分类体系
-
-- **Format**（链接类型）：Article、Video、Podcast、GitHub、Book、Film、Documentary
-- **Category**（内容主题）：Technology、Economics、Philosophy、Crypto、Investing 等 15 个
-- **Tags**（关键词标签）：AI、Bitcoin、China、startup 等细粒度标签
