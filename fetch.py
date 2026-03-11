@@ -73,23 +73,241 @@ def extract_video_id(url: str) -> tuple[str, str]:
     return ("", "")
 
 
+def _api_get(url: str, headers: dict = None, timeout: int = 10) -> dict:
+    """Helper: GET JSON from API endpoint."""
+    hdrs = {"User-Agent": USER_AGENT}
+    if headers:
+        hdrs.update(headers)
+    req = urllib.request.Request(url, headers=hdrs)
+    resp = urllib.request.urlopen(req, timeout=timeout)
+    return json.loads(resp.read().decode("utf-8", errors="ignore"))
+
+
+def _make_result(title: str = "", description: str = "", content: str = "",
+                 og_image: str = "") -> dict:
+    """Build a Jina-compatible result dict."""
+    result = {"title": title, "description": description, "content": content, "metadata": {}}
+    if og_image:
+        result["metadata"]["og:image"] = og_image
+    return result
+
+
+# ── Platform-specific fetchers ──
+
+def fetch_bilibili(bvid: str) -> dict:
+    """Fetch Bilibili video metadata via API."""
+    try:
+        data = _api_get(f"https://api.bilibili.com/x/web-interface/view?bvid={bvid}")
+        d = data.get("data", {})
+        if not d:
+            return {"_error": "Bilibili API returned no data"}
+        pic = d.get("pic", "")
+        if pic.startswith("http://"):
+            pic = "https://" + pic[7:]
+        owner = d.get("owner", {}).get("name", "")
+        title = d.get("title", "")
+        desc = d.get("desc", "")
+        return _make_result(
+            title=title,
+            description=f"{title} — {owner}" if owner else desc,
+            content=desc,
+            og_image=pic,
+        )
+    except Exception as e:
+        return {"_error": str(e)[:100]}
+
+
+def fetch_youtube(vid: str) -> dict:
+    """Fetch YouTube video metadata via oEmbed."""
+    try:
+        watch_url = f"https://www.youtube.com/watch?v={vid}"
+        data = _api_get(
+            f"https://www.youtube.com/oembed?url={quote(watch_url, safe='')}&format=json"
+        )
+        title = data.get("title", "")
+        author = data.get("author_name", "")
+        return _make_result(
+            title=title,
+            description=f"{title} — {author}" if author else title,
+            og_image=data.get("thumbnail_url", ""),
+        )
+    except Exception as e:
+        return {"_error": str(e)[:100]}
+
+
+def fetch_vimeo(url: str) -> dict:
+    """Fetch Vimeo video metadata via oEmbed."""
+    try:
+        data = _api_get(
+            f"https://vimeo.com/api/oembed.json?url={quote(url, safe='')}"
+        )
+        title = data.get("title", "")
+        author = data.get("author_name", "")
+        return _make_result(
+            title=title,
+            description=f"{title} — {author}" if author else title,
+            og_image=data.get("thumbnail_url", ""),
+        )
+    except Exception as e:
+        return {"_error": str(e)[:100]}
+
+
+def fetch_spotify(url: str) -> dict:
+    """Fetch Spotify metadata via oEmbed."""
+    try:
+        data = _api_get(
+            f"https://open.spotify.com/oembed?url={quote(url, safe='')}"
+        )
+        return _make_result(
+            title=data.get("title", ""),
+            description=data.get("title", ""),
+            og_image=data.get("thumbnail_url", ""),
+        )
+    except Exception as e:
+        return {"_error": str(e)[:100]}
+
+
+def fetch_github(url: str) -> dict:
+    """Fetch GitHub repo metadata via REST API."""
+    try:
+        parsed = urlparse(url)
+        parts = parsed.path.strip("/").split("/")
+        if len(parts) < 2:
+            return {"_error": "Not a GitHub repo URL"}
+        owner, repo = parts[0], parts[1]
+        data = _api_get(
+            f"https://api.github.com/repos/{owner}/{repo}",
+            headers={"Accept": "application/vnd.github.v3+json"},
+        )
+        title = data.get("full_name", "")
+        desc = data.get("description", "") or ""
+        lang = data.get("language", "")
+        stars = data.get("stargazers_count", 0)
+        extras = []
+        if lang:
+            extras.append(lang)
+        if stars:
+            extras.append(f"{stars:,}★")
+        description = f"{desc} ({', '.join(extras)})" if desc and extras else desc
+        return _make_result(
+            title=title,
+            description=description,
+            content=desc,
+            og_image=data.get("owner", {}).get("avatar_url", ""),
+        )
+    except Exception as e:
+        return {"_error": str(e)[:100]}
+
+
+def fetch_reddit(url: str) -> dict:
+    """Fetch Reddit post metadata via oEmbed."""
+    try:
+        data = _api_get(
+            f"https://www.reddit.com/oembed?url={quote(url, safe='')}"
+        )
+        title = data.get("title", "")
+        author = data.get("author_name", "")
+        return _make_result(
+            title=title,
+            description=f"{title} — {author}" if author else title,
+        )
+    except Exception as e:
+        return {"_error": str(e)[:100]}
+
+
+def fetch_wikipedia(url: str) -> dict:
+    """Fetch Wikipedia article summary via REST API."""
+    try:
+        parsed = urlparse(url)
+        host = parsed.hostname or ""
+        lang = host.split(".")[0] if "." in host else "en"
+        title_path = parsed.path.split("/wiki/")[-1] if "/wiki/" in parsed.path else ""
+        if not title_path:
+            return {"_error": "Not a Wikipedia article URL"}
+        data = _api_get(
+            f"https://{lang}.wikipedia.org/api/rest_v1/page/summary/{title_path}"
+        )
+        return _make_result(
+            title=data.get("title", ""),
+            description=data.get("description", ""),
+            content=data.get("extract", ""),
+            og_image=data.get("thumbnail", {}).get("source", ""),
+        )
+    except Exception as e:
+        return {"_error": str(e)[:100]}
+
+
+# ── Platform routing ──
+
+def get_platform_fetcher(url: str):
+    """Return (fetch_func, arg) for known platforms, or None to use Jina."""
+    parsed = urlparse(url)
+    host = (parsed.hostname or "").lower().replace("www.", "")
+
+    # Video platforms
+    platform, vid = extract_video_id(url)
+    if platform == "bilibili":
+        return (fetch_bilibili, vid)
+    if platform == "youtube":
+        return (fetch_youtube, vid)
+    if host in ("vimeo.com", "player.vimeo.com"):
+        return (fetch_vimeo, url)
+
+    # Code hosting
+    if host == "github.com":
+        return (fetch_github, url)
+
+    # Music/Podcast
+    if host == "open.spotify.com":
+        return (fetch_spotify, url)
+
+    # Social/Forum
+    if host in ("reddit.com", "old.reddit.com"):
+        return (fetch_reddit, url)
+
+    # Wiki
+    if host.endswith("wikipedia.org"):
+        return (fetch_wikipedia, url)
+
+    return None
+
+
 def get_thumbnail(jina_data: dict, url: str) -> str:
-    """Pick best thumbnail: video platform > Jina images > og:image > mshots."""
-    # YouTube direct thumbnail
+    """Pick best thumbnail: og:image > twitter:image > video platform > Jina images > mshots."""
+    meta = jina_data.get("metadata", {})
+
+    # 1. og:image — publisher's chosen social sharing image
+    og = meta.get("og:image", "")
+    if og:
+        # Fix protocol-relative URLs
+        if og.startswith("//"):
+            og = "https:" + og
+        # Bilibili: strip thumbnail resize suffix to get full image
+        if "hdslb.com" in og and "@" in og:
+            og = og.split("@")[0]
+        return og
+
+    # 2. twitter:image — fallback social image
+    tw = meta.get("twitter:image", "")
+    if tw:
+        if tw.startswith("//"):
+            tw = "https:" + tw
+        return tw
+
+    # 3. Video platform direct thumbnail
     platform, vid = extract_video_id(url)
     if platform == "youtube":
         return f"https://img.youtube.com/vi/{vid}/maxresdefault.jpg"
 
-    # Jina images (pick first meaningful one)
+    # 4. Jina images (pick first meaningful one)
     images = jina_data.get("images", {})
     if images:
         for name, img_url in images.items():
-            # Skip tiny tracking pixels and icons
             if "1x1" in img_url or "favicon" in img_url.lower():
                 continue
             return img_url
 
-    # mshots fallback
+    # 5. mshots fallback
     if url:
         return f"https://s0.wp.com/mshots/v1/{quote(url, safe='')}?w=480&h=270"
     return ""
@@ -154,7 +372,12 @@ def main():
             data = cached
         else:
             print(f"[{i+1}/{len(links)}] Fetching: {link['title'][:50]}...")
-            data = fetch_via_jina(url)
+            pf = get_platform_fetcher(url)
+            if pf:
+                func, arg = pf
+                data = func(arg)
+            else:
+                data = fetch_via_jina(url)
             if "_error" not in data:
                 cache[url] = data
             time.sleep(FETCH_DELAY)

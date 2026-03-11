@@ -115,12 +115,16 @@ def download_all_thumbnails(links: list):
         link_url = link.get("url", "")
         h = url_hash(link_url) if link_url else f"thumb-{i:03d}"
 
-        # Check if already downloaded
-        existing = list(THUMBS_DIR.glob(f"{h}.*"))
+        # Check if already downloaded (ignore SVG fallbacks)
+        existing = [f for f in THUMBS_DIR.glob(f"{h}.*") if f.suffix != ".svg"]
         if existing:
             link["thumbnail"] = str(existing[0].relative_to(ROOT))
             skipped += 1
             continue
+
+        # Remove old SVG fallback before downloading real thumbnail
+        for old_svg in THUMBS_DIR.glob(f"{h}.svg"):
+            old_svg.unlink()
 
         print(f"  [{i+1}/{len(links)}] Downloading: {link['title'][:40]}...")
 
