@@ -1,5 +1,6 @@
 """Pulsar shared configuration."""
 
+import hashlib
 import os
 from pathlib import Path
 
@@ -56,6 +57,7 @@ AI_ANALYZE_PROMPT = """根据以下链接信息，返回 JSON：
 # Thumbnail download
 THUMB_DOWNLOAD_DELAY = 0.3       # rate limit between downloads (seconds)
 THUMB_DOWNLOAD_TIMEOUT = 15      # download timeout (seconds)
+MICROLINK_SCREENSHOT_URL = "https://api.microlink.io/?url={url}&screenshot=true&meta=false&embed=screenshot.url"
 
 # RSS feed
 SITE_URL = "https://pulsar.wenxin.io"
@@ -64,3 +66,8 @@ FEED_DESC = "Curated links from SOLARIS"
 
 # User agent
 USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"
+
+
+def url_hash(url: str) -> str:
+    """Short hash of URL for filename."""
+    return hashlib.md5(url.encode()).hexdigest()[:10]

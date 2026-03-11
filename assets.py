@@ -8,7 +8,6 @@ import json
 import random
 import time
 import urllib.request
-import urllib.error
 from datetime import datetime, timezone
 from html import escape
 from pathlib import Path
@@ -16,7 +15,7 @@ from urllib.parse import urlparse
 
 from config import (
     USER_AGENT, THUMB_DOWNLOAD_DELAY, THUMB_DOWNLOAD_TIMEOUT,
-    SITE_URL, FEED_TITLE, FEED_DESC,
+    SITE_URL, FEED_TITLE, FEED_DESC, url_hash,
 )
 
 ROOT = Path(__file__).parent
@@ -39,20 +38,17 @@ CATEGORY_GLYPHS = {
 }
 
 
-def url_hash(url: str) -> str:
-    return hashlib.md5(url.encode()).hexdigest()[:10]
-
-
 # ── Thumbnail download ──
 
 def guess_ext(url: str, content_type: str = "") -> str:
-    if "png" in content_type or url.endswith(".png"):
+    ct = content_type.split(";")[0].strip().lower()
+    if ct == "image/png" or url.endswith(".png"):
         return ".png"
-    if "svg" in content_type or url.endswith(".svg"):
+    if ct == "image/svg+xml" or url.endswith(".svg"):
         return ".svg"
-    if "webp" in content_type or url.endswith(".webp"):
+    if ct == "image/webp" or url.endswith(".webp"):
         return ".webp"
-    if "gif" in content_type or url.endswith(".gif"):
+    if ct == "image/gif" or url.endswith(".gif"):
         return ".gif"
     return ".jpg"
 

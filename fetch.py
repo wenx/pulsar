@@ -4,7 +4,6 @@ Step 1: Fetch web pages and extract metadata via Jina Reader (JSON mode).
 One API call per URL returns title, description, content, and images.
 """
 
-import hashlib
 import json
 import time
 import urllib.request
@@ -14,7 +13,7 @@ from urllib.parse import urlparse, parse_qs, quote
 
 from config import (
     FETCH_DELAY, JINA_BASE_URL, JINA_TIMEOUT, JINA_API_KEY,
-    BODY_TEXT_LIMIT, USER_AGENT,
+    BODY_TEXT_LIMIT, USER_AGENT, MICROLINK_SCREENSHOT_URL, url_hash,
 )
 
 ROOT = Path(__file__).parent
@@ -216,8 +215,8 @@ def fetch_reddit(url: str) -> dict:
 
 
 def fetch_wechat(url: str) -> dict:
-    """WeChat articles are anti-scraping. Return minimal result to skip Jina."""
-    return _make_result()
+    """WeChat articles are anti-scraping. Return error to skip Jina without caching."""
+    return {"_error": "wechat_skip"}
 
 
 def fetch_wikipedia(url: str) -> dict:
@@ -329,13 +328,8 @@ def get_thumbnail(jina_data: dict, url: str) -> str:
 
     # 5. Microlink screenshot fallback
     if url:
-        return f"https://api.microlink.io/?url={quote(url, safe='')}&screenshot=true&meta=false&embed=screenshot.url"
+        return MICROLINK_SCREENSHOT_URL.format(url=quote(url, safe=''))
     return ""
-
-
-def url_hash(url: str) -> str:
-    """Short hash of URL for filename."""
-    return hashlib.md5(url.encode()).hexdigest()[:10]
 
 
 def save_content_md(url: str, title: str, content: str) -> str:
@@ -347,10 +341,11 @@ def save_content_md(url: str, title: str, content: str) -> str:
     if filepath.exists():
         return filename
 
-    safe_title = title.replace('"', '\\"')
+    safe_title = title.replace("\\", "\\\\").replace('"', '\\"')
+    safe_url = url.replace("\\", "\\\\").replace('"', '\\"')
     frontmatter = f"""---
 title: "{safe_title}"
-source: "{url}"
+source: "{safe_url}"
 saved: {date.today().isoformat()}
 ---
 
@@ -403,8 +398,9 @@ def main():
             time.sleep(FETCH_DELAY)
 
         if "_error" in data:
-            errors += 1
-            print(f"  ✗ {data['_error'][:60]}")
+            if data["_error"] != "wechat_skip":
+                errors += 1
+                print(f"  ✗ {data['_error'][:60]}")
             continue
 
         # Apply metadata
