@@ -64,15 +64,10 @@ def download_thumbnail(url: str, dest: Path) -> bool:
         content_type = resp.headers.get("Content-Type", "")
         data = resp.read()
 
-        # mshots returns a 1x1 placeholder if not ready yet
-        if len(data) < 1000 and "mshots" in url:
-            print(f"    ↻ mshots not ready, retrying in 3s...")
-            time.sleep(3)
-            resp = urllib.request.urlopen(req, timeout=THUMB_DOWNLOAD_TIMEOUT)
-            data = resp.read()
-            if len(data) < 1000:
-                print(f"    ✗ mshots still not ready, skipping")
-                return False
+        # Microlink may return JSON error instead of image
+        if len(data) < 1000 and "microlink" in url:
+            print(f"    ✗ Microlink screenshot failed, skipping")
+            return False
 
         ext = guess_ext(url, content_type)
         dest.with_suffix(ext).write_bytes(data)

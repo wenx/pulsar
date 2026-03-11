@@ -97,7 +97,7 @@ API Key 放在 `.env` 文件中（已在 .gitignore）。`.env` 由 `config.py` 
 
 ### 网页抓取（Jina Reader JSON mode）
 - 一次 API 调用返回 title、description、content、images
-- 自动提取缩略图：YouTube 直链 > Jina images > mshots 兜底
+- 自动提取缩略图：og:image > twitter:image > 视频平台 > Jina images > Microlink 截屏兜底
 
 ## API 端点
 

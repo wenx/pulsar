@@ -215,6 +215,11 @@ def fetch_reddit(url: str) -> dict:
         return {"_error": str(e)[:100]}
 
 
+def fetch_wechat(url: str) -> dict:
+    """WeChat articles are anti-scraping. Return minimal result to skip Jina."""
+    return _make_result()
+
+
 def fetch_wikipedia(url: str) -> dict:
     """Fetch Wikipedia article summary via REST API."""
     try:
@@ -253,6 +258,10 @@ def get_platform_fetcher(url: str):
     if host in ("vimeo.com", "player.vimeo.com"):
         return (fetch_vimeo, url)
 
+    # WeChat (anti-scraping, skip Jina)
+    if host == "mp.weixin.qq.com":
+        return (fetch_wechat, url)
+
     # Code hosting
     if host == "github.com":
         return (fetch_github, url)
@@ -273,8 +282,13 @@ def get_platform_fetcher(url: str):
 
 
 def get_thumbnail(jina_data: dict, url: str) -> str:
-    """Pick best thumbnail: og:image > twitter:image > video platform > Jina images > mshots."""
+    """Pick best thumbnail: og:image > twitter:image > video platform > Jina images > Microlink screenshot."""
     meta = jina_data.get("metadata", {})
+
+    # Known platform placeholder images (useless as thumbnails)
+    placeholder_images = {
+        "https://www.notion.so/images/meta/default.png",
+    }
 
     # 1. og:image — publisher's chosen social sharing image
     og = meta.get("og:image", "")
@@ -285,14 +299,16 @@ def get_thumbnail(jina_data: dict, url: str) -> str:
         # Bilibili: strip thumbnail resize suffix to get full image
         if "hdslb.com" in og and "@" in og:
             og = og.split("@")[0]
-        return og
+        if og not in placeholder_images:
+            return og
 
     # 2. twitter:image — fallback social image
     tw = meta.get("twitter:image", "")
     if tw:
         if tw.startswith("//"):
             tw = "https:" + tw
-        return tw
+        if tw not in placeholder_images:
+            return tw
 
     # 3. Video platform direct thumbnail
     platform, vid = extract_video_id(url)
@@ -305,11 +321,15 @@ def get_thumbnail(jina_data: dict, url: str) -> str:
         for name, img_url in images.items():
             if "1x1" in img_url or "favicon" in img_url.lower():
                 continue
+            if img_url.lower().endswith(".svg"):
+                continue
+            if "logo" in img_url.lower():
+                continue
             return img_url
 
-    # 5. mshots fallback
+    # 5. Microlink screenshot fallback
     if url:
-        return f"https://s0.wp.com/mshots/v1/{quote(url, safe='')}?w=480&h=270"
+        return f"https://api.microlink.io/?url={quote(url, safe='')}&screenshot=true&meta=false&embed=screenshot.url"
     return ""
 
 
