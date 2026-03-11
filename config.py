@@ -16,18 +16,16 @@ if _env_file.exists():
 PORT = 3460
 
 # Network
-FETCH_TIMEOUT = 10       # direct scrape timeout (seconds)
 JINA_TIMEOUT = 15        # Jina Reader timeout (seconds)
 PIPELINE_TIMEOUT = 120   # pipeline script timeout (seconds)
 FETCH_DELAY = 0.5        # rate limit between fetches (seconds)
 
 # Jina Reader
 JINA_BASE_URL = "https://r.jina.ai/"
+JINA_API_KEY = os.environ.get("JINA_API_KEY", "")
 
 # Content limits
-HTML_READ_LIMIT = 200_000       # max bytes to read from HTML
 BODY_TEXT_LIMIT = 3000           # max chars for body text
-BODY_TEXT_MIN = 200              # min chars to consider body text valid
 
 # AI analysis
 AI_MODEL = "claude-haiku-4-5-20251001"

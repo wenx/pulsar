@@ -5,48 +5,49 @@
     <link>https://pulsar.wenxin.io</link>
     <description>Curated links from SOLARIS</description>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 11 Mar 2026 02:44:32 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 11 Mar 2026 03:03:57 +0000</lastBuildDate>
     <atom:link href="https://pulsar.wenxin.io/feed.xml" rel="self" type="application/rss+xml"/>
     <item>
       <title>mp.weixin.qq.com</title>
       <link>https://mp.weixin.qq.com/s/?__biz=MzIxODUzNTg2MA%3D%3D&amp;chksm=969d8f94bcf52ca1ce1088c081accba790573c3d6908c548d27712b461352cf5ed4a96c3af6d&amp;idx=1&amp;mid=2247487210&amp;sn=abad14d484e8fb41523c746f4391388e&amp;poc_token=HKfPsGmjrb2YhLYdhtuh4-3IhfmA3-oYvEDBhkGj</link>
       <guid isPermaLink="true">https://mp.weixin.qq.com/s/?__biz=MzIxODUzNTg2MA%3D%3D&amp;chksm=969d8f94bcf52ca1ce1088c081accba790573c3d6908c548d27712b461352cf5ed4a96c3af6d&amp;idx=1&amp;mid=2247487210&amp;sn=abad14d484e8fb41523c746f4391388e&amp;poc_token=HKfPsGmjrb2YhLYdhtuh4-3IhfmA3-oYvEDBhkGj</guid>
-      <description>无法分析此链接，因为缺少文章的标题和具体内容信息。</description>
+      <description>微信公众号文章，具体内容无法获取，需访问原链接查看。</description>
       <category>Article</category>
       <category>Resource</category>
       <category>WeChat</category>
-      <category>Content</category>
-      <category>Chinese Media</category>
+      <category>Chinese Content</category>
+      <category>Article</category>
     </item>
     <item>
       <title>portless</title>
       <link>https://port1355.dev</link>
       <guid isPermaLink="true">https://port1355.dev</guid>
-      <description>portless是一个开发工具，用稳定的命名.localhost URLs替代端口号，使本地开发更人性化，支持子域名、Git分支自动识别和HTTPS。</description>
+      <description>Portless 用具有语义的命名 URL 替代端口号，为本地开发提供更易用的域名访问方式，支持子域、Git 分支和 HTTPS。</description>
       <category>Article</category>
-      <category>Technology</category>
-      <category>Developer Tools</category>
-      <category>Local Development</category>
-      <category>DNS</category>
-      <category>Localhost</category>
+      <category>Productivity</category>
+      <category>localhost</category>
+      <category>dev-tools</category>
+      <category>port-management</category>
+      <category>named-urls</category>
+      <category>development</category>
     </item>
     <item>
       <title>李继刚：找到那根最长的火柴，点燃你的天命 | 43 Talks年度大场</title>
       <link>https://mp.weixin.qq.com/s?__biz=MzE5OTE0NjIwNw%3D%3D&amp;mid=2247484885&amp;idx=1&amp;sn=787dd2b135660fe54ccd5d03111f6210&amp;chksm=9749b63596e237c6fc7a7d5e6351b441fa16aa57ed874236df9212c0d1a999f099e05a93c6af&amp;mpshare=1&amp;scene=1&amp;srcid=0302ImYprndLqNQx1lQ3lcWE&amp;sharer_shareinfo=936fdb2d4a596607607b746532ff5cde&amp;sharer_shareinfo_first=5ef5d0e4844ab833d65856b13ca094de#rd</link>
       <guid isPermaLink="true">https://mp.weixin.qq.com/s?__biz=MzE5OTE0NjIwNw%3D%3D&amp;mid=2247484885&amp;idx=1&amp;sn=787dd2b135660fe54ccd5d03111f6210&amp;chksm=9749b63596e237c6fc7a7d5e6351b441fa16aa57ed874236df9212c0d1a999f099e05a93c6af&amp;mpshare=1&amp;scene=1&amp;srcid=0302ImYprndLqNQx1lQ3lcWE&amp;sharer_shareinfo=936fdb2d4a596607607b746532ff5cde&amp;sharer_shareinfo_first=5ef5d0e4844ab833d65856b13ca094de#rd</guid>
-      <description>在AI时代，传统同质化教育模式已失效，需要找到独特的个人天赋与使命来应对加速变化的世界。</description>
+      <description>AI时代加速迭代冲击传统教育范式，个人需要找到自己独特的天命而非被工业化教育塑造成同质化人才。</description>
       <category>Article</category>
       <category>Thinking</category>
       <category>AI时代</category>
-      <category>教育</category>
+      <category>教育变革</category>
+      <category>个人发展</category>
       <category>天命</category>
-      <category>个人成长</category>
     </item>
     <item>
       <title>WebTUI</title>
       <link>https://webtui.ironclad.sh/</link>
       <guid isPermaLink="true">https://webtui.ironclad.sh/</guid>
-      <description>一个模块化CSS库，将终端UI的美学风格引入浏览器，为网页设计提供独特的命令行界面视觉效果。</description>
+      <description>WebTUI 是一个模块化 CSS 库，将终端 UI 的美学和交互范式引入浏览器端网页应用开发。</description>
       <category>Article</category>
       <category>Technology</category>
       <category>CSS</category>
@@ -58,314 +59,281 @@
       <title>The Engineer who invented the Mars Rover Suspension...in his garage</title>
       <link>https://www.youtube.com/watch?v=QKSPk_0N4Jc&amp;list=WL&amp;index=1&amp;t=1740s</link>
       <guid isPermaLink="true">https://www.youtube.com/watch?v=QKSPk_0N4Jc&amp;list=WL&amp;index=1&amp;t=1740s</guid>
-      <description>一位工程师在自己的车库里独立开发出了火星漫游车的悬挂系统，展现了个人创新如何能够解决复杂的工程难题。</description>
+      <description>一位工程师在自家车库里独立设计出火星漫游车悬挂系统，展现了个人创新的力量。</description>
       <category>Video</category>
       <category>Technology</category>
       <category>Mars Rover</category>
-      <category>Engineering</category>
+      <category>Suspension Engineering</category>
       <category>Innovation</category>
-      <category>Suspension Design</category>
     </item>
     <item>
       <title>比尔.乔伊：为什么未来不需要我们</title>
       <link>https://www.douban.com/group/topic/1400499/</link>
       <guid isPermaLink="true">https://www.douban.com/group/topic/1400499/</guid>
-      <description>比尔·乔伊警示基因工程、纳米技术和机器人的加速发展可能导致人类变得多余，揭示技术进步带来的深层存在性风险。</description>
+      <description>比尔·乔伊警示基因工程、纳米技术和机器人的加速发展可能导致人类变得多余，揭示技术进步背后的存在性威胁。</description>
       <category>Article</category>
       <category>Philosophy</category>
+      <category>existential risk</category>
+      <category>technology</category>
       <category>AI</category>
-      <category>Technology</category>
-      <category>Existential Risk</category>
-      <category>Future</category>
-      <category>Bill Joy</category>
+      <category>future</category>
     </item>
     <item>
       <title>How Apple Is Organized for Innovation</title>
       <link>https://archive.is/3ZXjW</link>
       <guid isPermaLink="true">https://archive.is/3ZXjW</guid>
-      <description>苹果采用按职能划分而非按产品线划分的组织架构，由专家领导专家，这是其持续创新的核心竞争力。</description>
+      <description>苹果按职能而非产品线组织架构，通过让专家领导专家的方式，成为持续创新的组织秘诀。</description>
       <category>Article</category>
       <category>Business</category>
+      <category>organizational structure</category>
+      <category>innovation</category>
       <category>Apple</category>
-      <category>组织架构</category>
-      <category>创新</category>
-      <category>管理</category>
-    </item>
-    <item>
-      <title>My daily routine</title>
-      <link>https://notes.andymatuschak.org/zSve33D7x1qe5WUjojDcM9y</link>
-      <guid isPermaLink="true">https://notes.andymatuschak.org/zSve33D7x1qe5WUjojDcM9y</guid>
-      <description>知识工作者通过深度思考、间隔重复和笔记写作构建高效的日常工作节奏，实现持续学习和思想深化。</description>
-      <category>Article</category>
-      <category>Productivity</category>
-      <category>daily routine</category>
-      <category>deep work</category>
-      <category>note-taking</category>
-      <category>learning</category>
+      <category>functional design</category>
     </item>
     <item>
       <title>西方社会思想两千年</title>
       <link>https://paradoz.notion.site/3cc4e4e3acd24fe18e2726f53d1f2ced</link>
       <guid isPermaLink="true">https://paradoz.notion.site/3cc4e4e3acd24fe18e2726f53d1f2ced</guid>
-      <description>系统梳理西方社会思想两千年的演变历程，探索塑造现代文明的关键思想和哲学基础。</description>
+      <description>梳理西方社会思想两千年演变脉络，探讨不同历史时期社会观念的核心转变与思想根源。</description>
       <category>Article</category>
-      <category>History</category>
-      <category>西方思想</category>
-      <category>哲学史</category>
-      <category>社会思想</category>
-      <category>文明</category>
+      <category>Philosophy</category>
+      <category>Western thought</category>
+      <category>History of ideas</category>
+      <category>Social philosophy</category>
     </item>
     <item>
       <title>【切片】Andrej Karpathy分享高效学习的秘诀_哔哩哔哩_bilibili</title>
       <link>https://b23.tv/6Mcvrzu?share_medium=ipad&amp;bbid=YB47AFBD75EF635B4C21B2EC12741EF45C7C&amp;ts=1767716953</link>
       <guid isPermaLink="true">https://b23.tv/6Mcvrzu?share_medium=ipad&amp;bbid=YB47AFBD75EF635B4C21B2EC12741EF45C7C&amp;ts=1767716953</guid>
-      <description>AI大牛Andrej Karpathy分享高效学习秘诀，包括费曼技巧和主动回忆等方法论，帮助掌握困难学科。</description>
+      <description>AI 大牛 Andrej Karpathy 分享高效学习秘诀，从费曼技巧到主动回忆，揭示攻克困难学科的心法。</description>
       <category>Video</category>
       <category>Learning</category>
-      <category>高效学习</category>
-      <category>费曼技巧</category>
-      <category>主动回忆</category>
+      <category>Learning Methods</category>
+      <category>Feynman Technique</category>
+      <category>Active Recall</category>
       <category>Andrej Karpathy</category>
     </item>
     <item>
       <title>浪潮将至 (豆瓣)</title>
       <link>https://book.douban.com/subject/37077347/</link>
       <guid isPermaLink="true">https://book.douban.com/subject/37077347/</guid>
-      <description>人工智能、生物技术和量子计算等技术即将引发人类历史的重大变革，深刻改变生活、商业和社会治理的方方面面。</description>
+      <description>人工智能、生物技术、量子计算等前沿科技正将人类社会推向一个关键节点，深刻改变生活、商业和治理方式。</description>
       <category>Book</category>
       <category>Technology</category>
       <category>AI</category>
-      <category>Quantum Computing</category>
       <category>Biotechnology</category>
+      <category>Quantum Computing</category>
       <category>Future</category>
-      <category>Disruption</category>
     </item>
     <item>
       <title>The Second Half – Shunyu Yao – 姚顺雨</title>
       <link>https://ysymyth.github.io/The-Second-Half/</link>
       <guid isPermaLink="true">https://ysymyth.github.io/The-Second-Half/</guid>
-      <description>我们正处于人工智能发展的中场休息时刻，面临着从第一阶段向第二阶段转变的关键时期。</description>
+      <description>我们正处于人工智能发展的中场休息期，未来的第二阶段将面临新的挑战和机遇。</description>
       <category>Article</category>
       <category>Technology</category>
       <category>AI</category>
-      <category>Future</category>
-      <category>Technology trends</category>
-      <category>Innovation</category>
+      <category>inflection point</category>
+      <category>paradigm shift</category>
+      <category>future outlook</category>
     </item>
     <item>
       <title>Notational intelligence | thesephist.com</title>
       <link>https://thesephist.com/posts/notation/</link>
       <guid isPermaLink="true">https://thesephist.com/posts/notation/</guid>
-      <description>好的符号表示法能够放大人类思维能力，从数学符号到编程语言，notation本质上是一种认知工具。</description>
+      <description>好的符号表示法能够放大思维能力，从数学到编程，notation 本质上是我们思考的外化工具。</description>
       <category>Article</category>
       <category>Thinking</category>
       <category>notation</category>
-      <category>symbols</category>
+      <category>representation</category>
       <category>cognition</category>
+      <category>abstraction</category>
       <category>tools</category>
-      <category>mathematics</category>
     </item>
     <item>
       <title>【乔·罗根访谈】NVIDIA创始人黄仁勋深度对话_哔哩哔哩_bilibili</title>
       <link>https://b23.tv/pr8QqPr</link>
       <guid isPermaLink="true">https://b23.tv/pr8QqPr</guid>
-      <description>黄仁勋在乔·罗根访谈中探讨了AI未来、芯片竞争格局以及技术如何推动世界变革的核心愿景。</description>
+      <description>黄仁勋在乔·罗根播客中深度讨论AI未来、芯片竞争与创业理念，阐述技术如何重塑世界。</description>
       <category>Video</category>
       <category>Technology</category>
       <category>AI</category>
       <category>NVIDIA</category>
-      <category>芯片</category>
-      <category>创业</category>
-      <category>黄仁勋</category>
+      <category>Chip</category>
+      <category>Entrepreneur</category>
+      <category>Interview</category>
     </item>
     <item>
       <title>Harsh Truths About The Game Of Life - Naval Ravikant (4K) - YouTube</title>
       <link>https://www.youtube.com/watch?v=KyfUysrNaco</link>
       <guid isPermaLink="true">https://www.youtube.com/watch?v=KyfUysrNaco</guid>
-      <description>Naval揭示了财富积累的底层逻辑：通过杠杆、判断力和长期思维来建立真正的幸福和财富。</description>
+      <description>Naval Ravikant 揭示人生游戏的残酷真相：财富积累、幸福达成和长期成功的底层逻辑在于杠杆和判断力的修炼。</description>
       <category>Video</category>
       <category>Philosophy</category>
       <category>Naval Ravikant</category>
-      <category>人生哲学</category>
-      <category>财富</category>
-      <category>幸福</category>
-      <category>杠杆</category>
+      <category>wealth</category>
+      <category>life wisdom</category>
+      <category>leverage</category>
+      <category>judgment</category>
     </item>
     <item>
       <title>Pavel Durov: Telegram, Freedom, Censorship, Money, Power &amp; Human Nature | Lex Fridman Podcast</title>
       <link>https://www.youtube.com/watch?v=qjPH9njnaVU</link>
       <guid isPermaLink="true">https://www.youtube.com/watch?v=qjPH9njnaVU</guid>
-      <description>Telegram创始人Pavel Durov阐述了通过加密通信维护言论自由、抵抗权力审查的理念与个人经历。</description>
+      <description>Telegram创始人Pavel Durov分享其加密通信理念与抵抗审查的立场，探讨自由、权力与人性在数字时代的张力。</description>
       <category>Video</category>
-      <category>Technology</category>
-      <category>Telegram</category>
-      <category>Freedom</category>
+      <category>Philosophy</category>
+      <category>Free speech</category>
       <category>Censorship</category>
+      <category>Telegram</category>
       <category>Pavel Durov</category>
-      <category>Cryptocurrency</category>
+      <category>Privacy</category>
     </item>
     <item>
       <title>金刻羽：中国的经济、关税、贸易、特朗普 【Lex Fridman播客477期】</title>
       <link>https://www.bilibili.com/video/BV1BQbizsEwy/?spm_id_from=333.337.search-card.all.click</link>
       <guid isPermaLink="true">https://www.bilibili.com/video/BV1BQbizsEwy/?spm_id_from=333.337.search-card.all.click</guid>
-      <description>经济学家金刻羽分析中国经济增长模式、中美贸易摩擦和关税博弈，提供内外部视角的深度解读。</description>
+      <description>经济学家金刻羽剖析中国经济增长模式与中美贸易摩擦的深层逻辑，探讨关税博弈对全球经济格局的影响。</description>
       <category>Video</category>
       <category>Economics</category>
-      <category>中国经济</category>
-      <category>贸易战</category>
-      <category>关税</category>
-      <category>中美关系</category>
-      <category>经济学</category>
+      <category>China</category>
+      <category>Tariffs</category>
+      <category>Trade</category>
+      <category>US-China</category>
+      <category>Economic Policy</category>
     </item>
     <item>
       <title>Li Lu - Colossus - joincolossus.com</title>
       <link>https://joincolossus.com/episode/senra-362-li-lu/</link>
       <guid isPermaLink="true">https://joincolossus.com/episode/senra-362-li-lu/</guid>
-      <description>李录分享了他的投资哲学和创业经历，探讨了如何在复杂市场中识别优秀企业并长期持有。</description>
+      <description>通过李录的传记《移山》，探讨这位顶级投资者的投资哲学、企业家精神和成功经验。</description>
       <category>Podcast</category>
       <category>Investing</category>
       <category>Li Lu</category>
       <category>Value Investing</category>
-      <category>Entrepreneurship</category>
-      <category>China</category>
-      <category>Business Philosophy</category>
+      <category>Founders</category>
+      <category>Biography</category>
     </item>
     <item>
       <title>https://www.youtube.com/watch?v=qK5oWQmnICU</title>
       <link>https://www.youtube.com/watch?v=qK5oWQmnICU</link>
       <guid isPermaLink="true">https://www.youtube.com/watch?v=qK5oWQmnICU</guid>
-      <description>在全球债务周期末端，风险资产面临压力，需要调整投资策略并警惕潜在风险。</description>
+      <description>在债务周期末端背景下，全球风险资产面临压力，需要重新审视投资策略并警惕系统性风险。</description>
       <category>Video</category>
       <category>Economics</category>
       <category>债务周期</category>
       <category>风险资产</category>
-      <category>宏观经济</category>
-      <category>投资策略</category>
-      <category>风险预警</category>
-    </item>
-    <item>
-      <title>My daily routine</title>
-      <link>https://notes.andymatuschak.org/zSve33D7x1qe5WUjojDcM9y</link>
-      <guid isPermaLink="true">https://notes.andymatuschak.org/zSve33D7x1qe5WUjojDcM9y</guid>
-      <description>Andy Matuschak分享个人日常安排，展示如何在研究、写作和编程间平衡时间以维持深度专注。</description>
-      <category>Article</category>
-      <category>Productivity</category>
-      <category>daily routine</category>
-      <category>time management</category>
-      <category>deep work</category>
-      <category>workflow</category>
+      <category>宏观策略</category>
+      <category>投资</category>
     </item>
     <item>
       <title>《小人国 VS 巨人国的货币》汇率是由什么决定的？为什么会变？变了又代表什么？如何操纵汇率？为什么要操纵汇率？</title>
       <link>https://www.youtube.com/watch?v=ZMxTrSmRM08</link>
       <guid isPermaLink="true">https://www.youtube.com/watch?v=ZMxTrSmRM08</guid>
-      <description>通过小人国与巨人国的寓言阐述汇率的决定因素、波动原因、各国操纵手段及其经济影响。</description>
+      <description>通过小人国与巨人国的寓言揭示汇率升贬值的本质机制，阐明各国汇率操纵的动机与方式及其经济影响。</description>
       <category>Video</category>
       <category>Economics</category>
       <category>汇率</category>
       <category>货币政策</category>
+      <category>经济寓言</category>
       <category>国际贸易</category>
-      <category>经济学</category>
     </item>
     <item>
       <title>What Should You Do with Your Life? Directions and Advice - Alexey Guzey</title>
       <link>https://guzey.com/personal/what-should-you-do-with-your-life/</link>
       <guid isPermaLink="true">https://guzey.com/personal/what-should-you-do-with-your-life/</guid>
-      <description>探讨如何选择人生方向和工作重点，为那些感到迷茫和徘徊的人提供思考框架和建议。</description>
+      <description>在迷茫的人生选择面前，如何找到值得投入的方向——从创业机会到个人使命的实践指南。</description>
       <category>Article</category>
       <category>Thinking</category>
-      <category>life direction</category>
-      <category>career planning</category>
-      <category>decision making</category>
-      <category>personal development</category>
-      <category>startups</category>
+      <category>career</category>
+      <category>life-planning</category>
+      <category>decision-making</category>
+      <category>startup</category>
+      <category>advice</category>
     </item>
     <item>
       <title>Alan Turing, Cybernetics and the Secrets of Life</title>
       <link>https://youtu.be/rPLvj-GcfSU</link>
       <guid isPermaLink="true">https://youtu.be/rPLvj-GcfSU</guid>
-      <description>探讨图灵机理论如何与控制论、形态发生学相结合，揭示计算思想在理解生命本质中的深层意义。</description>
+      <description>图灵通过控制论和形态发生理论，揭示了计算机制如何解释生命现象，成为现代生物学与计算机科学融合的思想基础。</description>
       <category>Video</category>
-      <category>History</category>
+      <category>Science</category>
       <category>Alan Turing</category>
       <category>Cybernetics</category>
-      <category>Biology</category>
+      <category>Morphogenesis</category>
       <category>Computation</category>
-      <category>Philosophy</category>
+      <category>Biology</category>
     </item>
     <item>
       <title>【越哥】人生不可错过的6个小时，9.4分史诗级电影《灿烂人生》</title>
       <link>https://www.youtube.com/watch?v=0oQJaJ8204M</link>
       <guid isPermaLink="true">https://www.youtube.com/watch?v=0oQJaJ8204M</guid>
-      <description>一部跨越40年的意大利史诗电影，通过6小时的沉浸式叙事探讨人生的意义和家族传承的深层价值。</description>
+      <description>意大利史诗巨作《灿烂人生》用6小时跨越40年讲述家族沧桑，以9.4分的豆瓣评分展现人生的壮阔与细腻。</description>
       <category>Film</category>
       <category>Culture</category>
       <category>电影</category>
       <category>意大利</category>
       <category>家族史诗</category>
-      <category>人生哲学</category>
-      <category>影评</category>
+      <category>经典</category>
     </item>
     <item>
       <title>The Scythians: Nomad Warriors of the Steppe | Barry Cunliffe | Talks at Google</title>
       <link>https://youtu.be/XFsd_LyYZdo</link>
       <guid isPermaLink="true">https://youtu.be/XFsd_LyYZdo</guid>
-      <description>考古学家Barry Cunliffe揭示斯基泰人作为欧亚草原游牧战士帝国的历史地位及其被遗忘的古代文明特征。</description>
+      <description>考古学家Barry Cunliffe揭示斯基泰人作为欧亚草原游牧帝国的历史地位和被遗忘的古代文明特征。</description>
       <category>Video</category>
       <category>History</category>
       <category>Scythians</category>
-      <category>nomads</category>
+      <category>nomadic warriors</category>
       <category>archaeology</category>
-      <category>ancient civilizations</category>
       <category>steppe</category>
+      <category>ancient civilization</category>
     </item>
     <item>
       <title>《纽约杂志》：从普通人到加密人，如何审慎地掉进「兔子洞」</title>
       <link>https://www.chaincatcher.com/article/2067298</link>
       <guid isPermaLink="true">https://www.chaincatcher.com/article/2067298</guid>
-      <description>介绍普通人如何理性地了解和进入加密世界，区分不同类型的加密爱好者及其文化特征。</description>
+      <description>《纽约杂志》提供了一份加密世界入门指南，帮助普通人理解比特币信仰者和NFT爱好者的差异，以及如何谨慎地探索这个领域。</description>
       <category>Article</category>
       <category>Crypto</category>
       <category>Bitcoin</category>
       <category>NFT</category>
-      <category>加密文化</category>
-      <category>入门指南</category>
+      <category>Crypto Culture</category>
+      <category>Beginner Guide</category>
     </item>
     <item>
       <title>人生艰难，如何才能过得好一点呢</title>
       <link>https://zhuanlan.zhihu.com/p/482757365</link>
       <guid isPermaLink="true">https://zhuanlan.zhihu.com/p/482757365</guid>
-      <description>在面对人生的焦虑、迷茫和无力感时，通过寻找属于自己的微小出口来实现困境的突围。</description>
+      <description>面对人生的焦虑与迷茫，寻找属于自己的微小出口才是突围之道。</description>
       <category>Article</category>
       <category>Philosophy</category>
-      <category>人生</category>
-      <category>焦虑</category>
+      <category>人生困境</category>
+      <category>焦虑应对</category>
       <category>自我突破</category>
-      <category>心理</category>
+      <category>心理调适</category>
     </item>
     <item>
       <title>The History of Europe: Every Year</title>
       <link>https://youtu.be/UY9P0QSxlnI</link>
       <guid isPermaLink="true">https://youtu.be/UY9P0QSxlnI</guid>
-      <description>通过动态地图展现欧洲两千年的疆域演变，浓缩了从古代到现代的政治地理变迁。</description>
+      <description>一部动态地图视频展现欧洲两千年疆域变迁，从古代帝国到现代民族国家的政治地理演进。</description>
       <category>Video</category>
       <category>History</category>
       <category>Europe</category>
-      <category>History</category>
-      <category>Maps</category>
-      <category>Geopolitics</category>
-      <category>Animation</category>
+      <category>Historical Maps</category>
+      <category>Geopolitical Changes</category>
+      <category>Timeline</category>
     </item>
     <item>
       <title>How Far is Too Far? | The Age of A.I.</title>
       <link>https://youtu.be/UwsrzCVZAb8</link>
       <guid isPermaLink="true">https://youtu.be/UwsrzCVZAb8</guid>
-      <description>探讨人工智能发展的边界问题，从医疗、创意等多个领域审视AI与人类共存的未来可能性和伦理挑战。</description>
+      <description>YouTube 纪录片探讨人工智能时代人类道德和社会边界的重新定义，涵盖医疗、创意等领域的伦理困境。</description>
       <category>Documentary</category>
       <category>Technology</category>
       <category>AI</category>
       <category>Ethics</category>
-      <category>Future</category>
       <category>Human-AI Coexistence</category>
       <category>Documentary</category>
     </item>
@@ -373,32 +341,31 @@
       <title>GlobalFoundries Stops All 7nm Development: Opts To Focus on Specialized Processes</title>
       <link>https://www.anandtech.com/show/13277/globalfoundries-stops-all-7nm-development</link>
       <guid isPermaLink="true">https://www.anandtech.com/show/13277/globalfoundries-stops-all-7nm-development</guid>
-      <description>GlobalFoundries停止7纳米工艺开发，转向专业化工艺方向，反映了芯片制造产业的战略调整。</description>
+      <description>GlobalFoundries 放弃 7nm 工艺开发，转向专业化工艺路线，反映芯片制造业的分化趋势。</description>
       <category>Article</category>
       <category>Technology</category>
-      <category>semiconductor</category>
-      <category>7nm</category>
+      <category>Semiconductor</category>
       <category>GlobalFoundries</category>
-      <category>chip manufacturing</category>
+      <category>7nm</category>
+      <category>Manufacturing</category>
     </item>
     <item>
       <title>Steve Blank Entrepreneurship as a Science – The Business Model/Customer Development Stack</title>
       <link>https://steveblank.com/2010/10/25/entrepreneurship-as-a-science-%e2%80%93-the-business-modelcustomer-development-stack/</link>
       <guid isPermaLink="true">https://steveblank.com/2010/10/25/entrepreneurship-as-a-science-%e2%80%93-the-business-modelcustomer-development-stack/</guid>
-      <description>创业需要科学化方法论，通过业务模型和客户开发堆栈来系统地测试和验证假设，而不是凭直觉蛮干。</description>
+      <description>Steve Blank 将工程学的模块化思想引入创业领域，主张采用可复用的业务模型和客户开发框架来降低创业风险。</description>
       <category>Article</category>
       <category>Business</category>
-      <category>entrepreneurship</category>
-      <category>business model</category>
-      <category>customer development</category>
-      <category>lean startup</category>
-      <category>methodology</category>
+      <category>Entrepreneurship</category>
+      <category>Business Model</category>
+      <category>Customer Development</category>
+      <category>Lean Startup</category>
     </item>
     <item>
       <title>Baillie Gifford：有目标的投资</title>
       <link>https://mp.weixin.qq.com/s/8IhWeD4O_kNr6dBWDZfUJw</link>
       <guid isPermaLink="true">https://mp.weixin.qq.com/s/8IhWeD4O_kNr6dBWDZfUJw</guid>
-      <description>Baillie Gifford基金经理Tom Slater强调有明确目标的投资方法，通过对过去一年投资的复盘，阐述了目标驱动的投资理念对长期收益的重要性。</description>
+      <description>Baillie Gifford基金经理Tom Slater强调有目标的投资需要长期视角和清晰的投资哲学，而非盲目追逐短期收益。</description>
       <category>Article</category>
       <category>Investing</category>
       <category>目标投资</category>
@@ -411,207 +378,196 @@
       <title>当资产负债表不想奋斗了</title>
       <link>https://mp.weixin.qq.com/s/WtibTiCX2F9BMJKBPNjv-A</link>
       <guid isPermaLink="true">https://mp.weixin.qq.com/s/WtibTiCX2F9BMJKBPNjv-A</guid>
-      <description>当企业和政府的资产负债表失去增长动力时，整个国家的经济前景和国运也会随之黯淡，需要重振信心和斗志来扭转局面。</description>
+      <description>通过资产负债表的视角分析国家经济状况，探讨财政健康与长期发展的关系。</description>
       <category>Article</category>
       <category>Economics</category>
-      <category>中国经济</category>
+      <category>财政</category>
       <category>资产负债表</category>
-      <category>经济增长</category>
+      <category>经济政策</category>
       <category>国运</category>
     </item>
     <item>
       <title>On the Origins of Money: Darwin and the Evolution of Cryptocurrency</title>
       <link>https://www.coindesk.com/markets/2014/05/25/on-the-origins-of-money-darwin-and-the-evolution-of-cryptocurrency/</link>
       <guid isPermaLink="true">https://www.coindesk.com/markets/2014/05/25/on-the-origins-of-money-darwin-and-the-evolution-of-cryptocurrency/</guid>
-      <description>货币的演化遵循自然选择规律，最具「可销售性」的商品通过市场竞争胜出成为货币，比特币是这一进化过程的现代体现。</description>
+      <description>从达尔文进化论视角解读货币起源，可销售性最强的商品通过自然选择演化为货币，这一规律也适用于比特币等现代加密资产。</description>
       <category>Article</category>
       <category>Crypto</category>
-      <category>Bitcoin</category>
-      <category>Money</category>
-      <category>Evolution</category>
-      <category>Economics</category>
-      <category>Darwin</category>
+      <category>cryptocurrency</category>
+      <category>money origin</category>
+      <category>evolution</category>
+      <category>salability</category>
     </item>
     <item>
       <title>Tuur Demeester on the Looming Debt Crisis and Central Banks for Bitcoin</title>
       <link>https://www.whatbitcoindid.com/podcast/tuur-demeester-on-the-looming-debt-crisis-and-central-banks-for-bitcoin</link>
       <guid isPermaLink="true">https://www.whatbitcoindid.com/podcast/tuur-demeester-on-the-looming-debt-crisis-and-central-banks-for-bitcoin</guid>
-      <description>全球债务危机下央行陷入困境，法币面临通胀压力，比特币逐渐成为重要的避险资产。</description>
+      <description>全球央行陷入债务困境导致法币贬值，比特币作为硬资产正成为投资者的避险选择。</description>
       <category>Podcast</category>
       <category>Economics</category>
-      <category>Bitcoin</category>
       <category>Debt Crisis</category>
       <category>Central Banks</category>
+      <category>Bitcoin</category>
       <category>Inflation</category>
-      <category>Crypto</category>
+      <category>Monetary Policy</category>
     </item>
     <item>
       <title>Clueyness: A Weird Kind of Sad</title>
       <link>https://waitbutwhy.com/2016/05/clueyness-a-weird-kind-of-sad.html</link>
       <guid isPermaLink="true">https://waitbutwhy.com/2016/05/clueyness-a-weird-kind-of-sad.html</guid>
-      <description>No one likes to feel cluey.</description>
+      <description>探讨&quot;clueyness&quot;这种令人不适的自我意识状态——当你突然意识到自己在社交中显得不合适或愚蠢时的奇异悲伤感。</description>
       <category>Article</category>
       <category>Philosophy</category>
       <category>self-awareness</category>
-      <category>emotions</category>
-      <category>human nature</category>
-      <category>psychology</category>
+      <category>social awkwardness</category>
+      <category>human psychology</category>
     </item>
     <item>
       <title>Evolution</title>
       <link>https://youtube.com/playlist?list=PLKortajF2dPBWMIS6KF4RLtQiG6KQrTdB</link>
       <guid isPermaLink="true">https://youtube.com/playlist?list=PLKortajF2dPBWMIS6KF4RLtQiG6KQrTdB</guid>
-      <description>通过讲解自然选择和基因漂变等机制，深入探讨生命如何通过进化过程自我塑造和适应。</description>
+      <description>通过系统讲解自然选择和基因漂变等机制，揭示生命进化的科学原理。</description>
       <category>Video</category>
       <category>Science</category>
-      <category>Evolution</category>
-      <category>Natural Selection</category>
-      <category>Genetics</category>
-      <category>Biology</category>
-      <category>Education</category>
+      <category>evolution</category>
+      <category>natural selection</category>
+      <category>genetics</category>
+      <category>biology</category>
     </item>
     <item>
       <title>思想钢印全部文章分类</title>
       <link>https://mp.weixin.qq.com/s/uwhIzvf1wCCexoT2vPHJxg</link>
       <guid isPermaLink="true">https://mp.weixin.qq.com/s/uwhIzvf1wCCexoT2vPHJxg</guid>
-      <description>思想钢印公众号的文章分类目录，方便读者按类别查找和阅读相关内容。</description>
+      <description>思想钢印公众号的文章分类目录，便于读者快速查找和浏览相关内容。</description>
       <category>Article</category>
-      <category>Learning</category>
-      <category>思想钢印</category>
-      <category>文章分类</category>
-      <category>知识整理</category>
-      <category>微信公众号</category>
-      <category>目录索引</category>
+      <category>Resource</category>
+      <category>article index</category>
+      <category>content catalog</category>
+      <category>knowledge base</category>
     </item>
     <item>
       <title>迈克尔·布隆伯格2019年哈佛商学院毕业典礼致辞：思诚为修身之本</title>
       <link>https://mp.weixin.qq.com/s/zmSA9GcBp9omcS1BY80vvA</link>
       <guid isPermaLink="true">https://mp.weixin.qq.com/s/zmSA9GcBp9omcS1BY80vvA</guid>
-      <description>布隆伯格在哈佛商学院毕业典礼强调诚信是修身和成功的根本基础。</description>
+      <description>布隆伯格在哈佛商学院毕业典礼强调诚信是修身的根本，认为这是成功领导力和人生成就的基础。</description>
       <category>Article</category>
-      <category>Business</category>
-      <category>领导力</category>
-      <category>诚信</category>
-      <category>毕业致辞</category>
-      <category>布隆伯格</category>
+      <category>Philosophy</category>
+      <category>integrity</category>
+      <category>character</category>
+      <category>leadership</category>
+      <category>commencement</category>
     </item>
     <item>
       <title>How This All Happened</title>
       <link>https://collabfund.com/blog/how-this-all-happened/</link>
       <guid isPermaLink="true">https://collabfund.com/blog/how-this-all-happened/</guid>
-      <description>通过简短故事梳理美国经济和金融体系是如何演变发展到今天的历史脉络。</description>
+      <description>深度回溯美国经济发展历程，揭示经济繁荣与衰退背后的关键转折点。</description>
       <category>Article</category>
       <category>Economics</category>
       <category>US Economy</category>
-      <category>History</category>
-      <category>Financial System</category>
-      <category>Economic Policy</category>
+      <category>Financial History</category>
+      <category>Market Analysis</category>
     </item>
     <item>
       <title>人类是如何走到今天🆕</title>
       <link>https://pmthinking.notion.site/d3490b3b663c4f52a2cb22c4a7f31393</link>
       <guid isPermaLink="true">https://pmthinking.notion.site/d3490b3b663c4f52a2cb22c4a7f31393</guid>
-      <description>探讨人类社会从过去发展到现在的历史进程和关键转折点。</description>
+      <description>探讨人类文明发展的历程，从远古时代到现代社会的演进轨迹。</description>
       <category>Article</category>
       <category>History</category>
-      <category>人类发展</category>
-      <category>历史进程</category>
-      <category>文明演进</category>
+      <category>human evolution</category>
+      <category>civilization</category>
+      <category>history</category>
     </item>
     <item>
       <title>六个半的设计哲学 from Alex</title>
       <link>https://mp.weixin.qq.com/s/avYa-bzd-uEjIz6rQ4GG2A</link>
       <guid isPermaLink="true">https://mp.weixin.qq.com/s/avYa-bzd-uEjIz6rQ4GG2A</guid>
-      <description>Musical.ly联合创始人Alex分享的设计哲学核心思想，阐述了产品设计中的关键原则和方法论。</description>
+      <description>Musical.ly联合创始人Alex分享的设计哲学框架，阐述产品设计中的核心原则与实践方法。</description>
       <category>Article</category>
-      <category>Business</category>
-      <category>设计哲学</category>
+      <category>Design Philosophy</category>
+      <category>Product Design</category>
       <category>Musical.ly</category>
-      <category>产品设计</category>
-      <category>创业</category>
+      <category>User Experience</category>
     </item>
     <item>
       <title>李善友：张一鸣为什么总有远超他人的认知？</title>
       <link>https://mp.weixin.qq.com/s/ddI9eCiOSLHuPoNyQed-vQ</link>
       <guid isPermaLink="true">https://mp.weixin.qq.com/s/ddI9eCiOSLHuPoNyQed-vQ</guid>
-      <description>张一鸣通过延迟满足和第一性原理思维等认知方法论，持续突破认知边界，这是字节跳动保持竞争力的核心源动力。</description>
+      <description>张一鸣的认知优势源于延迟满足和第一性原理思维，这些底层认知能力驱动了字节跳动的持续突破。</description>
       <category>Article</category>
       <category>Thinking</category>
-      <category>认知优势</category>
+      <category>认知框架</category>
       <category>张一鸣</category>
       <category>第一性原理</category>
       <category>延迟满足</category>
-      <category>字节跳动</category>
     </item>
     <item>
       <title>李国飞哲学与投资笔记</title>
       <link>https://mp.weixin.qq.com/s/d9lSf5v3kOVzuoeTrbnwwA</link>
       <guid isPermaLink="true">https://mp.weixin.qq.com/s/d9lSf5v3kOVzuoeTrbnwwA</guid>
-      <description>将东方哲学智慧与现代投资理论相融合，探索投资决策中的道与术的统一。</description>
+      <description>将东方哲学智慧与现代投资实践相结合，探索投资决策中的道与术。</description>
       <category>Article</category>
       <category>Investing</category>
-      <category>投资哲学</category>
-      <category>东方哲学</category>
-      <category>投资理论</category>
-      <category>李国飞</category>
+      <category>Philosophy</category>
+      <category>Investment</category>
+      <category>Eastern Wisdom</category>
+      <category>Notes</category>
     </item>
     <item>
       <title>禁锢与永恒：从世界尽头到元宇宙</title>
       <link>https://www.huxiu.com/article/405962.html</link>
       <guid isPermaLink="true">https://www.huxiu.com/article/405962.html</guid>
-      <description>人类认知体系存在天然缺陷（数学不完备性、量子不确定性、二律背反），导致无法从内部完全理解世界本质和自身智能，因此也无法创造与人类智能完全等同的机器。</description>
+      <description>人类认知体系存在数学、物理和哲学上的天然缺陷，这决定了我们无法完全理解现实本质，也难以创造真正等同人类智能的机器。</description>
       <category>Article</category>
       <category>Philosophy</category>
       <category>认知局限</category>
       <category>哥德尔不完备</category>
       <category>元宇宙</category>
       <category>人工智能</category>
-      <category>量子不确定性</category>
     </item>
     <item>
       <title>Into the Fire | Nobel Peace Prize Shorts</title>
       <link>https://www.youtube.com/watch?v=F_5Lp6teKd8</link>
       <guid isPermaLink="true">https://www.youtube.com/watch?v=F_5Lp6teKd8</guid>
-      <description>诺贝尔和平奖短片展现战争中个人的勇气与人性光辉，通过震撼影像记录人类在极端困境中的道德选择。</description>
+      <description>诺贝尔和平奖短片用震撼影像展现战争中的人性光辉与个人勇气。</description>
       <category>Film</category>
       <category>Culture</category>
-      <category>Nobel Peace Prize</category>
+      <category>Nobel Prize</category>
+      <category>Peace</category>
       <category>Documentary</category>
-      <category>Human Rights</category>
-      <category>Courage</category>
-      <category>War</category>
+      <category>Humanity</category>
     </item>
     <item>
       <title>他已经出生250年了，至今我们仍在追赶他的脚步</title>
       <link>https://mp.weixin.qq.com/s?__biz=MzA4NzAxMjQyMg%3D%3D&amp;mid=2650054925&amp;idx=2&amp;sn=2fd17b72c18528acd8b60943d0c0c134&amp;chksm=883fe424bf486d32f9abc24934039339c66ec4e6db9a80cdad6884aba2deb2b1c6934c67f428</link>
       <guid isPermaLink="true">https://mp.weixin.qq.com/s?__biz=MzA4NzAxMjQyMg%3D%3D&amp;mid=2650054925&amp;idx=2&amp;sn=2fd17b72c18528acd8b60943d0c0c134&amp;chksm=883fe424bf486d32f9abc24934039339c66ec4e6db9a80cdad6884aba2deb2b1c6934c67f428</guid>
-      <description>洪堡250年后仍影响深远，其整体性的自然观和跨学科的探索精神继续启迪现代科学发展。</description>
+      <description>洪堡250年前开创的整体性自然观和科学探索方法至今仍是现代科学的灯塔。</description>
       <category>Article</category>
       <category>History</category>
       <category>Humboldt</category>
-      <category>科学史</category>
-      <category>自然观</category>
-      <category>探险</category>
-      <category>启蒙</category>
+      <category>naturalist</category>
+      <category>exploration</category>
+      <category>scientific legacy</category>
     </item>
     <item>
       <title>THE BATTLE FOR PICASSO | Vanity Fair | March 2016</title>
       <link>https://archive.vanityfair.com/article/2016/3/the-battle-for-picasso</link>
       <guid isPermaLink="true">https://archive.vanityfair.com/article/2016/3/the-battle-for-picasso</guid>
-      <description>毕加索庞大遗产的分割因复杂的家族关系和数万件艺术品的权属问题而陷入纷争。</description>
+      <description>毕加索庞大艺术遗产的分割陷入家族纠纷，涉及多任妻妾、私生子女及数万件作品的权属认定。</description>
       <category>Article</category>
       <category>Culture</category>
       <category>Picasso</category>
       <category>Art</category>
-      <category>Family Conflict</category>
       <category>Estate</category>
+      <category>Family</category>
       <category>Inheritance</category>
     </item>
     <item>
       <title>How This All Happened</title>
       <link>https://collabfund.com/blog/how-this-all-happened/</link>
       <guid isPermaLink="true">https://collabfund.com/blog/how-this-all-happened/</guid>
-      <description>通过讲述美国经济发展的短故事，揭示现代金融体系和经济现状的形成过程。</description>
+      <description>通过讲述美国经济发展的故事，揭示现代金融体系如何逐步演变成今天的模样。</description>
       <category>Article</category>
       <category>Economics</category>
       <category>US Economy</category>
@@ -622,11 +578,11 @@
       <title>Huawei, 5G, and the Man Who Conquered Noise</title>
       <link>https://www.wired.com/story/huawei-5g-polar-codes-data-breakthrough/</link>
       <guid isPermaLink="true">https://www.wired.com/story/huawei-5g-polar-codes-data-breakthrough/</guid>
-      <description>土耳其科学家关于极化码的理论突破使华为在5G标准竞争中获得关键优势，美国电信企业因此失去了主导权。</description>
+      <description>土耳其科学家的极化码理论突破助力华为掌控5G标准，美国电信企业失去了竞争优势。</description>
       <category>Article</category>
       <category>Technology</category>
-      <category>Huawei</category>
       <category>5G</category>
+      <category>Huawei</category>
       <category>Polar Codes</category>
       <category>Telecommunications</category>
       <category>Geopolitics</category>
@@ -635,417 +591,389 @@
       <title>Letter to a friend who just made a lot of money - Graham Duncan Blog</title>
       <link>https://grahamduncan.blog/letter-to-a-friend-who-just-made-a-lot-of-money/</link>
       <guid isPermaLink="true">https://grahamduncan.blog/letter-to-a-friend-who-just-made-a-lot-of-money/</guid>
-      <description>突然获得大笔财富时，需要培养谦虚的心态和清晰的自我认知，这些品质不仅适用于财富管理，也是生活各领域成功的基础。</description>
+      <description>突然获得财富需要培养特定的心理习惯，通过克制自我来清晰认识自身优劣。</description>
       <category>Article</category>
       <category>Philosophy</category>
-      <category>wealth management</category>
+      <category>wealth</category>
       <category>mindset</category>
-      <category>personal growth</category>
       <category>ego</category>
-      <category>financial wisdom</category>
+      <category>fortune</category>
     </item>
     <item>
       <title>My first impressions of web3</title>
       <link>https://moxie.org/2022/01/07/web3-first-impressions.html</link>
       <guid isPermaLink="true">https://moxie.org/2022/01/07/web3-first-impressions.html</guid>
-      <description>作者从密码学家的角度审视Web3，表达对加密货币现状的保留态度和对原始密码学精神的怀念。</description>
+      <description>资深密码学家对Web3的冷静思考：揭示去中心化承诺与现实之间的鸿沟。</description>
       <category>Article</category>
       <category>Crypto</category>
       <category>Web3</category>
-      <category>Cryptography</category>
-      <category>Decentralization</category>
       <category>Cryptocurrency</category>
+      <category>Decentralization</category>
+      <category>Critique</category>
     </item>
     <item>
       <title>Amend: The Fight for America | Episode 1 | Netflix</title>
       <link>https://www.youtube.com/watch?v=-E4TUQ4THIE</link>
       <guid isPermaLink="true">https://www.youtube.com/watch?v=-E4TUQ4THIE</guid>
-      <description>Netflix纪录片《Amend》记录了美国第十四修正案的历史演变，追溯从废除奴隶制到民权运动的平等权利漫长斗争。</description>
+      <description>Netflix纪录片《Amend》追溯美国第十四修正案的历史渊源，揭示从奴隶制废除到民权运动间平等权利的漫长斗争。</description>
       <category>Documentary</category>
       <category>History</category>
       <category>US Constitution</category>
-      <category>Civil Rights</category>
       <category>14th Amendment</category>
-      <category>Democracy</category>
-      <category>Social Justice</category>
+      <category>Civil Rights</category>
+      <category>Documentary</category>
     </item>
     <item>
       <title>台灣「護國神山」成長記：台積電的故事 - BBC News 中文</title>
       <link>https://www.bbc.com/zhongwen/trad/57337274</link>
       <guid isPermaLink="true">https://www.bbc.com/zhongwen/trad/57337274</guid>
-      <description>台積電開創芯片專業代工模式，革新全球半導體產業格局，成為台灣的戰略性產業支柱。</description>
+      <description>台积电1987年创立时开创芯片专业代工模式，彻底改变全球半导体产业格局，成为台湾的战略性产业支柱。</description>
       <category>Article</category>
       <category>Business</category>
-      <category>台積電</category>
-      <category>半導體</category>
-      <category>代工模式</category>
-      <category>台灣產業</category>
-      <category>芯片製造</category>
+      <category>TSMC</category>
+      <category>芯片制造</category>
+      <category>台湾</category>
+      <category>产业创新</category>
+      <category>护国神山</category>
     </item>
     <item>
       <title>Why China is no longer a core asset class</title>
       <link>https://www.juliusbaer.com/en/insights/market-outlook/why-china-is-no-longer-a-core-asset-class/</link>
       <guid isPermaLink="true">https://www.juliusbaer.com/en/insights/market-outlook/why-china-is-no-longer-a-core-asset-class/</guid>
-      <description>中国作为核心资产类别的地位因地缘政治和经济因素的变化而下降，投资者需要重新评估其投资组合配置。</description>
+      <description>中国资产因地缘政治和经济政策变化，正从投资组合的核心资产类别地位下降。</description>
       <category>Article</category>
       <category>Investing</category>
       <category>China</category>
-      <category>Asset Class</category>
-      <category>Investment Strategy</category>
-      <category>Geopolitics</category>
-      <category>Market Outlook</category>
+      <category>Asset Allocation</category>
+      <category>Geopolitical Risk</category>
+      <category>Portfolio Strategy</category>
     </item>
     <item>
       <title>深度好文：台湾为何与我们渐行渐远？</title>
       <link>https://mp.weixin.qq.com/s/jTS0ayTNJnkJDj6SmI71Qg</link>
       <guid isPermaLink="true">https://mp.weixin.qq.com/s/jTS0ayTNJnkJDj6SmI71Qg</guid>
-      <description>通过历史视角分析台湾与大陆关系的演变过程，探讨导致两岸逐渐疏远的深层原因。</description>
+      <description>从西班牙、荷兰到日本、国民党的历史视角，分析台湾与大陆关系演变的深层根源。</description>
       <category>Article</category>
       <category>Geopolitics</category>
-      <category>Taiwan</category>
-      <category>History</category>
-      <category>Cross-strait relations</category>
-      <category>Political divergence</category>
-    </item>
-    <item>
-      <title>《红色轮盘》 精彩回顾</title>
-      <link>https://www.reddit.com/r/real_China_irl/comments/pngcln/%E7%BA%A2%E8%89%B2%E8%BD%AE%E7%9B%98_%E7%B2%BE%E5%BD%A9%E5%9B%9E%E9%A1%BE/</link>
-      <guid isPermaLink="true">https://www.reddit.com/r/real_China_irl/comments/pngcln/%E7%BA%A2%E8%89%B2%E8%BD%AE%E7%9B%98_%E7%B2%BE%E5%BD%A9%E5%9B%9E%E9%A1%BE/</guid>
-      <description>《红色轮盘》通过政商圈内部人士的自述，揭露中国权力、财富与腐败之间的复杂关联及运作机制。</description>
-      <category>Article</category>
-      <category>Geopolitics</category>
-      <category>中国政治</category>
-      <category>权力结构</category>
-      <category>腐败</category>
-      <category>内部人士</category>
-      <category>社会观察</category>
+      <category>台湾</category>
+      <category>两岸关系</category>
+      <category>历史</category>
+      <category>政治</category>
     </item>
     <item>
       <title>谈Web3重塑数据价值</title>
       <link>https://mp.weixin.qq.com/s/9tc19tElEFdDj5fYcWjLig</link>
       <guid isPermaLink="true">https://mp.weixin.qq.com/s/9tc19tElEFdDj5fYcWjLig</guid>
-      <description>Web3通过区块链技术让用户数据成为个人资产，实现价值行为的直接回馈和数据所有权的回归。</description>
+      <description>Web3通过区块链技术将数据所有权归还用户，使个人的价值行为能够直接获得经济回馈。</description>
       <category>Article</category>
       <category>Crypto</category>
       <category>Web3</category>
       <category>数据所有权</category>
-      <category>价值回馈</category>
-      <category>区块链</category>
-      <category>数据经济</category>
+      <category>价值分配</category>
+      <category>去中心化</category>
     </item>
     <item>
       <title>继 DeFi 和 NFT 之后，加密世界的下一个热点 —— DAO</title>
       <link>https://mp.weixin.qq.com/s?__biz=Mzg5ODU3NjkwNg==&amp;mid=2247484069&amp;idx=1&amp;sn=d1ccdecf08d9d80493c797a559e58c42&amp;chksm=c06125c0f716acd60a33157a98274725f7fdc1e3a4178a0ff31b4a0f5eed50088a11463a9068</link>
       <guid isPermaLink="true">https://mp.weixin.qq.com/s?__biz=Mzg5ODU3NjkwNg==&amp;mid=2247484069&amp;idx=1&amp;sn=d1ccdecf08d9d80493c797a559e58c42&amp;chksm=c06125c0f716acd60a33157a98274725f7fdc1e3a4178a0ff31b4a0f5eed50088a11463a9068</guid>
-      <description>DAO作为继DeFi和NFT后的加密世界新热点，其去中心化治理模型既具有优势也存在劣势，需要正确的因素配合才能发挥真正价值。</description>
+      <description>DAO 作为加密世界继 DeFi 和 NFT 后的新热点，其去中心化治理模型既有优势也有局限，关键在于找到发挥其价值的正确方式。</description>
       <category>Article</category>
       <category>Crypto</category>
       <category>DAO</category>
       <category>DeFi</category>
-      <category>NFT</category>
-      <category>治理模型</category>
-      <category>加密</category>
+      <category>governance</category>
+      <category>Web3</category>
+      <category>decentralization</category>
     </item>
     <item>
       <title>xiaolai/spreadsheets-for-investors: 投资人必会知识 —— 电子表格简明进阶教程</title>
       <link>https://github.com/xiaolai/spreadsheets-for-investors</link>
       <guid isPermaLink="true">https://github.com/xiaolai/spreadsheets-for-investors</guid>
-      <description>投资人必须掌握的电子表格进阶教程，帮助投资者通过数据分析和建模工具提升投资决策能力。</description>
+      <description>投资人必掌握的电子表格进阶教程，通过实用技能提升财务分析能力。</description>
       <category>GitHub</category>
       <category>Investing</category>
-      <category>电子表格</category>
-      <category>投资</category>
-      <category>数据分析</category>
-      <category>教程</category>
+      <category>spreadsheet</category>
+      <category>Excel</category>
+      <category>financial analysis</category>
+      <category>investor skills</category>
     </item>
     <item>
       <title>​我们该不该怀念2021？</title>
       <link>https://mp.weixin.qq.com/s/TCEa2WjolNl6BAbRD4sX8A</link>
       <guid isPermaLink="true">https://mp.weixin.qq.com/s/TCEa2WjolNl6BAbRD4sX8A</guid>
-      <description>通过反思2021年的经历，探讨在社会经济变化中人们应该如何看待过去和审视现在。</description>
+      <description>2021年作为特殊的经济周期节点，值得反思其带来的机遇与教训，审视我们在那个时代的选择与遗憾。</description>
       <category>Article</category>
       <category>Economics</category>
-      <category>2021年</category>
-      <category>回顾</category>
-      <category>经济反思</category>
-      <category>时代思考</category>
+      <category>2021年回顾</category>
+      <category>经济周期</category>
+      <category>市场反思</category>
     </item>
     <item>
       <title>未来的能源，从哪里来？</title>
       <link>https://mp.weixin.qq.com/s/vQggFwe_SzeIKzgX9IxmVw</link>
       <guid isPermaLink="true">https://mp.weixin.qq.com/s/vQggFwe_SzeIKzgX9IxmVw</guid>
-      <description>能源是人类进步的基础，探讨未来能源的来源和发展方向。</description>
+      <description>能源作为人类进步的基础，其未来供应需要从新的角度重新思考和规划。</description>
       <category>Article</category>
       <category>Economics</category>
       <category>能源</category>
-      <category>未来趋势</category>
       <category>可持续发展</category>
-      <category>技术进步</category>
+      <category>未来趋势</category>
+      <category>能源转型</category>
     </item>
     <item>
       <title>资本主义与“文化灭绝”</title>
       <link>https://cn.nytimes.com/opinion/20200117/ai-weiwei-germany-china/</link>
       <guid isPermaLink="true">https://cn.nytimes.com/opinion/20200117/ai-weiwei-germany-china/</guid>
-      <description>威权政治与掠夺性商业勾结，以文化差异名义滥用权力，西方企业与中共精英形成共生关系，新疆现状警示西方。</description>
+      <description>威权政治与资本主义的结合正在滥用文化差异进行文化灭绝，西方企业与中共精英的共生关系构成了全球警示。</description>
       <category>Article</category>
       <category>Geopolitics</category>
-      <category>文化灭绝</category>
-      <category>新疆</category>
-      <category>威权政治</category>
-      <category>资本主义</category>
-      <category>人权</category>
+      <category>Cultural Genocide</category>
+      <category>Authoritarianism</category>
+      <category>Xinjiang</category>
+      <category>Corporate Complicity</category>
+      <category>China</category>
     </item>
     <item>
       <title>The Best Articles from the New York Times</title>
       <link>https://tetw.org/New_York_Times</link>
       <guid isPermaLink="true">https://tetw.org/New_York_Times</guid>
-      <description>汇集纽约时报最优秀的新闻报道和评论文章，展现全球顶尖记者和作家的深度思考。</description>
+      <description>精选《纽约时报》优质文章和评论，汇聚全球顶级记者和专栏作家的深度报道与观点。</description>
       <category>Article</category>
-      <category>Culture</category>
+      <category>Resource</category>
+      <category>NYT</category>
       <category>journalism</category>
-      <category>New York Times</category>
+      <category>articles</category>
       <category>essays</category>
-      <category>writing</category>
+      <category>curation</category>
     </item>
     <item>
       <title>37.stETH脱锚进行时，Aave让数十亿美金随时可能灰飞烟灭，但也带来了机遇。</title>
       <link>https://mp.weixin.qq.com/s/KivhWmjkT1of8JVeYjvZmQ</link>
       <guid isPermaLink="true">https://mp.weixin.qq.com/s/KivhWmjkT1of8JVeYjvZmQ</guid>
-      <description>stETH脱锚风险可能触发Aave价值22亿美金的清算连锁反应，构成系统性威胁但也伴随套利机遇。</description>
+      <description>stETH脱锚风险可能触发Aave清算机制，22亿美元资产面临灰飞烟灭的危险，而这场危机难以化解。</description>
       <category>Article</category>
       <category>Crypto</category>
       <category>stETH</category>
       <category>Aave</category>
-      <category>流动性风险</category>
+      <category>DeFi风险</category>
       <category>清算</category>
-      <category>DeFi</category>
+      <category>流动性风险</category>
     </item>
     <item>
       <title>And Now: 31 Notable WIRED Long-Form Stories of 2021</title>
       <link>https://www.wired.com/gallery/wired-longreads-2021/</link>
       <guid isPermaLink="true">https://www.wired.com/gallery/wired-longreads-2021/</guid>
-      <description>WIRED精选2021年31篇深度报道，记录这个奇异年代的时代精神和社会风向。</description>
+      <description>WIRED 精选 2021 年 31 篇长篇特稿，通过深度报道捕捉年度时代精神。</description>
       <category>Article</category>
-      <category>Culture</category>
-      <category>journalism</category>
+      <category>Resource</category>
+      <category>Long-form</category>
       <category>2021</category>
-      <category>long-form</category>
-      <category>feature stories</category>
-      <category>zeitgeist</category>
+      <category>Journalism</category>
+      <category>Feature stories</category>
     </item>
     <item>
       <title>Stewart Brand on Starting Things and Staying Curious (Ep. 142)</title>
       <link>https://conversationswithtyler.com/episodes/stewart-brand/</link>
       <guid isPermaLink="true">https://conversationswithtyler.com/episodes/stewart-brand/</guid>
-      <description>83岁的Stewart Brand通过保持好奇心和开创精神，在多个领域率先发起运动，展现了终身学习和创新的价值。</description>
+      <description>83岁的Stewart Brand回顾其推动多个运动的人生轨迹，分享关于创新、好奇心和持续学习的洞见。</description>
       <category>Article</category>
       <category>Thinking</category>
-      <category>Stewart Brand</category>
       <category>Innovation</category>
       <category>Curiosity</category>
-      <category>Entrepreneurship</category>
-      <category>Longevity</category>
+      <category>Long-term thinking</category>
+      <category>Counterculture</category>
     </item>
     <item>
       <title>A tale from Communist China</title>
       <link>https://www.lesswrong.com/posts/osYFcQtxnRKB4F4HA/a-tale-from-communist-china</link>
       <guid isPermaLink="true">https://www.lesswrong.com/posts/osYFcQtxnRKB4F4HA/a-tale-from-communist-china</guid>
-      <description>通过一个真实故事反思共产主义中国的历史，从理性思维的角度审视其政治制度和社会影响。</description>
+      <description>从理性思维的视角，讲述共产主义中国时期的一个真实故事，引发对历史事件的深层思考。</description>
       <category>Article</category>
       <category>History</category>
       <category>Communist China</category>
-      <category>History</category>
+      <category>Historical narrative</category>
       <category>Rationality</category>
-      <category>Political Systems</category>
-      <category>Real Stories</category>
     </item>
     <item>
       <title>香港，香港</title>
       <link>https://mp.weixin.qq.com/s/e8HWmu6Ug730jXT-OGi9Yw</link>
       <guid isPermaLink="true">https://mp.weixin.qq.com/s/e8HWmu6Ug730jXT-OGi9Yw</guid>
-      <description>分析香港在中美竞争中的战略地位，以及VIE架构对中国科技企业的影响。</description>
+      <description>在中美竞争加剧的背景下，探讨香港作为关键节点在地缘政治和资本流动中的角色变化。</description>
       <category>Article</category>
       <category>Geopolitics</category>
-      <category>香港</category>
-      <category>中美关系</category>
-      <category>VIE结构</category>
-      <category>地缘政治</category>
+      <category>Hong Kong</category>
+      <category>US-China</category>
+      <category>VIE structure</category>
     </item>
     <item>
       <title>A beginner’s guide to DAOs</title>
       <link>https://linda.mirror.xyz/Vh8K4leCGEO06_qSGx-vS5lvgUqhqkCz9ut81WwCP2o</link>
       <guid isPermaLink="true">https://linda.mirror.xyz/Vh8K4leCGEO06_qSGx-vS5lvgUqhqkCz9ut81WwCP2o</guid>
-      <description>DAO是通过智能合约实现的去中心化自治组织，用代码替代传统等级制度来重塑组织运作方式。</description>
+      <description>DAO 作为去中心化自治组织的新范式，通过智能合约和代币治理重新定义了组织的运作方式和权力结构。</description>
       <category>Article</category>
       <category>Crypto</category>
       <category>DAO</category>
-      <category>去中心化</category>
-      <category>组织治理</category>
       <category>Web3</category>
+      <category>Decentralization</category>
+      <category>Organization</category>
     </item>
     <item>
       <title>如何降低皮质醇</title>
       <link>https://zh.wikihow.com/%E9%99%8D%E4%BD%8E%E7%9A%AE%E8%B4%A8%E9%86%87</link>
       <guid isPermaLink="true">https://zh.wikihow.com/%E9%99%8D%E4%BD%8E%E7%9A%AE%E8%B4%A8%E9%86%87</guid>
-      <description>通过减少咖啡因摄入、管理压力等方法降低皮质醇水平，缓解焦虑和压力相关症状，改善整体健康。</description>
+      <description>通过减少咖啡因摄入、管理压力等方法降低皮质醇水平，缓解焦虑和体重增加问题。</description>
       <category>Article</category>
       <category>Health</category>
-      <category>皮质醇</category>
-      <category>压力管理</category>
-      <category>健康</category>
-      <category>焦虑</category>
-      <category>生活方式</category>
+      <category>stress</category>
+      <category>cortisol</category>
+      <category>anxiety</category>
+      <category>wellness</category>
     </item>
     <item>
       <title>A Guide to Ketosis</title>
       <link>https://josepharcita.blogspot.com/2011/03/guide-to-ketosis.html?m=1</link>
       <guid isPermaLink="true">https://josepharcita.blogspot.com/2011/03/guide-to-ketosis.html?m=1</guid>
-      <description>介绍酮症的原理、机制和实践指南，帮助理解身体进入酮症状态的方式和益处。</description>
+      <description>深入讲解酮症的定义、原理和实现方式，为实践生酮饮食提供科学指南。</description>
       <category>Article</category>
       <category>Health</category>
       <category>ketosis</category>
-      <category>nutrition</category>
-      <category>diet</category>
+      <category>ketogenic diet</category>
       <category>metabolism</category>
-      <category>guide</category>
+      <category>nutrition</category>
     </item>
     <item>
       <title>贺华成：95后、00后的新文化、新审美与新需求</title>
       <link>https://mp.weixin.qq.com/s/lDjiCoQ7YW7RQ_AgJ0z2Yg</link>
       <guid isPermaLink="true">https://mp.weixin.qq.com/s/lDjiCoQ7YW7RQ_AgJ0z2Yg</guid>
-      <description>分析95后和00后的文化特征、审美偏好和消费需求，揭示新一代群体的独特价值观和市场机遇。</description>
+      <description>95后和00后代表的新一代消费者展现出独特的文化审美和消费需求，反映了数字时代背景下代际差异的深刻变化。</description>
       <category>Article</category>
       <category>Culture</category>
-      <category>95后</category>
-      <category>00后</category>
-      <category>新审美</category>
-      <category>消费文化</category>
-      <category>代际差异</category>
+      <category>Gen Z</category>
+      <category>cultural trends</category>
+      <category>aesthetics</category>
+      <category>consumer behavior</category>
     </item>
     <item>
       <title>The Fallacy of Redistribution</title>
       <link>https://townhall.com/columnists/thomassowell/2012/09/20/the-fallacy-of-redistribution-n829911</link>
       <guid isPermaLink="true">https://townhall.com/columnists/thomassowell/2012/09/20/the-fallacy-of-redistribution-n829911</guid>
-      <description>重新分配财富政策的后果和影响值得深入思考，这不仅仅是政治立场问题，而是涉及经济效果的实质性问题。</description>
+      <description>经济学家托马斯·索威尔剖析收入再分配政策的逻辑谬误及其真实经济后果。</description>
       <category>Article</category>
       <category>Economics</category>
       <category>redistribution</category>
-      <category>economics</category>
+      <category>wealth inequality</category>
       <category>policy</category>
-      <category>political philosophy</category>
+      <category>Thomas Sowell</category>
     </item>
     <item>
       <title>Jeff Bridges Sleeping Tapes - Squarespace</title>
       <link>https://www.dreamingwithjeff.com/</link>
       <guid isPermaLink="true">https://www.dreamingwithjeff.com/</guid>
-      <description>演员杰夫·布里奇斯推出睡眠音乐专辑，通过舒缓的音轨帮助人们改善睡眠质量。</description>
+      <description>杰夫·布里奇斯推出睡眠音乐专辑，通过舒缓音轨帮助听众改善睡眠质量。</description>
       <category>Article</category>
-      <category>Culture</category>
+      <category>Health</category>
+      <category>sleep</category>
+      <category>meditation</category>
+      <category>wellness</category>
+      <category>audio</category>
       <category>Jeff Bridges</category>
-      <category>Music</category>
-      <category>Sleep</category>
-      <category>Wellness</category>
-      <category>Audio</category>
     </item>
     <item>
       <title>金钱是身份的放大器</title>
       <link>https://www.notion.so/eb9203c0a579485dbaa3bf2e521649bf</link>
       <guid isPermaLink="true">https://www.notion.so/eb9203c0a579485dbaa3bf2e521649bf</guid>
-      <description>金钱如同放大镜,将人的本质特征、价值观和品格进一步彰显和强化,而非改变人的根本属性。</description>
+      <description>金钱本质上是身份的放大器，它放大了你原有的特质、价值观和社会地位。</description>
       <category>Article</category>
       <category>Philosophy</category>
-      <category>金钱</category>
-      <category>身份</category>
-      <category>社会学</category>
-      <category>人性</category>
+      <category>money</category>
+      <category>identity</category>
+      <category>amplifier</category>
+      <category>wealth</category>
     </item>
     <item>
       <title>Three Models of the Universe</title>
       <link>https://truthaparadox.wordpress.com/2009/12/15/three-models-of-the-universe/</link>
       <guid isPermaLink="true">https://truthaparadox.wordpress.com/2009/12/15/three-models-of-the-universe/</guid>
-      <description>比较西方和中国对宇宙本质的不同理解模式，揭示文化差异如何塑造人类对世界的根本认知。</description>
+      <description>通过对比西方宇宙观的两种主导神话与中国宇宙模型，揭示不同文化对宇宙本质的根本性理解差异。</description>
       <category>Article</category>
       <category>Philosophy</category>
       <category>cosmology</category>
+      <category>cultural-worldviews</category>
       <category>Alan Watts</category>
-      <category>Western vs Eastern</category>
-      <category>universe models</category>
-      <category>mythology</category>
+      <category>Eastern philosophy</category>
     </item>
     <item>
       <title>We Are As Gods</title>
       <link>https://stripepress.substack.com/p/we-are-as-gods</link>
       <guid isPermaLink="true">https://stripepress.substack.com/p/we-are-as-gods</guid>
-      <description>这是一部关于斯图尔特·布兰德的纪录片，探讨了这位思想家如何塑造了技术与文化的交叉点。</description>
+      <description>纪录片《We Are As Gods》以Stewart Brand为中心，探讨技术、自然与人类未来的关系如何重新定义了现代文明的可能性。</description>
       <category>Documentary</category>
-      <category>Culture</category>
+      <category>Philosophy</category>
       <category>Stewart Brand</category>
       <category>Documentary</category>
       <category>Counterculture</category>
       <category>Technology</category>
-      <category>Innovation</category>
+      <category>Ideas</category>
     </item>
     <item>
       <title>张五常：比知识更重要的，是思维方式</title>
       <link>https://mp.weixin.qq.com/s/W0l0b0g4LfnfsRsxy-OnLQ</link>
       <guid isPermaLink="true">https://mp.weixin.qq.com/s/W0l0b0g4LfnfsRsxy-OnLQ</guid>
-      <description>比掌握知识本身更重要的是掌握多种思维工具和方式，用不同的角度来认识和探索这个世界。</description>
+      <description>经济学家张五常认为掌握科学的思维方式比积累知识本身更为重要，它决定了我们探索世界的深度和角度。</description>
       <category>Article</category>
       <category>Thinking</category>
       <category>思维方式</category>
-      <category>知识观</category>
+      <category>经济学</category>
       <category>张五常</category>
-      <category>学习方法</category>
-      <category>思维工具</category>
+      <category>方法论</category>
     </item>
     <item>
       <title>The Simple Path To Wealth w/ JL Collins (MI041)</title>
       <link>https://www.youtube.com/watch?v=MJ28_ilqJ8g</link>
       <guid isPermaLink="true">https://www.youtube.com/watch?v=MJ28_ilqJ8g</guid>
-      <description>通过简单的指数基金投资策略和科学的理财哲学，普通人可以踏上通往财务自由的最直接之路。</description>
+      <description>JL Collins 揭示通过指数基金投资和简化理财决策实现财务自由的最直接路径。</description>
       <category>Video</category>
       <category>Investing</category>
-      <category>财务自由</category>
-      <category>指数基金</category>
-      <category>理财哲学</category>
-      <category>被动投资</category>
-      <category>财富</category>
+      <category>Financial Freedom</category>
+      <category>Index Funds</category>
+      <category>Personal Finance</category>
+      <category>Wealth Building</category>
     </item>
     <item>
       <title>读《程序员的思维修炼》</title>
       <link>https://limboy.me/posts/pragmatic-thinking-and-learning/</link>
       <guid isPermaLink="true">https://limboy.me/posts/pragmatic-thinking-and-learning/</guid>
-      <description>通过讲解元学习（学习如何学习）的方法，帮助任何领域的人提升自我迭代能力，包括L型R型思维、阅读技巧和目标设定等实用工具。</description>
+      <description>《程序员的思维修炼》通过介绍双 CPU 模式和元学习方法，揭示了如何学会学习，这套思维框架超越编程领域，适用于任何知识工作者。</description>
       <category>Article</category>
       <category>Learning</category>
-      <category>元学习</category>
-      <category>思维方式</category>
-      <category>学习技巧</category>
-      <category>程序员</category>
+      <category>metacognition</category>
+      <category>learning-to-learn</category>
+      <category>thinking-skills</category>
+      <category>brain-modes</category>
     </item>
     <item>
       <title>书评 | 社会达尔文主义：被时代抛弃的主流思潮</title>
       <link>https://mp.weixin.qq.com/s/P2x34Ki4fC_m4y75nqGUNw</link>
       <guid isPermaLink="true">https://mp.weixin.qq.com/s/P2x34Ki4fC_m4y75nqGUNw</guid>
-      <description>社会达尔文主义虽然在理论上试图用进化论解释社会阶层分化，但已成为被时代抛弃的过时思潮。</description>
+      <description>社会达尔文主义将进化论应用于人类社会，以&#x27;适者生存&#x27;合理化贫富分化和权力不对等，但这一曾经的主流思潮已被历史所否定。</description>
       <category>Article</category>
       <category>Philosophy</category>
       <category>社会达尔文主义</category>
-      <category>进化论</category>
-      <category>社会思潮</category>
-      <category>书评</category>
+      <category>思想史</category>
+      <category>适者生存</category>
+      <category>批判</category>
     </item>
     <item>
       <title>机器的崛起：隐藏的控制论历史（二）</title>
       <link>https://mp.weixin.qq.com/s/ASFfXwNT1ciU9IUIWHpv7g</link>
       <guid isPermaLink="true">https://mp.weixin.qq.com/s/ASFfXwNT1ciU9IUIWHpv7g</guid>
-      <description>探讨控制论理论如何从军事防空研究演变为影响嬉皮士文化和计算机运动的哲学基础，揭示技术发展背后的隐性历史联系。</description>
+      <description>控制论从军事防御演变为文化运动，维纳的理论既驱动了反主流文化的计算机实验，也为核武器系统提供了技术基础。</description>
       <category>Article</category>
       <category>History</category>
-      <category>控制论</category>
-      <category>维纳</category>
-      <category>科技史</category>
-      <category>冷战</category>
+      <category>cybernetics</category>
+      <category>control theory</category>
+      <category>technology history</category>
+      <category>Cold War</category>
     </item>
   </channel>
 </rss>

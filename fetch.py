@@ -1,153 +1,51 @@
 #!/usr/bin/env python3
 """
-Step 1: Fetch web pages and extract metadata.
-Scrapes HTML for og:image, title, description, favicon, body text.
-Falls back to Jina Reader for JS-rendered or anti-scraping pages.
+Step 1: Fetch web pages and extract metadata via Jina Reader (JSON mode).
+One API call per URL returns title, description, content, and images.
 """
 
+import hashlib
 import json
 import time
 import urllib.request
 import urllib.error
-from html.parser import HTMLParser
+from datetime import date
 from pathlib import Path
-from urllib.parse import urlparse, urljoin, parse_qs, quote
+from urllib.parse import urlparse, parse_qs, quote
 
 from config import (
-    FETCH_TIMEOUT, FETCH_DELAY, JINA_BASE_URL, JINA_TIMEOUT, USER_AGENT,
-    HTML_READ_LIMIT, BODY_TEXT_LIMIT, BODY_TEXT_MIN,
+    FETCH_DELAY, JINA_BASE_URL, JINA_TIMEOUT, JINA_API_KEY,
+    BODY_TEXT_LIMIT, USER_AGENT,
 )
 
 ROOT = Path(__file__).parent
 LINKS_FILE = ROOT / "links.json"
 CACHE_FILE = ROOT / "meta-cache.json"
+CONTENT_DIR = ROOT / "content"
 
 
-class MetaParser(HTMLParser):
-    """Extract og:image, og:description, twitter:image, description, title, favicon."""
+def fetch_via_jina(url: str) -> dict:
+    """Fetch URL via Jina Reader JSON mode. Returns structured data."""
+    headers = {
+        "Accept": "application/json",
+        "User-Agent": USER_AGENT,
+        "X-With-Images-Summary": "true",
+    }
+    if JINA_API_KEY:
+        headers["Authorization"] = f"Bearer {JINA_API_KEY}"
 
-    def __init__(self):
-        super().__init__()
-        self.meta = {}
-        self._in_title = False
-        self._title_text = ""
-
-    def handle_starttag(self, tag, attrs):
-        d = dict(attrs)
-        if tag == "meta":
-            prop = d.get("property", d.get("name", "")).lower()
-            content = d.get("content", "")
-            if prop in (
-                "og:image", "og:description", "og:title", "og:site_name",
-                "twitter:image", "twitter:description",
-                "description",
-            ):
-                self.meta[prop] = content
-        elif tag == "title":
-            self._in_title = True
-        elif tag == "link":
-            rel = d.get("rel", "")
-            href = d.get("href", "")
-            if "icon" in rel and href:
-                self.meta["favicon"] = href
-
-    def handle_data(self, data):
-        if self._in_title:
-            self._title_text += data
-
-    def handle_endtag(self, tag):
-        if tag == "title":
-            self._in_title = False
-            if self._title_text.strip():
-                self.meta["title"] = self._title_text.strip()
-
-
-class TextExtractor(HTMLParser):
-    """Extract visible text from HTML, skipping scripts/styles/nav."""
-
-    def __init__(self):
-        super().__init__()
-        self.parts = []
-        self._skip = False
-
-    def handle_starttag(self, tag, attrs):
-        if tag in ('script', 'style', 'nav', 'header', 'footer'):
-            self._skip = True
-
-    def handle_endtag(self, tag):
-        if tag in ('script', 'style', 'nav', 'header', 'footer'):
-            self._skip = False
-
-    def handle_data(self, data):
-        if not self._skip:
-            t = data.strip()
-            if t:
-                self.parts.append(t)
-
-
-def fetch_via_jina(url: str) -> str:
-    """Extract body text via Jina Reader."""
-    if not url:
-        return ""
     try:
         req = urllib.request.Request(
             f"{JINA_BASE_URL}{url}",
-            headers={"Accept": "text/plain", "User-Agent": USER_AGENT},
+            headers=headers,
         )
         resp = urllib.request.urlopen(req, timeout=JINA_TIMEOUT)
-        text = resp.read().decode("utf-8", errors="ignore")
-        return text[:BODY_TEXT_LIMIT] if text else ""
-    except Exception:
-        return ""
-
-
-def fetch_meta(url: str) -> dict:
-    """Fetch URL and extract metadata. Falls back to Jina Reader."""
-    meta = {}
-    html = ""
-
-    # Try direct scrape
-    try:
-        req = urllib.request.Request(url, headers={
-            "User-Agent": USER_AGENT,
-            "Accept": "text/html,application/xhtml+xml",
-            "Accept-Language": "en-US,en;q=0.9,zh-CN;q=0.8",
-        })
-        resp = urllib.request.urlopen(req, timeout=FETCH_TIMEOUT)
-        html = resp.read(HTML_READ_LIMIT).decode("utf-8", errors="ignore")
-        parser = MetaParser()
-        parser.feed(html)
-        meta = parser.meta
-    except Exception:
-        pass
-
-    # Extract body text: from HTML if available, Jina Reader as fallback
-    if html:
-        ext = TextExtractor()
-        ext.feed(html)
-        body = "\n".join(ext.parts)
-        if len(body) < BODY_TEXT_MIN or "javascript" in body[:500].lower():
-            body = fetch_via_jina(url)
-    else:
-        body = fetch_via_jina(url)
-    if body:
-        meta["_body_text"] = body[:BODY_TEXT_LIMIT]
-
-    # If direct scrape got no title, parse it from Jina body text
-    if not meta.get("title") and not meta.get("og:title") and "_body_text" in meta:
-        for line in meta["_body_text"].splitlines():
-            if line.startswith("Title: "):
-                meta["title"] = line[7:].strip()
-                break
-
-    # Resolve relative favicon/image URLs
-    for key in ("og:image", "twitter:image", "favicon"):
-        if key in meta and meta[key] and not meta[key].startswith("http"):
-            meta[key] = urljoin(url, meta[key])
-
-    if not meta:
-        return {"_error": "No metadata found"}
-    return meta
+        result = json.loads(resp.read().decode("utf-8", errors="ignore"))
+        if result.get("code") == 200 and result.get("data"):
+            return result["data"]
+        return {"_error": result.get("message", "Jina returned no data")}
+    except Exception as e:
+        return {"_error": str(e)[:100]}
 
 
 def extract_video_id(url: str) -> tuple[str, str]:
@@ -176,41 +74,56 @@ def extract_video_id(url: str) -> tuple[str, str]:
     return ("", "")
 
 
-def fetch_youtube_oembed(url: str) -> dict:
-    """Fetch YouTube video metadata via oEmbed API (no key needed)."""
+def get_thumbnail(jina_data: dict, url: str) -> str:
+    """Pick best thumbnail: video platform > Jina images > og:image > mshots."""
+    # YouTube direct thumbnail
     platform, vid = extract_video_id(url)
-    if platform != "youtube":
-        return {}
-    try:
-        oembed_url = f"https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v={vid}&format=json"
-        req = urllib.request.Request(oembed_url, headers={"User-Agent": "Mozilla/5.0"})
-        resp = urllib.request.urlopen(req, timeout=FETCH_TIMEOUT)
-        return json.loads(resp.read().decode("utf-8"))
-    except Exception:
-        return {}
-
-
-def get_thumbnail(meta: dict, url: str = "") -> str:
-    """Pick best thumbnail: video platform > og:image > twitter:image > mshots."""
-    platform, vid = extract_video_id(url) if url else ("", "")
     if platform == "youtube":
-        thumb = f"https://img.youtube.com/vi/{vid}/maxresdefault.jpg"
-    else:
-        thumb = meta.get("og:image") or meta.get("twitter:image") or ""
-    if not thumb and url:
-        thumb = f"https://s0.wp.com/mshots/v1/{quote(url, safe='')}?w=480&h=270"
-    return thumb
+        return f"https://img.youtube.com/vi/{vid}/maxresdefault.jpg"
+
+    # Jina images (pick first meaningful one)
+    images = jina_data.get("images", {})
+    if images:
+        for name, img_url in images.items():
+            # Skip tiny tracking pixels and icons
+            if "1x1" in img_url or "favicon" in img_url.lower():
+                continue
+            return img_url
+
+    # mshots fallback
+    if url:
+        return f"https://s0.wp.com/mshots/v1/{quote(url, safe='')}?w=480&h=270"
+    return ""
 
 
-def get_description(meta: dict) -> str:
-    """Pick best description from metadata."""
-    return meta.get("og:description") or meta.get("twitter:description") or meta.get("description") or ""
+def url_hash(url: str) -> str:
+    """Short hash of URL for filename."""
+    return hashlib.md5(url.encode()).hexdigest()[:10]
 
 
-def get_favicon_url(domain: str, meta: dict) -> str:
-    """Get favicon URL."""
-    if meta.get("favicon"):
-        return meta["favicon"]
+def save_content_md(url: str, title: str, content: str) -> str:
+    """Save Jina markdown content to content/ directory. Returns filename."""
+    CONTENT_DIR.mkdir(exist_ok=True)
+    filename = f"{url_hash(url)}.md"
+    filepath = CONTENT_DIR / filename
+
+    if filepath.exists():
+        return filename
+
+    safe_title = title.replace('"', '\\"')
+    frontmatter = f"""---
+title: "{safe_title}"
+source: {url}
+saved: {date.today().isoformat()}
+---
+
+"""
+    filepath.write_text(frontmatter + content, "utf-8")
+    return filename
+
+
+def get_favicon_url(domain: str) -> str:
+    """Get favicon URL via Google S2."""
     if domain:
         return f"https://www.google.com/s2/favicons?domain={domain}&sz=32"
     return ""
@@ -231,53 +144,57 @@ def main():
         if not url:
             continue
 
-        # Skip if already enriched
-        if link.get("thumbnail") and link.get("desc"):
+        # Skip if fully enriched (metadata + content)
+        if link.get("thumbnail") and link.get("desc") and link.get("content_file"):
             skipped += 1
             continue
 
         # Check cache
         if url in cache:
-            meta = cache[url]
+            data = cache[url]
         else:
             print(f"[{i+1}/{len(links)}] Fetching: {link['title'][:50]}...")
-            meta = fetch_meta(url)
-            cache[url] = meta
+            data = fetch_via_jina(url)
+            cache[url] = data
             time.sleep(FETCH_DELAY)
 
-        if "_error" in meta:
+        if "_error" in data:
             errors += 1
-            print(f"  ✗ {meta['_error'][:60]}")
+            print(f"  ✗ {data['_error'][:60]}")
             continue
 
-        # YouTube oEmbed fallback for title/desc
-        platform, _ = extract_video_id(url)
-        if platform == "youtube" and (not meta.get("og:title") or not get_description(meta)):
-            oembed = fetch_youtube_oembed(url)
-            if oembed:
-                if not meta.get("og:title") and oembed.get("title"):
-                    meta["og:title"] = oembed["title"]
-                if not get_description(meta) and oembed.get("author_name"):
-                    meta["description"] = f"{oembed['title']} — {oembed['author_name']}"
-                cache[url] = meta
+        # Apply metadata
+        title = data.get("title", "")
+        desc = data.get("description", "")
+        content = data.get("content", "")
+        domain = link.get("domain", "")
 
-        # Apply metadata to link
-        thumb = get_thumbnail(meta, url)
-        desc = get_description(meta)
-        favicon = get_favicon_url(link.get("domain", ""), meta)
+        # Title: use Jina title if current title is bare domain/URL
+        if title and (link["title"].startswith("http") or link["title"] == domain):
+            link["title"] = title
 
-        if thumb:
-            link["thumbnail"] = thumb
+        # Description
         if desc and not link.get("desc"):
             link["desc"] = desc
+
+        # Save full content as Markdown
+        if content:
+            cf = save_content_md(url, link.get("title", title), content)
+            link["content_file"] = cf
+
+        # Body text for AI analysis
+        if content and not link.get("body_text"):
+            link["body_text"] = content[:BODY_TEXT_LIMIT]
+
+        # Thumbnail
+        thumb = get_thumbnail(data, url)
+        if thumb:
+            link["thumbnail"] = thumb
+
+        # Favicon
+        favicon = get_favicon_url(domain)
         if favicon:
             link["favicon"] = favicon
-        if meta.get("_body_text") and not link.get("body_text"):
-            link["body_text"] = meta["_body_text"]
-        # Use og:title or parsed title if title is a bare URL or domain
-        best_title = meta.get("og:title") or meta.get("title")
-        if best_title and (link["title"].startswith("http") or link["title"] == link.get("domain", "")):
-            link["title"] = best_title
 
         enriched += 1
 
@@ -290,8 +207,10 @@ def main():
     print(f"\nDone: {enriched} enriched, {skipped} skipped, {errors} errors")
     with_thumb = sum(1 for l in links if l.get("thumbnail"))
     with_desc = sum(1 for l in links if l.get("desc"))
+    with_content = sum(1 for l in links if l.get("content_file"))
     print(f"Thumbnails: {with_thumb}/{len(links)}")
     print(f"Descriptions: {with_desc}/{len(links)}")
+    print(f"Content saved: {with_content}/{len(links)}")
 
 
 if __name__ == "__main__":

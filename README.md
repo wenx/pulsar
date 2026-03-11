@@ -19,6 +19,7 @@ pip install anthropic
 
 # 2. 配置 API Key
 echo 'ANTHROPIC_API_KEY=sk-ant-xxx' > .env
+echo 'JINA_API_KEY=jina_xxx' >> .env
 
 # 3. 首次运行 pipeline
 python3 parse-links.py    # 解析 Links.md → links.json（仅首次）
@@ -67,7 +68,7 @@ python3 analyze.py --force   # 清掉所有 ai_summary/category/tags，全量重
 | `AI_CATEGORIES` | 15 个分类 | 可用分类列表 |
 | `AI_ANALYZE_PROMPT` | — | 分析提示词（分类+标签+摘要） |
 | `JINA_BASE_URL` | r.jina.ai | Jina Reader 地址 |
-| `FETCH_TIMEOUT` | 10s | 直接抓取超时 |
+| `JINA_API_KEY` | .env | Jina Reader API Key |
 | `JINA_TIMEOUT` | 15s | Jina Reader 超时 |
 | `THUMB_DOWNLOAD_TIMEOUT` | 15s | 缩略图下载超时 |
 | `SITE_URL` | pulsar.wenxin.io | RSS feed 站点地址 |
@@ -94,9 +95,9 @@ API Key 放在 `.env` 文件中（已在 .gitignore）。`.env` 由 `config.py` 
 - **自动标签**：1-5 个标签
 - **AI 摘要**：中文一句话摘要
 
-### 网页抓取（两级策略）
-1. **直接 HTML 抓取**：提取 og:image、title、description、favicon、正文
-2. **Jina Reader 兜底**：正文不足 200 字或含 "javascript" 时自动切换
+### 网页抓取（Jina Reader JSON mode）
+- 一次 API 调用返回 title、description、content、images
+- 自动提取缩略图：YouTube 直链 > Jina images > mshots 兜底
 
 ## API 端点
 
