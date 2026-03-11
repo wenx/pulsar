@@ -18,15 +18,6 @@ from config import (
 ROOT = Path(__file__).parent
 LINKS_FILE = ROOT / "links.json"
 
-# Load .env if present
-_env_file = ROOT / ".env"
-if _env_file.exists():
-    for line in _env_file.read_text().splitlines():
-        line = line.strip()
-        if line and not line.startswith("#") and "=" in line:
-            k, v = line.split("=", 1)
-            os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
-
 
 def get_ai_client():
     """Initialize Anthropic client."""

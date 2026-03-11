@@ -5,7 +5,6 @@ Replaces `python3 -m http.server 3460`.
 """
 
 import json
-import os
 import subprocess
 import sys
 import threading
@@ -13,20 +12,9 @@ from http.server import HTTPServer, SimpleHTTPRequestHandler
 from pathlib import Path
 from urllib.parse import urlparse
 
-from config import (
-    PORT, PIPELINE_TIMEOUT,
-)
+from config import PORT, PIPELINE_TIMEOUT
 
 ROOT = Path(__file__).parent
-
-# Load .env if present
-_env_file = ROOT / ".env"
-if _env_file.exists():
-    for line in _env_file.read_text().splitlines():
-        line = line.strip()
-        if line and not line.startswith("#") and "=" in line:
-            k, v = line.split("=", 1)
-            os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
 LINKS_FILE = ROOT / "links.json"
 
 PIPELINE = [
@@ -137,7 +125,6 @@ class PulsarHandler(SimpleHTTPRequestHandler):
                 "author": "",
                 "category": "",
                 "format": classify_format(domain),
-                "notes": "",
                 "done": False,
             }
 

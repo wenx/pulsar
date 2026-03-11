@@ -278,8 +278,6 @@ def main():
         best_title = meta.get("og:title") or meta.get("title")
         if best_title and (link["title"].startswith("http") or link["title"] == link.get("domain", "")):
             link["title"] = best_title
-        if meta.get("_author") and not link.get("author"):
-            link["author"] = meta["_author"]
 
         enriched += 1
 

@@ -1036,7 +1036,7 @@ async function loadLinks() {
       category: l.category || 'Article',
       format: l.format || 'Article',
       tags: l.tags || [],
-      desc: l.desc || l.notes || '',
+      desc: l.desc || '',
       ai_summary: l.ai_summary || '',
       thumbnail: l.thumbnail || '',
       favicon: l.favicon || '',
@@ -1144,21 +1144,6 @@ function applyFilters() {
 function updateCounts() {
   document.getElementById('count-all').textContent = `[${links.length}]`;
 }
-
-const FORMAT_ICONS = {
-  Article: '&para;', Video: '&#9654;',
-  GitHub: '&gt;_', Podcast: '&#9834;',
-  Book: '&#9744;', Film: '&#9632;', Documentary: '&#9673;',
-};
-
-const TOPIC_ICONS = {
-  Technology: '&#9883;', Economics: '&#9878;', Philosophy: '&#8734;',
-  Crypto: '&#9830;', Investing: '&#9650;', History: '&#8986;',
-  Science: '&#9883;', Geopolitics: '&#9873;', Culture: '&#9835;',
-  Business: '&#9632;', Thinking: '&#10029;', Resource: '&#9776;',
-  Productivity: '&#9881;', Learning: '&#9733;', Film: '&#9654;',
-  Health: '&#10010;', Unknown: '?',
-};
 
 function renderSidebar() {
   // Categories (by format/type)

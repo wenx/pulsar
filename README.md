@@ -69,8 +69,10 @@ python3 analyze.py --force   # 清掉所有 ai_summary/category/tags，全量重
 | `JINA_BASE_URL` | r.jina.ai | Jina Reader 地址 |
 | `FETCH_TIMEOUT` | 10s | 直接抓取超时 |
 | `JINA_TIMEOUT` | 15s | Jina Reader 超时 |
+| `THUMB_DOWNLOAD_TIMEOUT` | 15s | 缩略图下载超时 |
+| `SITE_URL` | pulsar.wenxin.io | RSS feed 站点地址 |
 
-API Key 放在 `.env` 文件中（已在 .gitignore）。
+API Key 放在 `.env` 文件中（已在 .gitignore）。`.env` 由 `config.py` 统一加载，所有脚本自动继承。
 
 ## 功能
 
