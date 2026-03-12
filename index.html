@@ -1119,6 +1119,14 @@ function renderLinks(filtered) {
   grid.insertAdjacentHTML('beforeend', cardsHtml);
 
   document.getElementById('result-count').textContent = `${filtered.length} links`;
+
+  // Trigger masonry relayout after rendering
+  requestAnimationFrame(() => {
+    layoutMasonry();
+    document.querySelectorAll('.link-thumb img').forEach(img => {
+      if (!img.complete) img.addEventListener('load', layoutMasonry, { once: true });
+    });
+  });
 }
 
 function applyFilters() {
@@ -1193,7 +1201,7 @@ function renderSummary() {
   body.innerHTML = recent.map((link, i) => `
     <div class="summary-item">
       <span class="summary-index">${String(i + 1).padStart(2, '0')}</span>
-      <a href="${link.url}" target="_blank">${link.ai_summary || link.desc}</a>
+      <a href="${escAttr(link.url)}" target="_blank">${escHtml(link.ai_summary || link.desc)}</a>
     </div>`).join('');
 }
 
@@ -1385,6 +1393,8 @@ document.addEventListener('click', e => {
         el.style.top = '';
       });
       grid.style.height = '';
+    } else {
+      requestAnimationFrame(layoutMasonry);
     }
   }
 });
@@ -1554,24 +1564,6 @@ function layoutMasonry() {
 
 window.addEventListener('resize', () => { clearTimeout(window._mrt); window._mrt = setTimeout(layoutMasonry, 100); });
 
-const _origRenderLinks = renderLinks;
-renderLinks = function(filtered) {
-  _origRenderLinks(filtered);
-  requestAnimationFrame(() => {
-    layoutMasonry();
-    document.querySelectorAll('.link-thumb img').forEach(img => {
-      if (!img.complete) img.addEventListener('load', layoutMasonry, { once: true });
-    });
-  });
-};
-
-// Relayout when view toggle changes
-document.addEventListener('click', e => {
-  const viewBtn = e.target.closest('.view-toggle button');
-  if (viewBtn) {
-    requestAnimationFrame(layoutMasonry);
-  }
-});
 
 // --- Init ---
 loadLinks();
