@@ -384,8 +384,10 @@ def main():
 
         # Check cache (skip error entries and stale entries so they get retried)
         cached = cache.get(url)
-        cache_age = (time.time() - cached.get("_cached_at", 0)) / 86400 if cached else None
-        if cached and "_error" not in cached and (cache_age is None or cache_age < CACHE_TTL_DAYS):
+        ts = cached.get("_cached_at") if cached else None
+        cache_fresh = (cached and "_error" not in cached and
+                       (ts is None or (time.time() - ts) / 86400 < CACHE_TTL_DAYS))
+        if cache_fresh:
             data = cached
         else:
             print(f"[{i+1}/{len(links)}] Fetching: {link['title'][:50]}...")

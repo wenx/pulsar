@@ -63,11 +63,14 @@ def analyze_link(client, link: dict) -> dict | None:
             messages=[{"role": "user", "content": prompt}],
         )
         text = msg.content[0].text.strip()
-        # Strip markdown code fence if present
+        # Strip markdown code fence if present (handles ```json, ```\n, etc.)
         if text.startswith("```"):
             text = text.split("\n", 1)[1] if "\n" in text else text[3:]
             if text.endswith("```"):
                 text = text[:-3]
+            # Strip language identifier line (e.g. "json\n{...")
+            if text and not text.startswith("{"):
+                text = text.split("\n", 1)[1] if "\n" in text else text
             text = text.strip()
         # Extract JSON object even if surrounded by extra text
         start = text.find("{")
