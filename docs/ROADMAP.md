@@ -26,7 +26,7 @@
 - [x] **Light Theme** — CSS 变量系统重构，`[data-theme="light"]` 暖纸色调；☀/☽ 切换按钮，跟随系统 `prefers-color-scheme`，偏好存 localStorage
 - [x] **自动同步** — 服务器 cron 每小时自动跑完整 pipeline；Obsidian Links.md 用 `push-obsidian-links.sh` 手动推送触发
 - [x] **部署** — DMIT 服务器（154.17.28.133），Nginx 反代 + systemd 守护进程，`anthropic` SDK 已安装，pipeline 完整可用
-- [x] **域名配置** — DNS A 记录 `pulsar.wenxin.io` → `154.17.28.133`，Let's Encrypt 证书，自动续期
+- [x] **域名配置** — DNS A 记录 `pulsar.wenxin.io` → `154.17.28.133`，HTTP 可用；443 被 xray（REALITY）占用，暂不支持 HTTPS
 
 ---
 
@@ -39,3 +39,4 @@
 - [ ] **Topics 侧边栏可收起** — Topics 列表较长，加折叠/展开按钮
 - [ ] **标签过滤多选** — 当前只能单标签过滤，支持多标签 AND/OR 会更实用
 - [ ] **全文搜索** — `content/` 目录已有 Markdown 全文，可接入本地搜索（如 Fuse.js）；现有搜索只匹配 title/domain/tags
+- [ ] **HTTPS** — 443 被 xray 占用；解法：xray 迁移到其他端口，或换 IP 单独部署 Pulsar
