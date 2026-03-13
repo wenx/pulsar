@@ -36,5 +36,5 @@
 
 ### P3 — 增强
 
-- [ ] **全文搜索** — `content/` 目录已有 Markdown 全文，可接入本地搜索（如 Fuse.js）
+- [ ] **全文搜索** — `content/` 目录已有 Markdown 全文（96 条中 66 条有内容），可接入本地搜索（如 Fuse.js）；现有搜索只匹配 title/domain/tags
 - [ ] **标签过滤多选** — 当前只能单标签过滤，支持多标签 AND/OR 会更实用
