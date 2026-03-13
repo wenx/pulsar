@@ -356,8 +356,8 @@ saved: {date.today().isoformat()}
 
 
 def get_favicon_url(domain: str) -> str:
-    """Get favicon URL via Google S2."""
-    if domain:
+    """Get favicon URL via Google S2. Skip domains without a valid TLD."""
+    if domain and '.' in domain:
         return f"https://www.google.com/s2/favicons?domain={domain}&sz=32"
     return ""
 

@@ -1178,7 +1178,7 @@ function renderSidebar() {
   links.forEach(l => { fmts[l.format] = (fmts[l.format] || 0) + 1; });
   document.getElementById('category-nav').innerHTML = Object.entries(fmts)
     .sort((a, b) => b[1] - a[1])
-    .map(([f, n]) => `<a class="nav-item" data-filter="cat:${f}">${f} <span class="nav-count">[${n}]</span></a>`)
+    .map(([f, n]) => `<a class="nav-item" data-filter="cat:${escAttr(f)}">${escHtml(f)} <span class="nav-count">[${n}]</span></a>`)
     .join('');
 
   // Topics (by content)
@@ -1186,7 +1186,7 @@ function renderSidebar() {
   links.forEach(l => { topics[l.category] = (topics[l.category] || 0) + 1; });
   document.getElementById('topic-nav').innerHTML = Object.entries(topics)
     .sort((a, b) => b[1] - a[1])
-    .map(([t, n]) => `<a class="nav-item" data-filter="topic:${t}">${t} <span class="nav-count">[${n}]</span></a>`)
+    .map(([t, n]) => `<a class="nav-item" data-filter="topic:${escAttr(t)}">${escHtml(t)} <span class="nav-count">[${n}]</span></a>`)
     .join('');
 }
 

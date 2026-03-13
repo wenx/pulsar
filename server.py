@@ -17,6 +17,7 @@ from config import PORT, PIPELINE_TIMEOUT, classify_format
 
 ROOT = Path(__file__).parent
 LINKS_FILE = ROOT / "links.json"
+MAX_BODY = 65536  # 64KB max request body
 
 PIPELINE = [
     "sync.py",
@@ -78,7 +79,7 @@ class PulsarHandler(SimpleHTTPRequestHandler):
 
     def handle_add_link(self):
         try:
-            length = int(self.headers.get("Content-Length", 0))
+            length = min(int(self.headers.get("Content-Length", 0)), MAX_BODY)
             body = json.loads(self.rfile.read(length))
             url = body.get("url", "").strip()
 
@@ -144,7 +145,7 @@ class PulsarHandler(SimpleHTTPRequestHandler):
 
     def handle_delete_link(self):
         try:
-            length = int(self.headers.get("Content-Length", 0))
+            length = min(int(self.headers.get("Content-Length", 0)), MAX_BODY)
             body = json.loads(self.rfile.read(length))
             url = body.get("url", "").strip()
 
