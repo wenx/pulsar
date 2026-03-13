@@ -7,6 +7,16 @@
 - OS: Debian 12
 - 代码路径: `/opt/pulsar`
 
+## 依赖安装
+
+首次部署需安装 Python 依赖：
+
+```bash
+ssh dmit "python3 -m pip install anthropic --break-system-packages"
+```
+
+已安装：`anthropic 0.84.0`（AI 分析）
+
 ## 多应用架构
 
 DMIT 服务器用 Nginx 作为统一入口，按子域名路由到不同应用。每个应用跑在各自的端口，由独立的 systemd 服务管理。
