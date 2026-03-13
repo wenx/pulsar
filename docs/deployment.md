@@ -67,17 +67,45 @@ server {
 }
 ```
 
+## 数据同步工作流
+
+服务器是 source of truth，本地不管 `links.json`。
+
+```
+Telegram 新链接   → cron 每小时自动处理
+Obsidian Links.md → ./push-obsidian-links.sh 手动触发
+临时加单个链接    → 前端 Add Link 立即触发 pipeline
+```
+
+**`push-obsidian-links.sh`**：把本地 Obsidian 的 `Links.md` rsync 到服务器，然后触发完整 pipeline。
+
+**cron**（服务器每小时整点自动跑）：
+```
+0 * * * * cd /opt/pulsar && git pull && python3 sync.py && python3 fetch.py && python3 analyze.py && python3 assets.py >> /opt/pulsar/pipeline.log 2>&1
+```
+
+查看 pipeline 日志：
+```bash
+ssh dmit "tail -50 /opt/pulsar/pipeline.log"
+```
+
 ## 常用命令
 
 ```bash
+# 推送 Obsidian Links.md 并触发 pipeline
+./push-obsidian-links.sh
+
 # 查看服务状态
 ssh dmit "systemctl status pulsar"
 
 # 重启服务
 ssh dmit "systemctl restart pulsar"
 
-# 查看日志
+# 查看服务日志
 ssh dmit "journalctl -u pulsar -f"
+
+# 查看 pipeline 日志
+ssh dmit "tail -50 /opt/pulsar/pipeline.log"
 
 # 更新代码
 ssh dmit "cd /opt/pulsar && git pull"
@@ -94,7 +122,8 @@ ssh dmit "nginx -t && systemctl reload nginx"
 4. DNS 加 A 记录：`<appname>.wenxin.io` → `154.17.28.133`
 5. （可选）用 Certbot 签 HTTPS 证书
 
-## 待完成
+## 已完成
 
-- [ ] DNS 配置：`pulsar.wenxin.io` A 记录 → `154.17.28.133`
-- [ ] HTTPS：Let's Encrypt 证书（Certbot）
+- [x] DNS 配置：`pulsar.wenxin.io` A 记录 → `154.17.28.133`
+- [x] HTTPS：Let's Encrypt 证书（Certbot），自动续期
+- [x] 数据同步工作流：cron 每小时自动跑 pipeline，`push-obsidian-links.sh` 手动推 Links.md
