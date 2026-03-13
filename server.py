@@ -13,7 +13,7 @@ from http.server import HTTPServer, SimpleHTTPRequestHandler
 from pathlib import Path
 from urllib.parse import urlparse
 
-from config import PORT, PIPELINE_TIMEOUT, classify_format
+from config import PORT, PIPELINE_TIMEOUT, classify_format, normalize_url
 
 ROOT = Path(__file__).parent
 LINKS_FILE = ROOT / "links.json"
@@ -100,8 +100,8 @@ class PulsarHandler(SimpleHTTPRequestHandler):
             links = json.loads(LINKS_FILE.read_text("utf-8"))
             existing_urls = {l.get("url", "") for l in links}
             # Normalize: strip trailing slash for comparison
-            url_norm = url.rstrip("/")
-            if any(u.rstrip("/") == url_norm for u in existing_urls):
+            url_norm = normalize_url(url)
+            if any(normalize_url(u) == url_norm for u in existing_urls):
                 self.send_json(409, {"error": "Link already exists"})
                 return
 
@@ -155,7 +155,7 @@ class PulsarHandler(SimpleHTTPRequestHandler):
 
             links = json.loads(LINKS_FILE.read_text("utf-8"))
             original_len = len(links)
-            links = [l for l in links if l.get("url", "").rstrip("/") != url.rstrip("/")]
+            links = [l for l in links if normalize_url(l.get("url", "")) != normalize_url(url)]
 
             if len(links) == original_len:
                 self.send_json(404, {"error": "Link not found"})

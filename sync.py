@@ -13,7 +13,7 @@ import sys
 from datetime import date
 from pathlib import Path
 
-from config import VAULT_PATH
+from config import VAULT_PATH, normalize_url
 
 ROOT = Path(__file__).parent
 LINKS_FILE = ROOT / "links.json"
@@ -34,11 +34,11 @@ TELEGRAM_SYNC_FIELDS = ("done", "notes", "ai_summary", "tags", "category", "desc
 def _merge(sources: list[dict], existing: list[dict],
            sync_fields: tuple = OBSIDIAN_SYNC_FIELDS) -> tuple[int, int]:
     """Merge source links into existing list. Returns (added, updated)."""
-    existing_by_url = {l["url"].rstrip("/"): l for l in existing}
+    existing_by_url = {normalize_url(l["url"]): l for l in existing}
     added = updated = 0
 
     for link in sources:
-        key = link["url"].rstrip("/")
+        key = normalize_url(link["url"])
         if key in existing_by_url:
             cur = existing_by_url[key]
             changed = False

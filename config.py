@@ -3,6 +3,7 @@
 import hashlib
 import os
 from pathlib import Path
+from urllib.parse import urlparse, urlunparse
 
 # Load .env if present
 _env_file = Path(__file__).parent / ".env"
@@ -78,6 +79,22 @@ FEED_DESC = "Curated links from SOLARIS"
 
 # User agent
 USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"
+
+
+def normalize_url(url: str) -> str:
+    """Normalize URL for deduplication: lowercase scheme/host, strip trailing slash, drop fragment."""
+    try:
+        p = urlparse(url.strip())
+        return urlunparse((
+            p.scheme.lower(),
+            p.netloc.lower(),
+            p.path.rstrip("/"),
+            p.params,
+            p.query,
+            "",  # drop fragment
+        ))
+    except Exception:
+        return url.strip()
 
 
 def url_hash(url: str) -> str:
