@@ -40,4 +40,5 @@
 - [ ] **标签过滤多选** — 当前只能单标签过滤，支持多标签 AND/OR 会更实用
 - [ ] **自动同步** — 当前需手动点 Sync 按钮；可改为 server 启动时自动跑一次 sync，或监听 `pulsar-links-telegram.json` / `Links.md` 文件变更触发（watchdog）
 - [ ] **Light Theme** — 当前仅暗色主题；可加亮色主题切换，跟随系统 `prefers-color-scheme` 或手动切换
-- [ ] **部署** — 当前仅本地运行；可部署到 DMIT 服务器（154.17.28.133），Nginx 反代 + systemd 守护进程，域名 pulsar.wenxin.io
+- [ ] **部署** — 当前仅本地运行；可部署到 DMIT 服务器（154.17.28.133），Nginx 反代 + systemd 守护进程
+- [ ] **域名配置** — DNS A 记录 `pulsar.wenxin.io` → `154.17.28.133`，配置 SSL 证书（Let's Encrypt）
