@@ -62,7 +62,7 @@
 - **Bilibili 缩放后缀**（`@100w_100h_1c.png`）→ 去掉拿原图
 - **Jina images 过滤**：跳过 `.svg` 文件、含 `logo` 的 URL、`1x1` 追踪像素、`favicon`
 - **YouTube maxresdefault 不存在时** → fallback 到 hqdefault（assets.py 下载阶段处理）
-- **Microlink 返回 JSON 错误时** → 跳过（< 1000 bytes 判定为失败）
+- **Microlink 返回 JSON 错误时** → 跳过（检查 `Content-Type` 是否为 `image/*`）
 
 ## 三、服务对比（2026.03）
 
@@ -107,7 +107,8 @@ saved: 2026-03-11
 
 ## 五、缓存策略
 
-- `meta-cache.json` 缓存所有成功的抓取结果
+- `meta-cache.json` 缓存所有成功的抓取结果，TTL 30 天（`CACHE_TTL_DAYS`）
 - 错误结果（`_error`）不缓存，下次运行自动重试
-- 已完整enriched 的链接（有 thumbnail + desc + content_file）直接跳过
-- 微信公众号返回空结果，缓存后不再重试
+- 超过 TTL 的缓存条目视为过期，下次运行重新 fetch
+- 已完整富化的链接（有 `thumbnail` + `desc` + `content_file`）直接跳过
+- 微信公众号标记为 `wechat_skip`，不计入错误统计
