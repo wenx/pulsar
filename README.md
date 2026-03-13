@@ -147,7 +147,7 @@ Telegram links 已含 `ai_summary`/`tags`/`category`（Marvin 预填），`analy
 | `JINA_BASE_URL` | r.jina.ai | Jina Reader 地址 |
 | `JINA_TIMEOUT` | 15s | Jina Reader 超时 |
 | `THUMB_DOWNLOAD_TIMEOUT` | 15s | 缩略图下载超时 |
-| `SITE_URL` | pulsar.wenxin.io | RSS feed 站点地址 |
+| `SITE_URL` | http://pulsar.wenxin.io | RSS feed 站点地址（443 被 xray 占用，暂用 HTTP） |
 
 API Key 放在 `.env`（已在 .gitignore），由 `config.py` 统一加载。
 
@@ -196,15 +196,19 @@ pulsar/
 ├── analyze.py                    # Step 2: AI 分析（分类 + 标签 + 摘要）
 ├── assets.py                     # Step 3: 缩略图下载 + SVG 生成 + RSS
 ├── parse-links.py                # Links.md 解析器（供 sync.py 调用）
-├── links.json                    # 链接数据
+├── deploy-code.sh                # 部署代码：git push + 服务器 pull + restart
+├── push-obsidian-links.sh        # 推送 Obsidian Links.md 到服务器并触发 pipeline
 ├── pulsar-links-telegram.json    # Telegram 频道链接（Marvin bot 维护）
-├── meta-cache.json               # 元数据缓存（TTL 30天）
-├── feed.xml                      # RSS 订阅源
+├── meta-cache.json               # 元数据缓存（TTL 30天，不入库）
+├── links.json                    # 链接数据（不入库，服务器 source of truth）
+├── feed.xml                      # RSS 订阅源（不入库，pipeline 生成）
 ├── content/                      # 全文 Markdown 存档
-├── thumbs/                       # 本地缩略图
+├── thumbs/                       # 本地缩略图（不入库）
 ├── fonts/                        # 自定义字体（TX-02, Tamzen）
+├── CLAUDE.md                     # Claude Code 工作提示和工作流
 ├── docs/                         # 文档
 │   ├── fetch-strategy.md         # 抓取策略详解
+│   ├── deployment.md             # 部署架构和运维命令
 │   └── ROADMAP.md                # 待办事项
 └── .env                          # API Key（不入库）
 ```
@@ -212,6 +216,24 @@ pulsar/
 ---
 
 ## Changelog
+
+### 2026-03-14
+
+**部署**
+- **DMIT 服务器**：部署到 `154.17.28.133`，Nginx 反代 + systemd 守护进程，`http://pulsar.wenxin.io` 可访问
+- **域名**：DNS A 记录 `pulsar.wenxin.io` → `154.17.28.133`（HTTPS 暂不可用，443 被 xray 占用）
+- **自动同步**：服务器 cron 每小时自动跑完整 pipeline（git pull → sync → fetch → analyze → assets）
+- **deploy-code.sh**：一键部署代码（git push + 服务器 pull + restart）
+- **push-obsidian-links.sh**：推送本地 Obsidian Links.md 到服务器并触发 pipeline
+- **数据架构**：服务器为 source of truth；`links.json` / `feed.xml` 移出 git，由 pipeline 维护
+
+**主题**
+- **Light Theme**：CSS 变量系统重构，`[data-theme="light"]` 暖纸色调（`#f5f2ee`）；☀/☽ 切换按钮，跟随系统 `prefers-color-scheme`，偏好存 localStorage
+
+**代码质量**
+- **URL 规范化**：改用 `urlparse` 标准化去重（lowercase scheme/host，strip trailing slash，drop fragment）
+- **GitHub API rate limit**：检测 403/429，报错含 remaining/reset 信息；`GITHUB_TOKEN` 可选
+- **CLAUDE.md**：新增 Claude Code 工作提示文件，记录工作流程和操作步骤
 
 ### 2026-03-13
 
