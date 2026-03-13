@@ -14,30 +14,43 @@ if _env_file.exists():
             k, v = line.split("=", 1)
             os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
 
-# Server
-PORT = 3460
+# ─── Server ───────────────────────────────────────────────────────────────────
 
-# Network
-JINA_TIMEOUT = 15        # Jina Reader timeout (seconds)
-PIPELINE_TIMEOUT = 120   # pipeline script timeout (seconds)
-FETCH_DELAY = 0.5        # rate limit between fetches (seconds)
+PORT = 3460                  # HTTP server port，访问 http://localhost:3460
 
-# Jina Reader
+# ─── Network ──────────────────────────────────────────────────────────────────
+
+JINA_TIMEOUT = 15            # Jina Reader 单次请求超时（秒）
+PIPELINE_TIMEOUT = 120       # 单个 pipeline 脚本最长运行时间（秒），超时强制终止
+FETCH_DELAY = 0.5            # fetch.py 每条链接之间的间隔（秒），避免触发限速
+
+# ─── Jina Reader ──────────────────────────────────────────────────────────────
+# 用于抓取普通网页的正文和 metadata
+# 免费额度：100 万 token/月；有 key 可提升速率上限
+# 文档：https://jina.ai/reader
+
 JINA_BASE_URL = "https://r.jina.ai/"
-JINA_API_KEY = os.environ.get("JINA_API_KEY", "")
+JINA_API_KEY = os.environ.get("JINA_API_KEY", "")   # 可选，填入 .env 的 JINA_API_KEY
 
-# GitHub API (optional token raises rate limit from 60 to 5000 req/hr)
-GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")
+# ─── GitHub API ───────────────────────────────────────────────────────────────
+# 用于抓取 GitHub repo 的描述、stars、语言等信息
+# 无 token：60 req/hr；有 token：5000 req/hr
 
-# Content limits
-BODY_TEXT_LIMIT = 3000           # max chars for body text
+GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")   # 可选，填入 .env 的 GITHUB_TOKEN
 
-# AI analysis
-AI_MODEL = "claude-haiku-4-5-20251001"
-AI_MAX_TOKENS = 300
-AI_BODY_LIMIT = 2500             # max chars of body text in prompt
-AI_DESC_LIMIT = 300              # max chars of description in prompt
-AI_DELAY = 0.3                   # rate limit between API calls (seconds)
+# ─── Content Limits ───────────────────────────────────────────────────────────
+
+BODY_TEXT_LIMIT = 3000       # fetch.py 保存到 links.json 的 body_text 最大字符数
+
+# ─── AI Analysis ──────────────────────────────────────────────────────────────
+# analyze.py 调用 Claude Haiku 对链接进行分类、打标签、生成摘要
+# API key 从 .env 的 ANTHROPIC_API_KEY 读取
+
+AI_MODEL = "claude-haiku-4-5-20251001"  # 使用最新 Haiku，速度快、成本低
+AI_MAX_TOKENS = 300          # 输出 JSON 足够，无需更多 token
+AI_BODY_LIMIT = 2500         # 送入 prompt 的 body_text 最大字符数（节省 token）
+AI_DESC_LIMIT = 300          # 送入 prompt 的 description 最大字符数
+AI_DELAY = 0.3               # 每次 API 调用之间的间隔（秒），避免触发限速
 
 AI_CATEGORIES = [
     "Crypto", "Technology", "Investing", "Economics", "Geopolitics",
@@ -58,28 +71,41 @@ AI_ANALYZE_PROMPT = """根据以下链接信息，返回 JSON：
 如果信息不足以判断内容，category 填 "Resource"，summary 根据标题和域名做合理推测。
 只输出 JSON，不要其他内容。"""
 
-# Thumbnail download
-THUMB_DOWNLOAD_DELAY = 0.3       # rate limit between downloads (seconds)
-THUMB_DOWNLOAD_TIMEOUT = 15      # download timeout (seconds)
+# ─── Thumbnail Download ───────────────────────────────────────────────────────
+# assets.py 下载缩略图到 thumbs/ 目录
+
+THUMB_DOWNLOAD_DELAY = 0.3       # 每张图下载之间的间隔（秒）
+THUMB_DOWNLOAD_TIMEOUT = 15      # 单张图下载超时（秒）
 MICROLINK_SCREENSHOT_URL = "https://api.microlink.io/?url={url}&screenshot=true&meta=false&embed=screenshot.url"
+                                 # 无缩略图时调用 Microlink 截屏兜底，免费 250 次/天
 
-# Metadata cache
-CACHE_TTL_DAYS = 30              # days before cached fetch data is considered stale
+# ─── Metadata Cache ───────────────────────────────────────────────────────────
+# fetch.py 的抓取结果缓存在 meta-cache.json，避免重复请求
 
-# Obsidian vault
+CACHE_TTL_DAYS = 30              # 缓存有效期（天），过期后重新 fetch
+
+# ─── Obsidian Vault ───────────────────────────────────────────────────────────
+# sync.py 从 vault 里的 Links.md 读取链接
+# 本地默认指向 iCloud SOLARIS vault；服务器通过 .env 的 VAULT_PATH 覆盖为 /opt/pulsar
+
 VAULT_PATH = Path(os.environ.get(
     "VAULT_PATH",
     Path.home() / "Library/Mobile Documents/iCloud~md~obsidian/Documents/SOLARIS"
 ))
 
-# RSS feed
-SITE_URL = "http://pulsar.wenxin.io"
+# ─── RSS Feed ─────────────────────────────────────────────────────────────────
+# assets.py 生成 feed.xml，供 RSS 阅读器订阅
+
+SITE_URL = "http://pulsar.wenxin.io"   # 注：443 被 xray 占用，暂用 HTTP
 FEED_TITLE = "Pulsar"
 FEED_DESC = "Curated links from SOLARIS"
 
-# User agent
+# ─── User Agent ───────────────────────────────────────────────────────────────
+
 USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"
 
+
+# ─── Utilities ────────────────────────────────────────────────────────────────
 
 def normalize_url(url: str) -> str:
     """Normalize URL for deduplication: lowercase scheme/host, strip trailing slash, drop fragment."""
