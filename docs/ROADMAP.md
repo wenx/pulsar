@@ -21,6 +21,7 @@
 
 - [x] **删除操作确认** — 已核查：`commitDelete()` 验证服务端响应，失败时 `loadLinks()` 恢复
 - [x] **Sync 按钮进度轮询** — 每 2 秒轮询 `/api/status`，pipeline 完成后自动刷新链接
+- [x] **Light Theme** — CSS 变量系统重构，`[data-theme="light"]` 暖纸色调；☀/☽ 切换按钮，跟随系统 `prefers-color-scheme`，偏好存 localStorage
 
 ---
 
@@ -32,7 +33,7 @@
 
 ### P2 — 代码质量
 
-- [ ] **URL 规范化** — 去重仅用 `rstrip("/")`，无法处理 `?`、fragment 等边界情况；可用 `urlparse` 标准化比较
+- [x] **URL 规范化** — 改用 `urlparse` 标准化：lowercase scheme/host，strip trailing slash，drop fragment
 
 ### P3 — 增强
 
