@@ -73,7 +73,7 @@ VAULT_PATH = Path(os.environ.get(
 ))
 
 # RSS feed
-SITE_URL = "https://pulsar.wenxin.io"
+SITE_URL = "http://pulsar.wenxin.io"
 FEED_TITLE = "Pulsar"
 FEED_DESC = "Curated links from SOLARIS"
 
