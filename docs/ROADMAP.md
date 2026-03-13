@@ -34,8 +34,7 @@
 
 ### P3 — 增强
 
-- [ ] **标签去重验证** — analyze.py 生成的 tags 可能与 category 重复；写入前过滤掉与 category 相同的 tag
-- [ ] **Category 与 Tags 分离** — tags 中不应包含 category 值，前端渲染和 AI prompt 均需约束
+- [ ] **AI Categories 重新定义** — 现有 category 是主题分类（Technology、Economics…），改为内容类型分类：`Article / Media / Tool / Design / Development / Crypto / Other`；同步更新 `config.py` 的 `AI_CATEGORIES`、AI prompt、前端过滤逻辑
 - [ ] **Topics 侧边栏可收起** — Topics 列表较长，加折叠/展开按钮
 - [ ] **标签过滤多选** — 当前只能单标签过滤，支持多标签 AND/OR 会更实用
 - [ ] **全文搜索** — `content/` 目录已有 Markdown 全文，可接入本地搜索（如 Fuse.js）；现有搜索只匹配 title/domain/tags
