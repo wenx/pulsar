@@ -14,7 +14,7 @@ from urllib.parse import urlparse, parse_qs, quote
 from config import (
     FETCH_DELAY, JINA_BASE_URL, JINA_TIMEOUT, JINA_API_KEY,
     BODY_TEXT_LIMIT, USER_AGENT, MICROLINK_SCREENSHOT_URL, url_hash,
-    CACHE_TTL_DAYS,
+    CACHE_TTL_DAYS, GITHUB_TOKEN,
 )
 
 ROOT = Path(__file__).parent
@@ -79,7 +79,14 @@ def _api_get(url: str, headers: dict = None, timeout: int = 10) -> dict:
     if headers:
         hdrs.update(headers)
     req = urllib.request.Request(url, headers=hdrs)
-    resp = urllib.request.urlopen(req, timeout=timeout)
+    try:
+        resp = urllib.request.urlopen(req, timeout=timeout)
+    except urllib.error.HTTPError as e:
+        if e.code in (403, 429):
+            remaining = e.headers.get("X-RateLimit-Remaining", "?")
+            reset = e.headers.get("X-RateLimit-Reset", "?")
+            raise RuntimeError(f"rate_limit (remaining={remaining}, reset={reset})")
+        raise
     return json.loads(resp.read().decode("utf-8", errors="ignore"))
 
 
@@ -175,9 +182,12 @@ def fetch_github(url: str) -> dict:
         if len(parts) < 2:
             return {"_error": "Not a GitHub repo URL"}
         owner, repo = parts[0], parts[1]
+        gh_headers = {"Accept": "application/vnd.github.v3+json"}
+        if GITHUB_TOKEN:
+            gh_headers["Authorization"] = f"Bearer {GITHUB_TOKEN}"
         data = _api_get(
             f"https://api.github.com/repos/{owner}/{repo}",
-            headers={"Accept": "application/vnd.github.v3+json"},
+            headers=gh_headers,
         )
         title = data.get("full_name", "")
         desc = data.get("description", "") or ""

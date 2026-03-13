@@ -25,6 +25,9 @@ FETCH_DELAY = 0.5        # rate limit between fetches (seconds)
 JINA_BASE_URL = "https://r.jina.ai/"
 JINA_API_KEY = os.environ.get("JINA_API_KEY", "")
 
+# GitHub API (optional token raises rate limit from 60 to 5000 req/hr)
+GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")
+
 # Content limits
 BODY_TEXT_LIMIT = 3000           # max chars for body text
 
