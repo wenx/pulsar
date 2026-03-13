@@ -44,5 +44,5 @@
 - [ ] **标签去重验证** — analyze.py 生成的 tags 可能与 category 重复（如 category=Technology，tags 含 "Technology"）；写入前过滤掉与 category 相同的 tag
 - [ ] **Topics 侧边栏可收起** — Topics 列表较长，加折叠/展开按钮
 - [ ] **Category 与 Tags 分离** — tags 中不应包含 category 值，前端渲染和 AI prompt 均需约束
-- [ ] **部署** — 当前仅本地运行；可部署到 DMIT 服务器（154.17.28.133），Nginx 反代 + systemd 守护进程
-- [ ] **域名配置** — DNS A 记录 `pulsar.wenxin.io` → `154.17.28.133`，配置 SSL 证书（Let's Encrypt）
+- [x] **部署** — DMIT 服务器（154.17.28.133），Nginx 反代 + systemd 守护进程，代码在 `/opt/pulsar`
+- [x] **域名配置** — DNS A 记录 `pulsar.wenxin.io` → `154.17.28.133`，Let's Encrypt 证书，自动续期
