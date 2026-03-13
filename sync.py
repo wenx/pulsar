@@ -10,6 +10,7 @@ Sync Links.md + pulsar-links-telegram.json → links.json (incremental).
 import importlib.util
 import json
 import sys
+from datetime import date
 from pathlib import Path
 
 from config import VAULT_PATH
@@ -43,6 +44,8 @@ def _merge(sources: list[dict], existing: list[dict]) -> tuple[int, int]:
             if changed:
                 updated += 1
         else:
+            if not link.get("date"):
+                link["date"] = date.today().isoformat()
             existing.insert(0, link)
             existing_by_url[key] = link
             added += 1

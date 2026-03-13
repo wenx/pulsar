@@ -8,6 +8,7 @@ import json
 import subprocess
 import sys
 import threading
+from datetime import date
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from pathlib import Path
 from urllib.parse import urlparse
@@ -115,6 +116,7 @@ class PulsarHandler(SimpleHTTPRequestHandler):
                 "category": "",
                 "format": classify_format(domain),
                 "done": False,
+                "date": date.today().isoformat(),
             }
 
             links.insert(0, new_link)

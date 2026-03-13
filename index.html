@@ -440,6 +440,13 @@
     border-bottom: 1px solid var(--border);
   }
 
+  .link-date {
+    margin-left: auto;
+    font-size: 11px;
+    color: var(--dim);
+    opacity: 0.6;
+  }
+
   .link-url img {
     width: 14px;
     height: 14px;
@@ -1051,6 +1058,7 @@ async function loadLinks() {
       thumbnail: l.thumbnail || '',
       favicon: l.favicon || '',
       done: l.done || false,
+      date: l.date || '',
     }));
     updateCounts();
     renderSidebar();
@@ -1098,6 +1106,7 @@ function renderLinks(filtered) {
         <div class="link-url">
           ${faviconImg}
           <a href="${escAttr(link.url)}" target="_blank" onclick="event.stopPropagation()">${escHtml(domain)}</a>
+          ${link.date ? `<span class="link-date">${escHtml(link.date.slice(5).replace(/^0/, '').replace('-', '/'))}</span>` : ''}
         </div>
         <a class="link-title" href="${escAttr(link.url)}" target="_blank" onclick="event.stopPropagation()">${escHtml(link.title)}</a>
         ${(link.ai_summary || link.desc) ? `<div class="link-desc">${escHtml(link.ai_summary || link.desc)}</div>` : ''}
