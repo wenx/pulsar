@@ -945,8 +945,8 @@
         <button data-view="list" title="List">&#9776;</button>
         <button class="active" data-view="grid" title="Grid">&#9638;</button>
       </div>
-      <button class="btn btn-primary" id="btn-scan">
-        <span style="font-size:11px">&#x25B6;</span> Scan
+      <button class="btn btn-primary" id="btn-sync">
+        <span style="font-size:11px">&#x21BB;</span> Sync
       </button>
     </div>
   </div>
@@ -1404,13 +1404,24 @@ document.getElementById('search').addEventListener('input', e => {
   applyFilters();
 });
 
-document.getElementById('btn-scan').addEventListener('click', () => {
+document.getElementById('btn-sync').addEventListener('click', async () => {
+  const btn = document.getElementById('btn-sync');
   const status = document.getElementById('status-text');
-  status.textContent = 'Scanning SOLARIS/Clippings...';
-  setTimeout(() => {
-    status.textContent = `Scan complete — ${links.length} links indexed`;
-    document.getElementById('last-sync').textContent = new Date().toLocaleTimeString();
-  }, 1500);
+  btn.disabled = true;
+  status.textContent = 'Syncing Links.md…';
+  try {
+    const res = await fetch('/api/sync', { method: 'POST' });
+    if (res.status === 409) {
+      status.textContent = 'Pipeline already running';
+    } else {
+      status.textContent = 'Sync started — pipeline running in background';
+      document.getElementById('last-sync').textContent = new Date().toLocaleTimeString();
+    }
+  } catch (e) {
+    status.textContent = 'Sync failed';
+  } finally {
+    btn.disabled = false;
+  }
 });
 
 // Keyboard shortcuts

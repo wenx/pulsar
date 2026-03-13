@@ -18,6 +18,7 @@ ROOT = Path(__file__).parent
 LINKS_FILE = ROOT / "links.json"
 
 PIPELINE = [
+    "sync.py",
     "fetch.py",
     "analyze.py",
     "assets.py",
@@ -69,6 +70,8 @@ class PulsarHandler(SimpleHTTPRequestHandler):
             self.handle_add_link()
         elif self.path == "/api/delete":
             self.handle_delete_link()
+        elif self.path == "/api/sync":
+            self.handle_sync()
         else:
             self.send_error(404)
 
@@ -127,6 +130,15 @@ class PulsarHandler(SimpleHTTPRequestHandler):
 
         except Exception as e:
             self.send_json(500, {"error": str(e)})
+
+    def handle_sync(self):
+        if pipeline_status["running"]:
+            self.send_json(409, {"error": "Pipeline already running"})
+            return
+        self.send_json(200, {"ok": True})
+        print("  ↻ Manual sync triggered")
+        pipeline_status.update({"running": True, "step": "queued", "done": False})
+        threading.Thread(target=run_pipeline, daemon=True).start()
 
     def handle_delete_link(self):
         try:
