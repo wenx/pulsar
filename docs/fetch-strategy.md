@@ -3,8 +3,12 @@
 ## 整体架构
 
 ```
+数据来源
+  ├─ Obsidian Links.md      → sync.py 增量合并
+  └─ Telegram bot JSON      → sync.py 增量合并（已含 ai_summary/tags/category）
+         ↓
 链接 URL
-  ↓ 平台识别
+  ↓ 平台识别（fetch.py）
   ├─ 已知平台 → 专用 API（免费、快、不消耗 Jina token）
   ├─ 微信公众号 → 跳过抓取（反爬无解，保留用户手填数据）
   └─ 未知站点 → Jina Reader（正文提取 + metadata）
@@ -12,6 +16,10 @@
                     Microlink 截屏兜底
                     ↓ 截屏也失败时
                     SVG 程序化占位图
+         ↓
+AI 分析（analyze.py）
+  ├─ Telegram 链接（已有 ai_summary）→ 跳过
+  └─ 其他 → Claude Haiku 生成 category / tags / summary
 ```
 
 ## 一、抓取路由
@@ -103,7 +111,7 @@ saved: 2026-03-11
 
 - Obsidian 可直接读取
 - 未来可做全文搜索、RAG、二次分析
-- 空间占用小（80 篇 ≈ 1.4MB）
+- 空间占用小（69/96 篇 ≈ 1.4MB）
 
 ## 五、缓存策略
 
