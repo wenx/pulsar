@@ -5,6 +5,10 @@ __pycache__/
 # Thumbnails (generated)
 thumbs/
 
+# Generated data (managed by pipeline)
+links.json
+feed.xml
+
 # Environment
 .env
 .DS_Store
