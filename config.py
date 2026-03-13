@@ -59,6 +59,15 @@ THUMB_DOWNLOAD_DELAY = 0.3       # rate limit between downloads (seconds)
 THUMB_DOWNLOAD_TIMEOUT = 15      # download timeout (seconds)
 MICROLINK_SCREENSHOT_URL = "https://api.microlink.io/?url={url}&screenshot=true&meta=false&embed=screenshot.url"
 
+# Metadata cache
+CACHE_TTL_DAYS = 30              # days before cached fetch data is considered stale
+
+# Obsidian vault
+VAULT_PATH = Path(os.environ.get(
+    "VAULT_PATH",
+    Path.home() / "Library/Mobile Documents/iCloud~md~obsidian/Documents/SOLARIS"
+))
+
 # RSS feed
 SITE_URL = "https://pulsar.wenxin.io"
 FEED_TITLE = "Pulsar"

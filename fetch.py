@@ -14,6 +14,7 @@ from urllib.parse import urlparse, parse_qs, quote
 from config import (
     FETCH_DELAY, JINA_BASE_URL, JINA_TIMEOUT, JINA_API_KEY,
     BODY_TEXT_LIMIT, USER_AGENT, MICROLINK_SCREENSHOT_URL, url_hash,
+    CACHE_TTL_DAYS,
 )
 
 ROOT = Path(__file__).parent
@@ -381,9 +382,10 @@ def main():
             skipped += 1
             continue
 
-        # Check cache (skip error entries so they get retried)
+        # Check cache (skip error entries and stale entries so they get retried)
         cached = cache.get(url)
-        if cached and "_error" not in cached:
+        cache_age = (time.time() - cached.get("_cached_at", 0)) / 86400 if cached else None
+        if cached and "_error" not in cached and (cache_age is None or cache_age < CACHE_TTL_DAYS):
             data = cached
         else:
             print(f"[{i+1}/{len(links)}] Fetching: {link['title'][:50]}...")
@@ -394,6 +396,7 @@ def main():
             else:
                 data = fetch_via_jina(url)
             if "_error" not in data:
+                data["_cached_at"] = time.time()
                 cache[url] = data
             time.sleep(FETCH_DELAY)
 

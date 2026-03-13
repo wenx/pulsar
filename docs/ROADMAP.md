@@ -9,8 +9,8 @@
 
 ### P2 — 代码质量
 
-- [ ] **Vault 路径移入配置** — `parse-links.py` 硬编码了 iCloud Obsidian 路径，应移到 `config.py` 或环境变量
-- [ ] **元数据缓存过期机制** — `meta-cache.json` 永不刷新，URL 内容变化后仍用旧数据。可加 TTL 或手动刷新 UI
+- [x] **Vault 路径移入配置** — 移入 `config.py` 的 `VAULT_PATH`，支持 `VAULT_PATH` 环境变量覆盖
+- [x] **元数据缓存过期机制** — 加 `CACHE_TTL_DAYS=30`，缓存条目写入时记录 `_cached_at` 时间戳，超期自动重新 fetch
 
 ### P3 — 增强
 

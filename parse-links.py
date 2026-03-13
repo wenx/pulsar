@@ -9,10 +9,9 @@ import json
 from pathlib import Path
 from urllib.parse import urlparse
 
-from config import classify_format
+from config import classify_format, VAULT_PATH
 
-VAULT = Path.home() / "Library/Mobile Documents/iCloud~md~obsidian/Documents/SOLARIS"
-LINKS_MD = VAULT / "Links.md"
+LINKS_MD = VAULT_PATH / "Links.md"
 OUTPUT = Path(__file__).parent / "links.json"
 
 
