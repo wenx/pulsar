@@ -214,11 +214,26 @@ pulsar/
 ## Changelog
 
 ### 2026-03-13
+
+**数据同步**
 - **sync.py**：新增增量同步脚本，合并 Obsidian Links.md + Telegram links，替代 parse-links.py 全量覆盖
-- **Telegram 集成**：sync.py 自动合并 `pulsar-links-telegram.json`，Marvin 预填的 `ai_summary` 不被覆盖
+- **Telegram 字段同步**：重新 sync 时更新 `ai_summary` / `tags` / `category` / `desc`，空值不覆盖本地数据
 - **date 字段**：所有 link 统一记录添加日期，前端卡片显示 M/D 格式
-- **Sync 按钮**：前端 Scan 按钮替换为 Sync，调用 `/api/sync` 触发完整 pipeline
-- `/api/sync` 端点：手动触发 sync + pipeline
+- **Sync 按钮**：前端 Scan 替换为 Sync，调用 `/api/sync` 触发完整 pipeline
+
+**安全修复**
+- **XSS**：侧边栏 category-nav / topic-nav 的 innerHTML 补全 `escHtml` / `escAttr`
+- **DoS**：server.py 请求体限制 64KB（`MAX_BODY`），防止 Content-Length 攻击
+
+**Bug 修复**
+- **缓存 TTL 逻辑**：修复 `cache_age is None` 死代码，旧缓存条目（无 `_cached_at`）视为 fresh 保留
+- **analyze.py code fence**：正确处理 ` ```json ` 带语言标记的返回格式
+- **favicon**：加 `'.' in domain` 校验，跳过 localhost 等无效域名
+- **Microlink 错误检测**：改为检查 `Content-Type` 是否为 `image/*`
+
+**配置**
+- **Vault 路径配置化**：`VAULT_PATH` 移入 `config.py`，支持环境变量覆盖
+- **缓存 TTL**：`meta-cache.json` 加入 30 天过期机制（`CACHE_TTL_DAYS`）
 
 ### 2026-03-11
 - **Microlink 错误检测**：改为检查 `Content-Type` 是否为 `image/*`，修复大 JSON 错误响应漏判问题
