@@ -72,4 +72,4 @@ python3 server.py                          # 启动本地服务，访问 http://
 - SSH: `ssh dmit`
 - 代码: `/opt/pulsar`
 - 服务: `systemctl status pulsar`
-- 网址: `https://pulsar.wenxin.io`
+- 网址: `http://pulsar.wenxin.io`（443 被 xray 占用，暂用 HTTP）

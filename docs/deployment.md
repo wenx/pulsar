@@ -157,5 +157,5 @@ ssh dmit "nginx -t && systemctl reload nginx"
 ## 已完成
 
 - [x] DNS 配置：`pulsar.wenxin.io` A 记录 → `154.17.28.133`
-- [x] HTTPS：Let's Encrypt 证书（Certbot），自动续期
 - [x] 数据同步工作流：cron 每小时自动跑 pipeline，`push-obsidian-links.sh` 手动推 Links.md
+- [ ] HTTPS：服务器 443 端口被 xray（REALITY 协议）占用，目前只走 HTTP（port 80）
