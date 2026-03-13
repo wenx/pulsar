@@ -77,6 +77,28 @@ server {
 }
 ```
 
+## 本地开发工作流
+
+**改代码：**
+```bash
+python3 server.py        # 本地调试（数据较旧，需要先从服务器 rsync 回 links.json）
+./deploy-code.sh         # 完成后一键 push + 服务器 pull + restart
+```
+
+**更新链接：**
+```bash
+./push-obsidian-links.sh # 推送 Obsidian Links.md 并触发 pipeline
+```
+
+**日常无需操作** — 服务器 cron 每小时自动处理 Telegram 新链接。
+
+**本地拉取最新数据（需要时）：**
+```bash
+rsync -az dmit:/opt/pulsar/links.json .
+```
+
+---
+
 ## 数据同步工作流
 
 服务器是 source of truth，本地不管 `links.json`。
