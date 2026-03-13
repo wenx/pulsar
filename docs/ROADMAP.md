@@ -4,8 +4,8 @@
 
 ### P1 — 可靠性
 
-- [ ] **Microlink 错误检测改进** — `assets.py` 用 `len(data) < 1000` 判断截屏失败，应检查 Content-Type 是否为 image
-- [ ] **SVG 标题转义补全** — `assets.py` `make_svg_thumbnail` 中单引号 `'` 未转义，可能破坏 SVG 属性
+- [x] **Microlink 错误检测改进** — 改为检查 Content-Type 是否为 `image/*`
+- [x] **SVG 标题转义补全** — 已核查：`display_title` 和 `domain_esc` 均插入文本节点，非属性值，单引号无需转义，无问题
 
 ### P2 — 代码质量
 

@@ -61,8 +61,8 @@ def download_thumbnail(url: str, dest: Path) -> bool:
         data = resp.read()
 
         # Microlink may return JSON error instead of image
-        if len(data) < 1000 and "microlink" in url:
-            print(f"    ✗ Microlink screenshot failed, skipping")
+        if "microlink" in url and not content_type.startswith("image/"):
+            print(f"    ✗ Microlink screenshot failed (Content-Type: {content_type}), skipping")
             return False
 
         ext = guess_ext(url, content_type)
