@@ -1417,18 +1417,34 @@ document.getElementById('btn-sync').addEventListener('click', async () => {
   const btn = document.getElementById('btn-sync');
   const status = document.getElementById('status-text');
   btn.disabled = true;
-  status.textContent = 'Syncing Links.md…';
+  status.textContent = 'Syncing…';
   try {
     const res = await fetch('/api/sync', { method: 'POST' });
     if (res.status === 409) {
       status.textContent = 'Pipeline already running';
-    } else {
-      status.textContent = 'Sync started — pipeline running in background';
-      document.getElementById('last-sync').textContent = new Date().toLocaleTimeString();
+      btn.disabled = false;
+      return;
     }
+    document.getElementById('last-sync').textContent = new Date().toLocaleTimeString();
+    const pollId = setInterval(async () => {
+      try {
+        const sr = await fetch('/api/status');
+        const st = await sr.json();
+        if (st.running) {
+          status.textContent = `Syncing: ${st.step}…`;
+        } else if (st.done) {
+          clearInterval(pollId);
+          await loadLinks();
+          status.textContent = `Ready — ${links.length} links`;
+          btn.disabled = false;
+        }
+      } catch {
+        clearInterval(pollId);
+        btn.disabled = false;
+      }
+    }, 2000);
   } catch (e) {
     status.textContent = 'Sync failed';
-  } finally {
     btn.disabled = false;
   }
 });
