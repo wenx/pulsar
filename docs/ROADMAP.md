@@ -39,3 +39,4 @@
 - [ ] **全文搜索** — `content/` 目录已有 Markdown 全文（96 条中 66 条有内容），可接入本地搜索（如 Fuse.js）；现有搜索只匹配 title/domain/tags
 - [ ] **标签过滤多选** — 当前只能单标签过滤，支持多标签 AND/OR 会更实用
 - [ ] **自动同步** — 当前需手动点 Sync 按钮；可改为 server 启动时自动跑一次 sync，或监听 `pulsar-links-telegram.json` / `Links.md` 文件变更触发（watchdog）
+- [ ] **Light Theme** — 当前仅暗色主题；可加亮色主题切换，跟随系统 `prefers-color-scheme` 或手动切换
