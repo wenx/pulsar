@@ -27,7 +27,12 @@ _spec.loader.exec_module(_mod)
 parse_links_md = _mod.parse_links_md
 
 
-def _merge(sources: list[dict], existing: list[dict]) -> tuple[int, int]:
+OBSIDIAN_SYNC_FIELDS = ("done", "notes")
+TELEGRAM_SYNC_FIELDS = ("done", "notes", "ai_summary", "tags", "category", "desc")
+
+
+def _merge(sources: list[dict], existing: list[dict],
+           sync_fields: tuple = OBSIDIAN_SYNC_FIELDS) -> tuple[int, int]:
     """Merge source links into existing list. Returns (added, updated)."""
     existing_by_url = {l["url"].rstrip("/"): l for l in existing}
     added = updated = 0
@@ -37,8 +42,8 @@ def _merge(sources: list[dict], existing: list[dict]) -> tuple[int, int]:
         if key in existing_by_url:
             cur = existing_by_url[key]
             changed = False
-            for field in ("done", "notes"):
-                if cur.get(field) != link.get(field):
+            for field in sync_fields:
+                if link.get(field) and cur.get(field) != link.get(field):
                     cur[field] = link.get(field)
                     changed = True
             if changed:
@@ -70,7 +75,7 @@ def sync() -> int:
     if TELEGRAM_FILE.exists():
         tg_data = json.loads(TELEGRAM_FILE.read_text("utf-8"))
         tg_links = [l for l in tg_data.get("links", []) if l.get("url")]
-        tg_added, tg_updated = _merge(tg_links, existing)
+        tg_added, tg_updated = _merge(tg_links, existing, TELEGRAM_SYNC_FIELDS)
 
     total_added = added + tg_added
     total_updated = updated + tg_updated
