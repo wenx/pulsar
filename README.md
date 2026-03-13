@@ -125,3 +125,57 @@ pulsar/
 ├── fonts/             # 自定义字体（TX-02, Tamzen）
 └── .env               # API Key（不入库）
 ```
+
+---
+
+## Telegram 频道同步（Marvin 🤖）
+
+通过 OpenClaw 实现 Telegram 频道链接自动同步到 GitHub。
+
+### 工作流程
+
+```
+Telegram 频道发送链接
+       ↓
+ Marvin AI 自动抓取内容
+       ↓
+ 生成 AI 摘要 + 分类
+       ↓
+ 更新 pulsar-links-telegram.json
+       ↓
+ Heartbeat 每30分钟检查
+       ↓
+ 自动推送到 GitHub
+```
+
+### 同步文件
+
+- `pulsar-links-telegram.json` — Telegram 频道链接收藏
+
+### 字段说明
+
+| 字段 | 说明 |
+|------|------|
+| date | 添加日期 |
+| title | 标题 |
+| url | 链接 |
+| domain | 域名 |
+| category | 分类（英文） |
+| ai_summary | AI 一句话摘要 |
+| tags | 标签 |
+
+### 相关文件
+
+- `HEARTBEAT.md` — OpenClaw 心跳配置
+- `sync-pulsar.sh` — Git 同步脚本
+
+### 配置（OpenClaw）
+
+1. **添加频道白名单**：`channels.telegram.groups`
+2. **配置 Heartbeat**：编辑 `HEARTBEAT.md`
+3. **Git 推送**：使用 GitHub Personal Access Token
+
+### 更多信息
+
+- OpenClaw 文档：https://docs.openclaw.ai
+- 频道：⚡️Pulsar
