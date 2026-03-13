@@ -28,7 +28,7 @@
 
 ### P1 — 可靠性
 
-- [ ] **GitHub API rate limit** — 未认证请求 60 次/小时，超限后无处理；可加 token 支持或检测 429 响应
+- [x] **GitHub API rate limit** — `_api_get` 检测 403/429，报错含 remaining/reset；`GITHUB_TOKEN` 可选提升至 5000 次/小时
 
 ### P2 — 代码质量
 
