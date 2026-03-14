@@ -1488,8 +1488,8 @@ document.getElementById('btn-sync').addEventListener('click', async () => {
   status.textContent = 'Syncing…';
   try {
     const res = await fetch('/api/sync', { method: 'POST' });
-    if (res.status === 409) {
-      status.textContent = 'Pipeline already running';
+    if (!res.ok) {
+      status.textContent = 'Sync failed';
       btn.disabled = false;
       return;
     }

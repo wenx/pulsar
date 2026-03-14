@@ -28,13 +28,11 @@ PIPELINE = [
 
 # Pipeline status tracking
 pipeline_status = {"running": False, "step": "", "done": True}
+_pipeline_rerun = False  # Flag: new link added while pipeline running, need re-run
 
 
-def run_pipeline():
-    """Run enrichment pipeline in background."""
-    global pipeline_status
-    pipeline_status = {"running": True, "step": "starting", "done": False}
-    print("  ▶ Running pipeline...")
+def _run_pipeline_once():
+    """Run all pipeline steps once."""
     for script in PIPELINE:
         path = ROOT / script
         if not path.exists():
@@ -56,7 +54,21 @@ def run_pipeline():
                 print(f"    ✗ {script}: {result.stderr[:100]}")
         except subprocess.TimeoutExpired:
             print(f"    ✗ {script}: timeout")
-    pipeline_status = {"running": False, "step": "", "done": True}
+
+
+def run_pipeline():
+    """Run enrichment pipeline in background. Re-runs if new links added during execution."""
+    global _pipeline_rerun
+    pipeline_status.update({"running": True, "step": "starting", "done": False})
+    while True:
+        _pipeline_rerun = False
+        print("  ▶ Running pipeline...")
+        _run_pipeline_once()
+        if _pipeline_rerun:
+            print("  ↻ New links added during pipeline, re-running...")
+            continue
+        break
+    pipeline_status.update({"running": False, "step": "", "done": True})
     print("  ✓ Pipeline complete")
 
 
@@ -124,19 +136,26 @@ class PulsarHandler(SimpleHTTPRequestHandler):
             self.send_json(200, {"ok": True, "title": title, "count": len(links)})
             print(f"  + Added: {title[:40]} ({url})")
 
-            pipeline_status.update({"running": True, "step": "queued", "done": False})
-            threading.Thread(target=run_pipeline, daemon=True).start()
+            global _pipeline_rerun
+            if pipeline_status.get("running"):
+                # Pipeline already running — flag for re-run so new link gets processed
+                _pipeline_rerun = True
+                print("    (pipeline running, queued for re-run)")
+            else:
+                threading.Thread(target=run_pipeline, daemon=True).start()
 
         except Exception as e:
             self.send_json(500, {"error": str(e)})
 
     def handle_sync(self):
-        if pipeline_status["running"]:
-            self.send_json(409, {"error": "Pipeline already running"})
+        global _pipeline_rerun
+        if pipeline_status.get("running"):
+            _pipeline_rerun = True
+            self.send_json(200, {"ok": True, "rerun": True})
+            print("  ↻ Manual sync — pipeline running, queued for re-run")
             return
         self.send_json(200, {"ok": True})
         print("  ↻ Manual sync triggered")
-        pipeline_status.update({"running": True, "step": "queued", "done": False})
         threading.Thread(target=run_pipeline, daemon=True).start()
 
     def handle_delete_link(self):
