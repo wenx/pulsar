@@ -1639,6 +1639,7 @@ addUrlInput.addEventListener('keydown', e => {
 // --- Masonry Layout ---
 const MASONRY_GAP = 16;
 const MASONRY_MIN_COL = 240;
+const MASONRY_MAX_COLS = 6;
 
 function layoutMasonry() {
   const grid = document.getElementById('link-grid');
@@ -1647,7 +1648,7 @@ function layoutMasonry() {
   if (!items.length) return;
 
   const gridW = grid.clientWidth;
-  const cols = Math.max(1, Math.floor((gridW + MASONRY_GAP) / (MASONRY_MIN_COL + MASONRY_GAP)));
+  const cols = Math.min(MASONRY_MAX_COLS, Math.max(1, Math.floor((gridW + MASONRY_GAP) / (MASONRY_MIN_COL + MASONRY_GAP))));
   const colW = (gridW - MASONRY_GAP * (cols - 1)) / cols;
   const colH = new Array(cols).fill(0);
 
