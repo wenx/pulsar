@@ -464,7 +464,6 @@
   /* Thumbnail — list view: fixed size on left */
   .link-thumb {
     width: 168px;
-    max-width: 30%;
     height: 112px;
     border-radius: 4px;
     overflow: hidden;
@@ -971,6 +970,7 @@
     .content { padding: 12px; }
     .toolbar { padding: 10px 12px; }
     .statusbar { padding: 6px 12px; }
+    .link-grid:not(.grid-view) .link-thumb { max-width: 30%; }
   }
 </style>
 </head>
