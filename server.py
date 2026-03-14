@@ -17,6 +17,7 @@ from config import PORT, PIPELINE_TIMEOUT, classify_format, normalize_url
 
 ROOT = Path(__file__).parent
 LINKS_FILE = ROOT / "links.json"
+DELETED_FILE = ROOT / "deleted.json"
 MAX_BODY = 65536  # 64KB max request body
 
 PIPELINE = [
@@ -164,6 +165,13 @@ class PulsarHandler(SimpleHTTPRequestHandler):
             LINKS_FILE.write_text(
                 json.dumps(links, ensure_ascii=False, indent=2), "utf-8"
             )
+
+            # Record deleted URL so sync.py won't re-add it
+            deleted = json.loads(DELETED_FILE.read_text("utf-8")) if DELETED_FILE.exists() else []
+            norm = normalize_url(url)
+            if norm not in deleted:
+                deleted.append(norm)
+                DELETED_FILE.write_text(json.dumps(deleted, ensure_ascii=False, indent=2), "utf-8")
 
             self.send_json(200, {"ok": True, "count": len(links)})
             print(f"  - Deleted: {url}")

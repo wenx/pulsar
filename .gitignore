@@ -8,6 +8,7 @@ thumbs/
 # Generated data (managed by pipeline)
 links.json
 feed.xml
+deleted.json
 
 # Environment
 .env
