@@ -14,7 +14,7 @@
       "favicon": "",
       "category": "Podcast",
       "tags": ["播客", "叙利亚", "阿拉姆语"],
-      "ai_summary": "关于阿拉姆语（耶稣使用的语言）和叙利亚文化的播客",
+      "ai_summary": "音频播客探讨阿拉姆语（耶稣时代的语言）的现状与叙利亚文化。阿拉姆语曾是真主耶稣使用的语言，如今使用者极少，该播客探讨了这一古老语言部落的现状与传承意义。",
       "content_file": ""
     },
     {
@@ -31,7 +31,7 @@
       "favicon": "",
       "category": "ToDo",
       "tags": ["AI", "飞书"],
-      "ai_summary": "",
+      "ai_summary": "WayToAGI 社区维护的 AI 学习知识库，内容涵盖 AI 工具使用、Prompt 工程、案例实践等。飞书文档形式便于协作更新，是中文 AI 学习者的入门资源。",
       "content_file": ""
     },
     {
@@ -48,7 +48,7 @@
       "favicon": "",
       "category": "Tech",
       "tags": ["技术", "AI", "工具"],
-      "ai_summary": "介绍 ArkClaw 这款零安装的云端 AI 工具",
+      "ai_summary": "字节推出的免安装版 OpenClaw（云龙虾），内置于火山引擎云主机，开箱即用。优势：免配置、7x24小时在线、可定时执行任务、支持飞书/钉钉/企业微信通知。可通过自然语言加载 Skill 扩展能力，底层模型为字节 Seed 2.0。",
       "content_file": ""
     },
     {
@@ -65,7 +65,7 @@
       "favicon": "",
       "category": "News",
       "tags": ["时事", "伊朗", "特朗普"],
-      "ai_summary": "分析特朗普和内塔尼亚胡在伊朗问题上的不同立场",
+      "ai_summary": "特朗普与内塔尼亚胡在伊朗战争目标上出现分歧：美方希望伊朗屈服（摧毁军事能力后谈判），以方欲彻底推翻伊朗政权。油价飙升民众反战，特朗普面临中期选举压力；内塔尼亚胡因国内支持率高且面临连任，倾向于更强硬立场。两国同床异梦，结束战争遥遥无期。",
       "content_file": ""
     },
     {
@@ -82,7 +82,7 @@
       "favicon": "",
       "category": "AI",
       "tags": ["AI", "微信"],
-      "ai_summary": "",
+      "ai_summary": "中文 AI 公众号，追踪 AI 领域最新动态、工具评测与行业应用案例。",
       "content_file": ""
     },
     {
@@ -99,7 +99,7 @@
       "favicon": "",
       "category": "People",
       "tags": ["人物", "投资", "Thrive Capital"],
-      "ai_summary": "Thrive Capital 创始人库什纳的创业投资故事",
+      "ai_summary": "Thrive Capital 创始人乔舒亚·库什纳的创业与投资史。从耶鲁毕业、创立 Thrive Capital，到成为 OpenAI 重要投资者的故事。",
       "content_file": ""
     },
     {
@@ -116,7 +116,7 @@
       "favicon": "",
       "category": "Opinion",
       "tags": ["AI", "思考", "Ethan Mollick"],
-      "ai_summary": "AI 发展的几个阶段和形态的思考",
+      "ai_summary": "Ethan Mollick 对 AI 发展阶段的深度复盘。核心观点：GPT-4 时代只是 AI 第一阶段的尾声，多模态（视觉+语音）才是关键变量。AI 已能看、说、读、写、连接外部数据，即将像助手/伴侣一样与人类共存。短期内 AI 对工作的影响取决于我们如何选择使用它——是赋能还是剥夺权力。",
       "content_file": ""
     },
     {
@@ -133,7 +133,7 @@
       "favicon": "",
       "category": "Video",
       "tags": ["影视", "沙丘", "B站"],
-      "ai_summary": "沙丘宇宙世界观入门讲解",
+      "ai_summary": "B站 UP 主讲解沙丘宇宙世界观，以电影为主、小说为辅，融合电影与小说情节。系列视频适合零基础观众了解沙丘世界的基本设定、人物关系与世界观架构。",
       "content_file": ""
     },
     {
@@ -150,7 +150,7 @@
       "favicon": "",
       "category": "Tools",
       "tags": ["OpenClaw", "工具", "GitHub"],
-      "ai_summary": "5000+ OpenClaw 技能列表，按类别整理",
+      "ai_summary": "社区整理的 OpenClaw 技能列表，从 ClawHub 官方技能库 13000+ 中筛选出 5400+ 高质量技能。按类别组织：编程开发(1200+)、前端(938)、DevOps(409)、搜索研究(351)、浏览器自动化(335) 等。使用方式：复制技能文件夹到本地或直接让 AI 安装。",
       "content_file": ""
     },
     {
@@ -167,10 +167,10 @@
       "favicon": "",
       "category": "Tech",
       "tags": ["技术", "周报", "阮一峰"],
-      "ai_summary": "本周科技热点：测试的重要性",
+      "ai_summary": "阮一峰科技周报，本期主题：测试的重要性。文章探讨了为什么测试在软件开发中容易被忽视，以及测试如何帮助开发者建立信心、减少 bug、提升代码质量。",
       "content_file": ""
-    }
-  {
+    },
+    {
       "date": "2026-03-14",
       "title": "Optimizing Content for Agents",
       "url": "https://cra.mr/optimizing-content-for-agents/",
@@ -186,8 +186,8 @@
       "tags": ["AI", "代理", "Sentry", "工程"],
       "ai_summary": "通过 Content Negotiation（Accept: text/markdown）检测 AI 代理并提供优化后的纯 Markdown 内容。Sentry 的实践：文档站去除导航和 JS 元素，首页直接引导代理使用 MCP/CLI/API 而不是显示 HTML。核心观点：LLMs.txt 思路正确但实现错误，内容协商才是可行方案，且需持续跟进代理行为变化更新优化策略。",
       "content_file": ""
-    }
-  {
+    },
+    {
       "date": "2026-03-14",
       "title": "Warden - AI Code Review Agent",
       "url": "https://warden.sentry.dev/",
@@ -201,7 +201,7 @@
       "favicon": "",
       "category": "DevTools",
       "tags": ["AI", "代码审查", "Sentry", "开源"],
-      "ai_summary": "Sentry 出品的 AI 代码审查代理。通过 Skills（定义检查规则的 Markdown prompt）分析代码变更，支持安全漏洞、API 设计、性能问题等自定义检查。可在本地运行（pre-commit）或集成到 CI/PR 中自动审查。核心优势：基于 agentskills.io 规范，可复用社区 Skills，支持 MCP 集成。",
+      "ai_summary": "Sentry 出品的 AI 代码审查代理。通过 Skills（Markdown prompt 定义检查规则）分析代码变更，支持安全漏洞、API 设计、性能问题等自定义检查。可在本地运行（pre-commit）或集成到 CI/PR 中自动审查。核心优势：基于 agentskills.io 规范，可复用社区 Skills，支持 MCP 集成。",
       "content_file": ""
     }
   ]
