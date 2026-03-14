@@ -237,6 +237,23 @@
       "tags": ["健康", "Huberman", "Peter Attia", "播客"],
       "ai_summary": "中文健康知识网站，将 Huberman Lab、Peter Attia 等顶级健康专家的播客精华转化为实用行动指南。内容涵盖睡眠、营养、运动、压力管理等维度，科学性+实用性，2025年4月上线。",
       "content_file": ""
+    },
+    {
+      "date": "2026-03-14",
+      "title": "ClawHub - OpenClaw Skills Registry",
+      "url": "https://clawhub.ai/",
+      "domain": "clawhub.ai",
+      "author": "",
+      "format": "Website",
+      "notes": "",
+      "done": false,
+      "thumbnail": "",
+      "desc": "OpenClaw 官方技能市场",
+      "favicon": "",
+      "category": "Tools",
+      "tags": ["OpenClaw", "技能", "MCP", "工具"],
+      "ai_summary": "OpenClaw 官方技能（Skills）注册中心。截至 2026年2月已收录 13000+ 社区构建的技能，涵盖编程开发、前端、DevOps、浏览器自动化、搜索研究、AI/LLM 等多个领域。用户可搜索、安装技能，开发者可提交新技能。",
+      "content_file": ""
     }
   ]
 }
