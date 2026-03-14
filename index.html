@@ -1200,8 +1200,10 @@ function renderLinks(filtered) {
   // Trigger masonry relayout after rendering
   requestAnimationFrame(() => {
     layoutMasonry();
+    let _imgDebounce;
+    const debouncedLayout = () => { clearTimeout(_imgDebounce); _imgDebounce = setTimeout(layoutMasonry, 50); };
     document.querySelectorAll('.link-thumb img').forEach(img => {
-      if (!img.complete) img.addEventListener('load', layoutMasonry, { once: true });
+      if (!img.complete) img.addEventListener('load', debouncedLayout, { once: true });
     });
   });
 }
@@ -1322,10 +1324,8 @@ document.addEventListener('click', e => {
   }
 });
 
-document.addEventListener('mouseover', e => {
-  if (!e.target.closest('.link-card')) {
-    document.querySelectorAll('.link-menu.open').forEach(m => m.classList.remove('open'));
-  }
+document.getElementById('link-grid').addEventListener('mouseleave', () => {
+  document.querySelectorAll('.link-menu.open').forEach(m => m.classList.remove('open'));
 });
 
 // --- Confirm Dialog ---
@@ -1678,12 +1678,16 @@ function layoutMasonry() {
   const colW = (gridW - MASONRY_GAP * (cols - 1)) / cols;
   const colH = new Array(cols).fill(0);
 
-  items.forEach(item => {
-    item.style.width = colW + 'px';
+  // Phase 1: set widths and read heights (batch to avoid layout thrashing)
+  items.forEach(item => { item.style.width = colW + 'px'; });
+  const heights = items.map(item => item.offsetHeight);
+
+  // Phase 2: set positions (write-only, no reflow)
+  items.forEach((item, i) => {
     const col = colH.indexOf(Math.min(...colH));
     item.style.left = col * (colW + MASONRY_GAP) + 'px';
     item.style.top = colH[col] + 'px';
-    colH[col] += item.offsetHeight + MASONRY_GAP;
+    colH[col] += heights[i] + MASONRY_GAP;
   });
 
   grid.style.height = Math.max(...colH) - MASONRY_GAP + 'px';

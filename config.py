@@ -1,7 +1,10 @@
 """Pulsar shared configuration."""
 
+import fcntl
 import hashlib
+import json
 import os
+import tempfile
 from pathlib import Path
 from urllib.parse import urlparse, urlunparse
 
@@ -126,6 +129,36 @@ def normalize_url(url: str) -> str:
 def url_hash(url: str) -> str:
     """Short hash of URL for filename."""
     return hashlib.md5(url.encode()).hexdigest()[:10]
+
+
+ROOT = Path(__file__).parent
+LINKS_FILE = ROOT / "links.json"
+LINKS_LOCK = ROOT / ".links.lock"
+
+
+def read_links() -> list:
+    """Read links.json with shared lock."""
+    if not LINKS_FILE.exists():
+        return []
+    with open(LINKS_LOCK, "w") as lf:
+        fcntl.flock(lf, fcntl.LOCK_SH)
+        return json.loads(LINKS_FILE.read_text("utf-8"))
+
+
+def write_links(links: list):
+    """Write links.json atomically with exclusive lock."""
+    with open(LINKS_LOCK, "w") as lf:
+        fcntl.flock(lf, fcntl.LOCK_EX)
+        tmp = tempfile.NamedTemporaryFile(
+            mode="w", dir=LINKS_FILE.parent, suffix=".tmp", delete=False
+        )
+        try:
+            tmp.write(json.dumps(links, ensure_ascii=False, indent=2))
+            tmp.close()
+            Path(tmp.name).replace(LINKS_FILE)
+        except Exception:
+            Path(tmp.name).unlink(missing_ok=True)
+            raise
 
 
 def classify_format(domain: str) -> str:

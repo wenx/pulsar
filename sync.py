@@ -13,10 +13,9 @@ import sys
 from datetime import date
 from pathlib import Path
 
-from config import VAULT_PATH, normalize_url
+from config import VAULT_PATH, normalize_url, read_links, write_links
 
 ROOT = Path(__file__).parent
-LINKS_FILE = ROOT / "links.json"
 DELETED_FILE = ROOT / "deleted.json"
 LINKS_MD = VAULT_PATH / "Links.md"
 TELEGRAM_FILE = ROOT / "pulsar-links-telegram.json"
@@ -75,7 +74,7 @@ def sync() -> int:
         print(f"✗ Not found: {LINKS_MD}")
         sys.exit(1)
 
-    existing = json.loads(LINKS_FILE.read_text("utf-8")) if LINKS_FILE.exists() else []
+    existing = read_links()
     deleted = _load_deleted()
 
     # Sync from Links.md
@@ -91,7 +90,7 @@ def sync() -> int:
 
     total_added = added + tg_added
     total_updated = updated + tg_updated
-    LINKS_FILE.write_text(json.dumps(existing, ensure_ascii=False, indent=2), "utf-8")
+    write_links(existing)
     print(f"Sync: +{total_added} new ({added} Obsidian, {tg_added} Telegram), {total_updated} updated, {len(existing)} total")
     return total_added
 

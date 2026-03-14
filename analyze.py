@@ -13,10 +13,10 @@ from pathlib import Path
 from config import (
     AI_MODEL, AI_MAX_TOKENS, AI_BODY_LIMIT, AI_DESC_LIMIT,
     AI_DELAY, AI_CATEGORIES, AI_ANALYZE_PROMPT,
+    read_links, write_links,
 )
 
 ROOT = Path(__file__).parent
-LINKS_FILE = ROOT / "links.json"
 
 
 def get_ai_client():
@@ -92,7 +92,7 @@ def main():
                         help="Re-analyze all links (clear existing ai_summary/category/tags)")
     args = parser.parse_args()
 
-    links = json.loads(LINKS_FILE.read_text("utf-8"))
+    links = read_links()
 
     if args.force:
         cleared = 0
@@ -138,7 +138,7 @@ def main():
         time.sleep(AI_DELAY)
 
     # Save
-    LINKS_FILE.write_text(json.dumps(links, ensure_ascii=False, indent=2), "utf-8")
+    write_links(links)
     print(f"\nDone: {success} analyzed, {errors} errors")
 
 

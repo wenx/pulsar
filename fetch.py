@@ -15,10 +15,10 @@ from config import (
     FETCH_DELAY, JINA_BASE_URL, JINA_TIMEOUT, JINA_API_KEY,
     BODY_TEXT_LIMIT, USER_AGENT, MICROLINK_SCREENSHOT_URL, url_hash,
     CACHE_TTL_DAYS, GITHUB_TOKEN,
+    read_links, write_links,
 )
 
 ROOT = Path(__file__).parent
-LINKS_FILE = ROOT / "links.json"
 CACHE_FILE = ROOT / "meta-cache.json"
 CONTENT_DIR = ROOT / "content"
 
@@ -373,7 +373,7 @@ def get_favicon_url(domain: str) -> str:
 
 
 def main():
-    links = json.loads(LINKS_FILE.read_text("utf-8"))
+    links = read_links()
 
     # Load cache
     cache = json.loads(CACHE_FILE.read_text("utf-8")) if CACHE_FILE.exists() else {}
@@ -457,7 +457,7 @@ def main():
     CACHE_FILE.write_text(json.dumps(cache, ensure_ascii=False, indent=2), "utf-8")
 
     # Save enriched links
-    LINKS_FILE.write_text(json.dumps(links, ensure_ascii=False, indent=2), "utf-8")
+    write_links(links)
 
     print(f"\nDone: {enriched} enriched, {skipped} skipped, {errors} errors")
     with_thumb = sum(1 for l in links if l.get("thumbnail"))

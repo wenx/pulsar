@@ -13,10 +13,9 @@ from http.server import HTTPServer, SimpleHTTPRequestHandler
 from pathlib import Path
 from urllib.parse import urlparse
 
-from config import PORT, PIPELINE_TIMEOUT, classify_format, normalize_url
+from config import PORT, PIPELINE_TIMEOUT, classify_format, normalize_url, read_links, write_links
 
 ROOT = Path(__file__).parent
-LINKS_FILE = ROOT / "links.json"
 DELETED_FILE = ROOT / "deleted.json"
 MAX_BODY = 65536  # 64KB max request body
 
@@ -98,11 +97,9 @@ class PulsarHandler(SimpleHTTPRequestHandler):
             domain = parsed.hostname.replace("www.", "")
 
             # --- Duplicate check ---
-            links = json.loads(LINKS_FILE.read_text("utf-8"))
-            existing_urls = {l.get("url", "") for l in links}
-            # Normalize: strip trailing slash for comparison
+            links = read_links()
             url_norm = normalize_url(url)
-            if any(normalize_url(u) == url_norm for u in existing_urls):
+            if any(normalize_url(l.get("url", "")) == url_norm for l in links):
                 self.send_json(409, {"error": "Link already exists"})
                 return
 
@@ -122,9 +119,7 @@ class PulsarHandler(SimpleHTTPRequestHandler):
             }
 
             links.insert(0, new_link)
-            LINKS_FILE.write_text(
-                json.dumps(links, ensure_ascii=False, indent=2), "utf-8"
-            )
+            write_links(links)
 
             self.send_json(200, {"ok": True, "title": title, "count": len(links)})
             print(f"  + Added: {title[:40]} ({url})")
@@ -154,7 +149,7 @@ class PulsarHandler(SimpleHTTPRequestHandler):
                 self.send_json(400, {"error": "URL is required"})
                 return
 
-            links = json.loads(LINKS_FILE.read_text("utf-8"))
+            links = read_links()
             original_len = len(links)
             links = [l for l in links if normalize_url(l.get("url", "")) != normalize_url(url)]
 
@@ -162,9 +157,7 @@ class PulsarHandler(SimpleHTTPRequestHandler):
                 self.send_json(404, {"error": "Link not found"})
                 return
 
-            LINKS_FILE.write_text(
-                json.dumps(links, ensure_ascii=False, indent=2), "utf-8"
-            )
+            write_links(links)
 
             # Record deleted URL so sync.py won't re-add it
             deleted = json.loads(DELETED_FILE.read_text("utf-8")) if DELETED_FILE.exists() else []

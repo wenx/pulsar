@@ -16,10 +16,10 @@ from urllib.parse import urlparse
 from config import (
     USER_AGENT, THUMB_DOWNLOAD_DELAY, THUMB_DOWNLOAD_TIMEOUT,
     SITE_URL, FEED_TITLE, FEED_DESC, url_hash,
+    read_links, write_links,
 )
 
 ROOT = Path(__file__).parent
-LINKS_FILE = ROOT / "links.json"
 THUMBS_DIR = ROOT / "thumbs"
 FEED_FILE = ROOT / "feed.xml"
 
@@ -56,9 +56,13 @@ def guess_ext(url: str, content_type: str = "") -> str:
 def download_thumbnail(url: str, dest: Path) -> bool:
     try:
         req = urllib.request.Request(url, headers=HEADERS)
+        MAX_THUMB_SIZE = 10 * 1024 * 1024  # 10MB max
         resp = urllib.request.urlopen(req, timeout=THUMB_DOWNLOAD_TIMEOUT)
         content_type = resp.headers.get("Content-Type", "")
-        data = resp.read()
+        data = resp.read(MAX_THUMB_SIZE + 1)
+        if len(data) > MAX_THUMB_SIZE:
+            print(f"    ✗ Thumbnail too large (>{MAX_THUMB_SIZE // 1024 // 1024}MB), skipping")
+            return False
 
         # Microlink may return JSON error instead of image
         if "microlink" in url and not content_type.startswith("image/"):
@@ -144,7 +148,7 @@ def make_svg_thumbnail(title: str, category: str, domain: str, index: int) -> st
 
     display_title = title[:40] + ("..." if len(title) > 40 else "")
     display_title = display_title.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
-    domain_esc = domain.replace("&", "&amp;")
+    domain_esc = domain.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
 
     random.seed(h)
     scan_lines = "".join(
@@ -256,7 +260,7 @@ def generate_feed(links: list):
 
 
 def main():
-    links = json.loads(LINKS_FILE.read_text("utf-8"))
+    links = read_links()
 
     # 1. Download remote thumbnails
     download_all_thumbnails(links)
@@ -265,7 +269,7 @@ def main():
     generate_svg_fallbacks(links)
 
     # 3. Save updated links
-    LINKS_FILE.write_text(json.dumps(links, ensure_ascii=False, indent=2), "utf-8")
+    write_links(links)
 
     # 4. Generate RSS feed
     generate_feed(links)

@@ -9,6 +9,7 @@ thumbs/
 links.json
 feed.xml
 deleted.json
+.links.lock
 
 # Environment
 .env
