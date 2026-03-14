@@ -209,7 +209,8 @@ pulsar/
 ├── docs/                         # 文档
 │   ├── fetch-strategy.md         # 抓取策略详解
 │   ├── deployment.md             # 部署架构和运维命令
-│   └── ROADMAP.md                # 待办事项
+│   ├── ROADMAP.md                # 待办事项
+│   └── future-roadmap.md         # 产品演进方向（消化→连接→输出）
 └── .env                          # API Key（不入库）
 ```
 
@@ -222,6 +223,19 @@ pulsar/
 **布局**
 - **响应式百分比断点**：masonry 从 min-width 改为百分比断点方案（5/4/3/2/1 列，按内容区宽度 1920/1440/1024/640 切换），卡片始终填满宽度
 - **分割线对齐**：header/toolbar/footer 统一高度，左右分割线完美对齐
+- **Sidebar 收窄**：220→208px，iPad 竖屏内容区更宽
+- **Topics 折叠**：默认收起，点击展开/收起
+
+**安全与性能**
+- **文件锁**：`read_links()` / `write_links()` 统一管理 links.json 读写，flock 防并发 + 原子写防损坏
+- **缩略图大小限制**：下载上限 10MB，防恶意服务器内存耗尽
+- **SVG 转义补全**：domain 字段完整转义 `& < > "`
+- **Masonry 性能**：分离读写阶段消除 layout thrashing；图片 load 事件 debounce
+- **事件优化**：mouseover 替换为 mouseleave，减少不必要的 DOM 查询
+
+**Bug 修复**
+- **删除链接复活**：前端删除的链接被 sync 重新加回；新增 `deleted.json` 记录已删 URL，sync 时跳过
+- **Grid 缩略图缩小**：`max-width: 30%` 限定为仅 list view 移动端生效
 
 ### 2026-03-14
 

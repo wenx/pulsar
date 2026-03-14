@@ -27,7 +27,9 @@
 - [x] **自动同步** — 服务器 cron 每小时自动跑完整 pipeline；Obsidian Links.md 用 `push-obsidian-links.sh` 手动推送触发
 - [x] **部署** — DMIT 服务器（154.17.28.133），Nginx 反代 + systemd 守护进程，`anthropic` SDK 已安装，pipeline 完整可用
 - [x] **域名配置** — DNS A 记录 `pulsar.wenxin.io` → `154.17.28.133`，HTTP 可用；443 被 xray（REALITY）占用，暂不支持 HTTPS
-- [x] **响应式布局优化** — 参考 Poche.app，masonry 改为百分比断点方案（5/4/3/2/1 列，按内容区宽度 1920/1440/1024/640 切换），header/toolbar/footer 分割线对齐，tablet 断点 padding 收窄
+- [x] **响应式布局优化** — 参考 Poche.app，masonry 改为百分比断点方案（5/4/3/2/1 列，按内容区宽度 1920/1440/1024/640 切换），sidebar 208px，header/toolbar/footer 分割线对齐
+- [x] **Topics 侧边栏可收起** — 默认收起，点击标题展开/收起，箭头旋转动画
+- [x] **安全与性能加固** — 文件锁原子写、缩略图 10MB 限制、SVG 转义补全、masonry reflow 优化
 
 ---
 
@@ -36,7 +38,6 @@
 ### P3 — 增强
 
 - [ ] **AI Categories 重新定义** — 现有 category 是主题分类（Technology、Economics…），改为内容类型分类：`Article / Media / Tool / Design / Development / Crypto / Other`；同步更新 `config.py` 的 `AI_CATEGORIES`、AI prompt、前端过滤逻辑
-- [x] **Topics 侧边栏可收起** — 默认收起，点击标题展开/收起，箭头旋转动画
 - [ ] **标签过滤多选** — 当前只能单标签过滤，支持多标签 AND/OR 会更实用
 - [ ] **全文搜索** — `content/` 目录已有 Markdown 全文，可接入本地搜索（如 Fuse.js）；现有搜索只匹配 title/domain/tags
 - [ ] **HTTPS** — 443 被 xray 占用；解法：xray 迁移到其他端口，或换 IP 单独部署 Pulsar
