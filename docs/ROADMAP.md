@@ -38,4 +38,5 @@
 - [ ] **Topics 侧边栏可收起** — Topics 列表较长，加折叠/展开按钮
 - [ ] **标签过滤多选** — 当前只能单标签过滤，支持多标签 AND/OR 会更实用
 - [ ] **全文搜索** — `content/` 目录已有 Markdown 全文，可接入本地搜索（如 Fuse.js）；现有搜索只匹配 title/domain/tags
+- [ ] **iPad 布局优化** — 参考 [Poche.app](https://poche.app) 的布局风格，调整响应式设计适配 iPad 屏幕
 - [ ] **HTTPS** — 443 被 xray 占用；解法：xray 迁移到其他端口，或换 IP 单独部署 Pulsar
