@@ -170,5 +170,22 @@
       "ai_summary": "本周科技热点：测试的重要性",
       "content_file": ""
     }
+  {
+      "date": "2026-03-14",
+      "title": "Optimizing Content for Agents",
+      "url": "https://cra.mr/optimizing-content-for-agents/",
+      "domain": "cra.mr",
+      "author": "",
+      "format": "Article",
+      "notes": "",
+      "done": false,
+      "thumbnail": "",
+      "desc": "Sentry 工程师博客：如何为 AI 代理优化网站内容",
+      "favicon": "",
+      "category": "Tech",
+      "tags": ["AI", "代理", "Sentry", "工程"],
+      "ai_summary": "通过 Content Negotiation（Accept: text/markdown）检测 AI 代理并提供优化后的纯 Markdown 内容。Sentry 的实践：文档站去除导航和 JS 元素，首页直接引导代理使用 MCP/CLI/API 而不是显示 HTML。核心观点：LLMs.txt 思路正确但实现错误，内容协商才是可行方案，且需持续跟进代理行为变化更新优化策略。",
+      "content_file": ""
+    }
   ]
 }
