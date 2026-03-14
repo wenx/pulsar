@@ -204,5 +204,22 @@
       "ai_summary": "Sentry 出品的 AI 代码审查代理。通过 Skills（Markdown prompt 定义检查规则）分析代码变更，支持安全漏洞、API 设计、性能问题等自定义检查。可在本地运行（pre-commit）或集成到 CI/PR 中自动审查。核心优势：基于 agentskills.io 规范，可复用社区 Skills，支持 MCP 集成。",
       "content_file": ""
     }
+  {
+      "date": "2026-03-14",
+      "title": "Financial Datasets MCP Server",
+      "url": "https://docs.financialdatasets.ai/mcp-server",
+      "domain": "docs.financialdatasets.ai",
+      "author": "Financial Datasets",
+      "format": "Documentation",
+      "notes": "",
+      "done": false,
+      "thumbnail": "",
+      "desc": "AI 访问金融数据的 MCP 服务器",
+      "favicon": "",
+      "category": "DevTools",
+      "tags": ["AI", "金融", "MCP", "数据"],
+      "ai_summary": "Financial Datasets 提供的 MCP 服务器，让 AI 助手可直接查询实时金融数据：股票价格、财务报表（收入、资产负债表、现金流）、SEC 文件（10-K、10-Q）、加密货币价格、新闻等。支持 Claude、OpenClaw、Cursor 等客户端，通过 OAuth 或 API Key 认证。使用方式：直接问 AI \"苹果当前 P/E 比率和市值是多少\"、\"特斯拉过去4季度收入\"等自然语言问题即可获取数据。",
+      "content_file": ""
+    }
   ]
 }
