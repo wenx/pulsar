@@ -187,5 +187,22 @@
       "ai_summary": "通过 Content Negotiation（Accept: text/markdown）检测 AI 代理并提供优化后的纯 Markdown 内容。Sentry 的实践：文档站去除导航和 JS 元素，首页直接引导代理使用 MCP/CLI/API 而不是显示 HTML。核心观点：LLMs.txt 思路正确但实现错误，内容协商才是可行方案，且需持续跟进代理行为变化更新优化策略。",
       "content_file": ""
     }
+  {
+      "date": "2026-03-14",
+      "title": "Warden - AI Code Review Agent",
+      "url": "https://warden.sentry.dev/",
+      "domain": "warden.sentry.dev",
+      "author": "Sentry",
+      "format": "Documentation",
+      "notes": "",
+      "done": false,
+      "thumbnail": "",
+      "desc": "Sentry 开源的 AI 代码审查工具，支持本地和 CI 使用",
+      "favicon": "",
+      "category": "DevTools",
+      "tags": ["AI", "代码审查", "Sentry", "开源"],
+      "ai_summary": "Sentry 出品的 AI 代码审查代理。通过 Skills（定义检查规则的 Markdown prompt）分析代码变更，支持安全漏洞、API 设计、性能问题等自定义检查。可在本地运行（pre-commit）或集成到 CI/PR 中自动审查。核心优势：基于 agentskills.io 规范，可复用社区 Skills，支持 MCP 集成。",
+      "content_file": ""
+    }
   ]
 }
