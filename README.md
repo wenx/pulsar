@@ -128,7 +128,7 @@ VAULT_PATH=/path/to/vault python3 sync.py
 ```
 Telegram 频道发送链接 → Marvin AI 生成摘要/分类
   → 写入 pulsar-links-telegram.json（OpenClaw workspace）
-  → 系统 crontab 每30分钟 cp + git push 到 GitHub
+  → 系统 crontab 每30分钟通过 GitHub API 推送到仓库
   → 服务器 cron 每小时 git pull → sync.py 合并进 links.json → pipeline 补全
 ```
 

@@ -104,10 +104,23 @@ rsync -az dmit:/opt/pulsar/links.json .
 服务器是 source of truth，本地不管 `links.json`。
 
 ```
-Telegram 新链接   → cron 每小时自动处理
+Telegram 新链接   → Marvin 写入 → crontab 推 GitHub → 每小时 pipeline 处理
 Obsidian Links.md → ./push-obsidian-links.sh 手动触发
 临时加单个链接    → 前端 Add Link 立即触发 pipeline
 ```
+
+### Telegram 链接同步
+
+Marvin bot（OpenClaw）监听 Telegram 频道，生成中文摘要/分类，写入 `pulsar-links-telegram.json`（OpenClaw workspace）。Marvin 只写文件，不执行 git 操作。
+
+系统 crontab 每 30 分钟通过 GitHub API 将文件推到仓库：
+```
+*/30 * * * * /root/sync-telegram-github.sh
+```
+
+脚本位置：`/root/sync-telegram-github.sh`，逻辑：读取本地文件 → base64 编码 → GitHub Contents API PUT → 更新仓库文件。内容无变化时静默跳过。
+
+### Pipeline
 
 **`push-obsidian-links.sh`**：把本地 Obsidian 的 `Links.md` rsync 到服务器，然后触发完整 pipeline。
 
