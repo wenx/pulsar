@@ -123,15 +123,16 @@ VAULT_PATH=/path/to/vault python3 sync.py
 
 ### Telegram（Marvin 🤖）
 
-通过 OpenClaw 自动同步 Telegram 频道链接：
+通过 OpenClaw + Marvin bot 自动同步 Telegram 频道链接：
 
 ```
-Telegram 频道发送链接 → Marvin AI 抓取 + 生成摘要/分类
-  → 更新 pulsar-links-telegram.json → Heartbeat 每30分钟推送 GitHub
-  → sync.py 合并进 links.json → assets.py 补全缩略图
+Telegram 频道发送链接 → Marvin AI 生成摘要/分类
+  → 写入 pulsar-links-telegram.json（OpenClaw workspace）
+  → 系统 crontab 每30分钟 cp + git push 到 GitHub
+  → 服务器 cron 每小时 git pull → sync.py 合并进 links.json → pipeline 补全
 ```
 
-Telegram links 已含 `ai_summary`/`tags`/`category`（Marvin 预填），`analyze.py` 自动跳过，只补 `thumbnail`。
+Marvin 只负责写 `pulsar-links-telegram.json`，不执行 git 操作。Telegram links 已含 `ai_summary`/`tags`/`category`（Marvin 预填），`analyze.py` 自动跳过，只补 `thumbnail`。
 
 ---
 
@@ -198,7 +199,7 @@ pulsar/
 ├── parse-links.py                # Links.md 解析器（供 sync.py 调用）
 ├── deploy-code.sh                # 部署代码：git push + 服务器 pull + restart
 ├── push-obsidian-links.sh        # 推送 Obsidian Links.md 到服务器并触发 pipeline
-├── pulsar-links-telegram.json    # Telegram 频道链接（Marvin bot 维护）
+├── pulsar-links-telegram.json    # Telegram 频道链接（Marvin 写入，crontab 同步）
 ├── meta-cache.json               # 元数据缓存（TTL 30天，不入库）
 ├── links.json                    # 链接数据（不入库，服务器 source of truth）
 ├── feed.xml                      # RSS 订阅源（不入库，pipeline 生成）

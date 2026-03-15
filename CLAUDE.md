@@ -28,12 +28,16 @@
 
 ### 3. 日常 Telegram 链接（全自动）
 
+数据流：Marvin bot（OpenClaw）监听 Telegram 频道 → 生成中文摘要/分类 → 写入 `pulsar-links-telegram.json`（OpenClaw workspace）→ 系统 crontab 每 30 分钟 cp + git push 到 GitHub。
+
 服务器 cron 每小时整点自动执行：
 1. `git pull` — 拉取最新代码和 telegram.json
 2. `python3 sync.py` — 合并 telegram.json 新链接到 links.json
 3. `python3 fetch.py` — 抓取新链接元数据
 4. `python3 analyze.py` — AI 分析
 5. `python3 assets.py` — 下载缩略图，更新 feed.xml
+
+Marvin 只写文件，不执行 git 操作。同步到 GitHub 由系统 crontab 负责。
 
 日志：`ssh dmit "tail -50 /opt/pulsar/pipeline.log"`
 
