@@ -1,5 +1,59 @@
 # Deployment — DMIT Server
 
+## 架构总览
+
+```
+┌─ 输入源 ─────────────────────────────────────────────────────┐
+│                                                               │
+│  Telegram 频道 → Marvin bot → pulsar-links-telegram.json     │
+│                    (OpenClaw workspace, 只写文件)              │
+│                         ↓                                     │
+│                  crontab */30 → GitHub API push               │
+│                                                               │
+│  Obsidian Links.md → ./push-obsidian-links.sh → rsync 到服务器│
+│                                                               │
+│  前端 Add Link → POST /api/add → 立即触发 pipeline           │
+│                                                               │
+└───────────────────────────────────────────────────────────────┘
+                         ↓
+┌─ 服务器 /opt/pulsar (source of truth) ───────────────────────┐
+│                                                               │
+│  crontab 0 * → git pull → sync.py → fetch.py → analyze.py   │
+│                              → assets.py → links.json 更新    │
+│                                                               │
+│  systemd pulsar.service → server.py :3460                    │
+│       ↓                                                       │
+│  Nginx :80 → pulsar.wenxin.io                                │
+│                                                               │
+└───────────────────────────────────────────────────────────────┘
+```
+
+### 关键路径
+
+| 路径 | 用途 |
+|------|------|
+| `/opt/pulsar` | 生产环境，Pulsar 服务 + pipeline |
+| `/root/.openclaw/workspace/` | OpenClaw Marvin 工作目录 |
+| `/root/sync-telegram-github.sh` | GitHub API 推送脚本 |
+
+### Crontab
+
+| 频率 | 任务 |
+|------|------|
+| 每小时 | `git pull` → pipeline（sync → fetch → analyze → assets） |
+| 每 30 分钟 | `sync-telegram-github.sh`（GitHub API 推 telegram json） |
+
+### 职责分离
+
+| 角色 | 职责 | 不做 |
+|------|------|------|
+| **Marvin** | 监听频道、生成摘要、写 json | 不碰 git |
+| **crontab** | 推 GitHub、跑 pipeline | 不做 AI 分析 |
+| **deploy-code.sh** | 部署代码 | 不跑 pipeline |
+| **push-obsidian-links.sh** | 推 Links.md + 触发 pipeline | 不推代码 |
+
+---
+
 ## 服务器信息
 
 - IP: `154.17.28.133`
