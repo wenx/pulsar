@@ -31,6 +31,10 @@
 - [x] **Topics 侧边栏可收起** — 默认收起，点击标题展开/收起，箭头旋转动画
 - [x] **安全与性能加固** — 文件锁原子写、缩略图 10MB 限制、SVG 转义补全、masonry reflow 优化
 
+- [x] **Pipeline 竞争修复** — 并发 pipeline 线程读写 links.json 导致 AI summary 丢失；改用 rerun flag 机制，新链接到来时排队重跑而非启动新线程
+- [x] **Telegram 同步架构重构** — Marvin 只写 `pulsar-links-telegram.json`，不执行 git 操作；系统 crontab 通过 GitHub API 推送，去掉 OpenClaw workspace 下的 git clone
+- [x] **OpenClaw workspace 清理** — Pulsar 代码与 Marvin bot 文件分离，workspace 不再维护 Pulsar 仓库副本
+
 ---
 
 ## 待办
