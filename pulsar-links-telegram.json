@@ -2,6 +2,23 @@
   "links": [
     {
       "date": "2026-03-16",
+      "title": "CLI-Anything: 让所有软件都能被 Agent 驱动",
+      "url": "https://github.com/HKUDS/CLI-Anything/blob/main/README_CN.md",
+      "domain": "github.com",
+      "author": "HKUDS",
+      "format": "Repository",
+      "notes": "",
+      "done": false,
+      "thumbnail": "",
+      "desc": "一行命令让任意软件接入 OpenClaw、Claude Code、Cursor 等 Agent 框架",
+      "favicon": "",
+      "category": "Technology",
+      "tags": ["AI", "工具", "CLI"],
+      "ai_summary": "CLI-Anything 通过 7 阶段自动生成 CLI 把任意软件变成 Agent 可控工具。已在 11 款软件上实测：GIMP、Blender、Inkscape、Audacity、LibreOffice、OBS、Kdenlive、Shotcut、Zoom、Draw.io、AnyGen，共 1,508 项测试 100% 通过。支持 Claude Code、OpenClaw、OpenCode、Codex 等平台。",
+      "content_file": ""
+    },
+    {
+      "date": "2026-03-16",
       "title": "wespy-fetcher - 微信公众号抓取 Skill",
       "url": "https://github.com/wlzh/skills/tree/main/wespy-fetcher",
       "domain": "github.com",
