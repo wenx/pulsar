@@ -1,6 +1,23 @@
 {
   "links": [
     {
+      "date": "2026-03-16",
+      "title": "wespy-fetcher - 微信公众号抓取 Skill",
+      "url": "https://github.com/wlzh/skills/tree/main/wespy-fetcher",
+      "domain": "github.com",
+      "author": "wlzh",
+      "format": "Repository",
+      "notes": "",
+      "done": false,
+      "thumbnail": "",
+      "desc": "把 WeSpy 封装成 OpenClaw Skill，支持微信公众号文章抓取、专辑批量下载、URL 转 Markdown",
+      "favicon": "",
+      "category": "Technology",
+      "tags": ["AI", "工具", "微信"],
+      "ai_summary": "wespy-fetcher 把 WeSpy 项目封装成可直接调用的 OpenClaw Skill。功能：单篇/批量抓取微信公众号文章、支持 Markdown/HTML/JSON 输出、专辑批量下载。依赖 Python 3.8+、git、requests、beautifulsoup4。",
+      "content_file": ""
+    },
+    {
       "date": "2026-03-15",
       "title": "Sea_Bitcoin 分享的链接",
       "url": "https://x.com/sea_bitcoin/status/2031544952212303952",
